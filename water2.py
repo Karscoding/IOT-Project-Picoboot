@@ -1,46 +1,56 @@
 import pygame
-import math
-import time
 
-# Initialize Pygame
 pygame.init()
 
-# Set up the window
-width, height = 640, 480
-screen = pygame.display.set_mode((width, height))
-pygame.display.set_caption("Water Simulation")
+win = pygame.display.set_mode((1920,1080))
 
-# Set up the wave parameters
-amplitude = 20
-period = 20
-frequency = 0.1
-phase = 0
+pygame.display.set_caption("Water Simulator")
 
-# Set up the water surface
-water_surface = pygame.Surface((width, height))
-water_surface.set_alpha(128)
+y=600
+width=20
+height=20
+vel=10
 
-# Run the game loop
-while True:
-    # Handle events
+
+image= pygame.image.load('noordpolderzijl.jpg')
+def background(image):
+    size=pygame.transform.scale(image,(1920,1080))
+    win.blit(size,(0,0))
+
+'''boat=pygame.image.load('boot.png')
+def add_boat(boat):
+    size=pygame.transform.scale(boat,(600,200))
+    win.blit(size,(1920/2,1080/2))
+'''
+
+water= pygame.image.load('water.png')
+def polder(image):
+    size=pygame.transform.scale(image,(1920,1080))
+    win.blit(size,(0,y))
+run=True
+
+while run:
+    pygame.time.delay(10)
+
     for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            pygame.quit()
-            exit()
+        if event.type== pygame.quit:
+            run=False
+    
+    keys=pygame.key.get_pressed()
 
-    # Clear the screen
-    screen.fill((255, 255, 255))
+    if keys[pygame.K_UP] and y >500:
+        y-=vel
 
-    # Draw the waves
-    for x in range(width):
-        y = height / 2 + amplitude * math.sin(2 * math.pi * x / period - frequency * phase)
-        pygame.draw.line(water_surface, (0, 0, 255), (x, y), (x, height))
+    if keys[pygame.K_DOWN] and y < 880 - height:
+        y+=vel
 
-    # Update the phase
-    phase += 1
+    if keys[pygame.K_q]:
+        pygame.quit()
 
-    # Draw the water surface
-    screen.blit(water_surface, (0, 0))
 
-    # Update the display
+    background(image)
+    polder(water)
+
     pygame.display.update()
+
+pygame.quit()
