@@ -39,6 +39,9 @@ def add_motor(motor):
     size=pygame.transform.scale(motor,(100,100))
     win.blit(size,(700,y-50))
 
+# Define color constants
+BLACK = (0, 0, 0)
+WHITE=(255,255,255)
 
 run=True
 
@@ -88,6 +91,13 @@ while run:
         add_motor(motor)
     elif mnr==0:
         add_motor(greenmotor)
+    
+    # Draw black box around "esp" text
+    font = pygame.font.SysFont(None, 25)
+    text = font.render("Computer/ESP", True, WHITE)
+    pygame.draw.rect(win, BLACK, (900, y-20, 150, 50))
+    win.blit(text, (900, y))
+    
     pygame.display.update()
 
 pygame.quit()
