@@ -6,6 +6,7 @@ win = pygame.display.set_mode((1920,1080))
 
 pygame.display.set_caption("Water Simulator")
 
+x=250
 y=600
 width=20
 height=20
@@ -17,10 +18,15 @@ def background(image):
     size=pygame.transform.scale(image,(1920,1080))
     win.blit(size,(0,0))
 
+zand=pygame.image.load('zand.png')
+def add_zand(zand):
+    size=pygame.transform.scale(zand,(1920,200))
+    win.blit(size,(0,800))
+
 boat=pygame.image.load('boot.png')
 def add_boat(boat):
     size=pygame.transform.scale(boat,(600,200))
-    win.blit(size,(600,y-50))
+    win.blit(size,(x,y-50))
 
 water= pygame.image.load('water.png')
 def polder(image):
@@ -30,14 +36,14 @@ def polder(image):
 schuif=pygame.image.load('schuif.png')
 def add_schuif(schuif):
     size=pygame.transform.scale(schuif,(100,150))
-    win.blit(size,(1150,y-sy))
+    win.blit(size,(x+550,y-sy))
 
 mnr=1
 motor=pygame.image.load('motor.png')
 greenmotor=pygame.image.load('motorgeel.png')
 def add_motor(motor):
     size=pygame.transform.scale(motor,(100,100))
-    win.blit(size,(700,y-50))
+    win.blit(size,(x+100,y-50))
 
 # Define color constants
 BLACK = (0, 0, 0)
@@ -57,24 +63,38 @@ while run:
     if keys[pygame.K_UP] and y >500:
         y-=vel
 
-    if keys[pygame.K_DOWN] and y < 880 - height:
+    if keys[pygame.K_DOWN] and y < 700:
         y+=vel
 
     if keys[pygame.K_q]:
         pygame.quit()
 
-    if keys[pygame.K_w]:
-        if sy+vel== 60:
-            sy=sy
-        else:
-            sy+=vel
-    
-    if keys[pygame.K_s]:
-        if sy-vel == -20:
-            sy=sy
-        else: 
-            sy-=vel
 
+    if mnr==0:
+        if keys[pygame.K_w]:
+            if sy+vel== 60:
+                sy=sy
+            else:
+                sy+=vel
+        
+        if keys[pygame.K_s]:
+            if sy-vel == -20:
+                sy=sy
+            else: 
+                sy-=vel
+
+        if keys[pygame.K_RIGHT]:
+            if x+vel==1000:
+                x=x
+            else:
+                x+=vel
+        
+        if keys[pygame.K_LEFT]:
+            if x+vel==100:
+                x=x
+            else:
+                x-=vel
+        
     if keys[pygame.K_SPACE]:
         if mnr ==1:
             mnr=0
@@ -84,6 +104,7 @@ while run:
             sleep(0.1)
 
     background(image)
+    add_zand(zand)
     polder(water)
     add_boat(boat)
     add_schuif(schuif)
@@ -95,8 +116,8 @@ while run:
     # Draw black box around "esp" text
     font = pygame.font.SysFont(None, 25)
     text = font.render("Computer/ESP", True, WHITE)
-    pygame.draw.rect(win, BLACK, (900, y-20, 150, 50))
-    win.blit(text, (900, y))
+    pygame.draw.rect(win, BLACK, (x+300, y-20, 150, 50))
+    win.blit(text, (x+300, y))
     
     pygame.display.update()
 
