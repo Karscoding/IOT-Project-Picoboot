@@ -1,4 +1,6 @@
 import customtkinter as ctk
+import threading
+import time
 
 #Initialization
 ctk.set_appearance_mode('dark')
@@ -12,14 +14,29 @@ root.grid_columnconfigure((0,5), weight=1)
 
 font = 'Cascadia Code'
 
+f = open('temp.txt', 'r')
+
 #Functions
 def startTimer():
+    progressbar.set(0)
     progressbar.start()
+    
+def TempReading():
+    run = True
+    while run:
+        Temp = f.read()
+        text_label.configure(text=f"Temp : {Temp}")
+        time.sleep(2)
 
 
 #Widgets
 frame = ctk.CTkFrame(master=root)
 frame.grid(row=0, column=0, columnspan=10, rowspan=10, padx=20, pady=20, sticky='nsew')
+
+text_label = ctk.CTkLabel(master=frame, text='Temp : ')
+text_label.grid(row=3,column=2)
+temp_button = ctk.CTkButton(master=frame, text='Start Reading', command=(threading.Thread(target=TempReading).start))
+temp_button.grid()
 
 progress_frame = ctk.CTkFrame(master=frame)
 progress_frame.grid(row=0, column=0)
@@ -42,8 +59,10 @@ button.grid(pady=10, padx=10)
 graph_frame = ctk.CTkFrame(master=root)
 graph_frame.grid(row=0,column=1)
 
-graph_label = ctk.CTkLabel(master=graph_frame, text='Graph')
-graph_label.grid()
+def Tester():
+    for x in range(0,200):
+        print('Testing ', x)
+        time.sleep(2)
 
-#Run
-root.mainloop()
+if __name__ == '__main__':
+    root.mainloop()
