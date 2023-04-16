@@ -3,10 +3,11 @@ from flask import Flask, request, jsonify
 app = Flask(__name__)
 
 f = open('temp.txt', 'w')
+data = 0.0
 
 @app.route('/temperature', methods=['POST'])
 def temperature():
-    data = request.json
+    data += 1.1
     
     f.write(data)
     

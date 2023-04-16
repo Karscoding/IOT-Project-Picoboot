@@ -26,7 +26,7 @@ def add_zand(zand):
 boat=pygame.image.load('boot.png')
 def add_boat(boat):
     size=pygame.transform.scale(boat,(600,200))
-    win.blit(size,(x,y-50))
+    win.blit(size,(x,y))
 
 water= pygame.image.load('water.png')
 def polder(image):
@@ -48,11 +48,11 @@ def add_motor(motor):
 # Define color constants
 BLACK = (0, 0, 0)
 WHITE=(255,255,255)
-
 run=False
+
 if __name__ == '__main__':
     run=True
-
+    
 while run:
     pygame.time.delay(10)
 

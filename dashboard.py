@@ -14,7 +14,7 @@ root.grid_columnconfigure((0,5), weight=1)
 
 font = 'Cascadia Code'
 
-f = open('temp.txt', 'r')
+
 
 #Functions
 def startTimer():
@@ -24,8 +24,10 @@ def startTimer():
 def TempReading():
     run = True
     while run:
+        f = open('temp.txt', 'r')
         Temp = f.read()
         text_label.configure(text=f"Temp : {Temp}")
+        f.close()
         time.sleep(2)
 
 
