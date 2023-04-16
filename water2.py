@@ -49,7 +49,9 @@ def add_motor(motor):
 BLACK = (0, 0, 0)
 WHITE=(255,255,255)
 
-run=True
+run=False
+if __name__ == '__main__':
+    run=True
 
 while run:
     pygame.time.delay(10)
