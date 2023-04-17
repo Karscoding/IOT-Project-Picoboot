@@ -4,8 +4,6 @@ customtkinter.set_default_color_theme("blue")
 customtkinter.set_appearance_mode("light")
 
 
-
-
 class MyFrame(customtkinter.CTkFrame):
     def __init__(self, *args, master, **kwargs):
         super().__init__(master, *args, **kwargs)
