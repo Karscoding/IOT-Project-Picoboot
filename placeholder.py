@@ -36,16 +36,6 @@ class App(customtkinter.CTk):
         
         self.my_frame = MyFrame(master=self)
         self.my_frame.grid(row=0, column=0, padx=20, pady=20, sticky="nsew")
-        
-
-
-        
-
-
-        
-
-
-
 
 
 if __name__ == "__main__":

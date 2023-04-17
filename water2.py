@@ -1,22 +1,24 @@
 import pygame
+from time import sleep
 
-def simulator(x,y):
-    pygame.init()
-    info = pygame.display.Info()
-    SIZE = info.current_w, info.current_h
+pygame.init()
+info = pygame.display.Info()
+SIZE = info.current_w, info.current_h
 
-    # flags = pygame.DOUBLEBUF | pygame.FULLSCREEN
-    win = pygame.display.set_mode(SIZE)
+# flags = pygame.DOUBLEBUF | pygame.FULLSCREEN
+win = pygame.display.set_mode(SIZE)
 
-    pygame.display.set_caption("Water Simulator")
+pygame.display.set_caption("Water Simulator")
+x=600
+y=900
 
-    vel=5
-    sy=0
+vel=5
+sy=0
 
-    image= pygame.image.load('noordpolderzijl.jpg')
-    def background(image):
-        size=pygame.transform.scale(image,(1920,1080))
-        win.blit(size,(0,0))
+image= pygame.image.load('noordpolderzijl.jpg')
+def background(image):
+    size=pygame.transform.scale(image,(1920,1080))
+    win.blit(size,(0,0))
 
     zand=pygame.image.load('zand.png')
     def add_zand(zand):
@@ -38,7 +40,6 @@ def simulator(x,y):
         size=pygame.transform.scale(schuif,(100,150))
         win.blit(size,(x+550,y-sy))
 
-
     mnr=1
     motor=pygame.image.load('motor.png')
     greenmotor=pygame.image.load('motorgeel.png')
@@ -50,7 +51,7 @@ def simulator(x,y):
     BLACK = (0, 0, 0)
     WHITE=(255,255,255)
 
-    '''run=True
+    run=True
 
     while run:
         pygame.time.delay(10)
@@ -58,7 +59,6 @@ def simulator(x,y):
         for event in pygame.event.get():
             if event.type== pygame.quit:
                 run=False
-
         
         keys=pygame.key.get_pressed()
 
@@ -90,7 +90,7 @@ def simulator(x,y):
                 else:
                     x+=vel
             
-            if keys[pygame.K_LEFT]:
+        if keys[pygame.K_LEFT]:
                 if x+vel==100:
                     x=x
                 else:
@@ -102,23 +102,23 @@ def simulator(x,y):
                 sleep(0.1)
             elif mnr==0:
                 mnr=1 
-                sleep(0.1)'''
+                sleep(0.1)
         
-    background(image)
-    add_zand(zand)
-    polder(water)
-    add_boat(boat)
-    add_schuif(schuif)
-    if mnr==1:
-        add_motor(motor)
-    elif mnr==0:
-        add_motor(greenmotor)
-            
-    # Draw black box around "esp" text
-    font = pygame.font.SysFont(None, 25)
-    text = font.render("Computer/ESP", True, WHITE)
-    pygame.draw.rect(win, BLACK, (x+300, y-20, 150, 50))
-    win.blit(text, (x+300, y))    
+        background(image)
+        add_zand(zand)
+        polder(water)
+        add_boat(boat)
+        add_schuif(schuif)
+        if mnr==1:
+            add_motor(motor)
+        elif mnr==0:
+            add_motor(greenmotor)
+                
+        # Draw black box around "esp" text
+        font = pygame.font.SysFont(None, 25)
+        text = font.render("Computer/ESP", True, WHITE)
+        pygame.draw.rect(win, BLACK, (x+300, y-20, 150, 50))
+        win.blit(text, (x+300, y))    
 
-    pygame.display.update()
+        pygame.display.update()
 
