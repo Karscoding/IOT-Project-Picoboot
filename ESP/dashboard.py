@@ -1,6 +1,8 @@
 import customtkinter as ctk
 import threading
 import time
+import os
+import sys
 
 #Initialization
 ctk.set_appearance_mode('dark')
@@ -13,9 +15,6 @@ root.grid_rowconfigure(0, weight=1)
 root.grid_columnconfigure((0,5), weight=1)
 
 font = 'Cascadia Code'
-
-
-
 #Functions
 def startTimer():
     progressbar.set(0)
@@ -24,7 +23,8 @@ def startTimer():
 def TempReading():
     run = True
     while run:
-        f = open('temp.txt', 'r')
+        f = open(os.path.join(sys.path[0], 'temp.txt'), 'r')
+        
         Temp = f.read()
         text_label.configure(text=f"Temp : {Temp}")
         f.close()
