@@ -2,13 +2,14 @@ from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 
-f = open('temp.txt', 'w')
-
 @app.route('/temperature', methods=['POST'])
 def temperature():
     data = request.json
-    
-    f.write(data)
+
+    f = open('temp.txt', 'w')
+    printedData = round(float(data), 2)
+    f.write(str(printedData))
+    f.close()
     
     if data >= 25.0:
         print('Boven 25')
