@@ -5,14 +5,21 @@ customtkinter.set_appearance_mode("light")
 
 
 class MyFrame(customtkinter.CTkFrame):
-    def __init__(self, *args, master, **kwargs):
+    def __init__(self, *args, master,header_name="Warmlopen starten:", **kwargs):
         super().__init__(master, *args, **kwargs)
+        # add widgets onto the frame...
         
 
-        # add widgets onto the frame...
+        
+        self.header_name = header_name
+
+        self.header = customtkinter.CTkLabel(self, text=self.header_name)
+        self.header.place(relx=0.27, rely=0.05 )
+
+        
 
         self.progressbar = customtkinter.CTkProgressBar(self)
-        self.progressbar.pack(padx=20, pady=10)
+        self.progressbar.grid(row=0, column=0, padx=20, pady=80)
         self.progressbar.set(0)
         self.progressbar._border_width=(1)
         self.progressbar._fg_color=("red")
@@ -20,7 +27,43 @@ class MyFrame(customtkinter.CTkFrame):
         self.progressbar._border_color=("black")
         self.progressbar._mode=("determinate")
         self.progressbar._determinate_speed=(1/300)
-        self.progressbar.start()
+
+        def start_progress_bar():
+            self.progressbar.start()
+        
+        self.button_1 =customtkinter.CTkButton(self, text="Start", border_width=0,corner_radius=8,width=120,height=32,command=start_progress_bar)
+        self.button_1.place(relx=0.25, rely=0.20)
+
+
+class RadioButtonFrame(customtkinter.CTkFrame):
+    def __init__(self, *args, header_name="RadioButtonFrame", **kwargs):
+        super().__init__(*args, **kwargs)
+        
+        self.header_name = header_name
+
+        self.header = customtkinter.CTkLabel(self, text=self.header_name)
+        self.header.grid(row=0, column=0, padx=10, pady=10)
+
+        self.radio_button_var = customtkinter.StringVar(value="")
+
+        self.radio_button_1 = customtkinter.CTkRadioButton(self, text="Handmatig", value="Handmatig", variable=self.radio_button_var)
+        self.radio_button_1.grid(row=1, column=0, padx=10, pady=10)
+        self.radio_button_2 = customtkinter.CTkRadioButton(self, text="Automatisch", value="Automatisch", variable=self.radio_button_var)
+        self.radio_button_2.grid(row=2, column=0, padx=10, pady=10)
+
+        def get_value():
+            """ returns selected value as a string, returns an empty string if nothing selected """
+            return self.radio_button_var.get()
+        self.frame_1_button = customtkinter.CTkButton(self, text="Selecteer", command=get_value)
+        self.frame_1_button.grid(row=3, column=0, padx=20, pady=10)
+
+  
+
+    def set_value(self, selection):
+        """ selects the corresponding radio button, selects nothing if no corresponding radio button """
+        self.radio_button_var.set(selection)
+
+       
 
 
 
@@ -34,8 +77,29 @@ class App(customtkinter.CTk):
         self.title("placeholder dashboard")
 
         
-        self.my_frame = MyFrame(master=self)
+        self.my_frame = MyFrame(master=self, header_name="Warmlopen starten:")
         self.my_frame.grid(row=0, column=0, padx=20, pady=20, sticky="nsew")
+
+        
+        self.radio_button_frame_1 = RadioButtonFrame(self, header_name="Besturingsmodus")
+        self.radio_button_frame_1.grid(row=0, column=3, padx=20, pady=20)
+
+        
+        
+
+    def print_value_frame_1(self):
+        print(f"Frame 1 value: {self.radio_button_frame_1.get_value()}")
+
+        
+
+
+        
+
+
+        
+
+
+
 
 
 if __name__ == "__main__":
