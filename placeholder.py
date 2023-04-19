@@ -3,6 +3,31 @@ import customtkinter
 customtkinter.set_default_color_theme("blue")
 customtkinter.set_appearance_mode("light")
 
+class MyFrame2(customtkinter.CTkFrame):
+    def __init__(self, *args, master,header_name="Status machine", **kwargs):
+        super().__init__(master, *args, **kwargs)
+        # add widgets onto the frame...
+        self.header_name = header_name
+
+        self.label = customtkinter.CTkLabel(self, width=120, height=25, fg_color=("orange", "gray75"), corner_radius=8,anchor="center", text="Status Machine")
+        self.label.grid(row=0, column=0, padx=10, pady=30)
+        self.label = customtkinter.CTkLabel(self, width=120, height=25, fg_color=("red", "gray75"), corner_radius=8,anchor="center", text="Status Aggregraat")
+        self.label.grid(row=1, column=0, padx=0, pady=10)
+        self.label = customtkinter.CTkLabel(self, width=120, height=25, fg_color=("green", "gray75"), corner_radius=8,anchor="center", text="Status Compressor")
+        self.label.grid(row=2, column=0, padx=0, pady=10)
+        self.label = customtkinter.CTkLabel(self, width=120, height=25, fg_color=("green", "gray75"), corner_radius=8,anchor="center", text="Status Verlichting")
+        self.label.grid(row=3, column=0, padx=0, pady=10)
+        self.label = customtkinter.CTkLabel(self, width=120, height=25, fg_color=("green", "gray75"), corner_radius=8,anchor="center", text="Status Voorschuif")
+        self.label.grid(row=4, column=0, padx=0, pady=10)
+        self.label = customtkinter.CTkLabel(self, width=120, height=25, fg_color=("green", "gray75"), corner_radius=8,anchor="center", text="Status Achterschuif")
+        self.label.grid(row=5, column=0, padx=0, pady=10)
+
+
+
+
+
+
+
 
 class MyFrame(customtkinter.CTkFrame):
     def __init__(self, *args, master,header_name="Warmlopen starten:", **kwargs):
@@ -18,7 +43,7 @@ class MyFrame(customtkinter.CTkFrame):
 
         
 
-        self.progressbar = customtkinter.CTkProgressBar(self)
+        self.progressbar = customtkinter.CTkProgressBar(self, height=20)
         self.progressbar.grid(row=0, column=0, padx=20, pady=80)
         self.progressbar.set(0)
         self.progressbar._border_width=(1)
@@ -32,7 +57,7 @@ class MyFrame(customtkinter.CTkFrame):
             self.progressbar.start()
         
         self.button_1 =customtkinter.CTkButton(self, text="Start", border_width=0,corner_radius=8,width=120,height=32,command=start_progress_bar)
-        self.button_1.place(relx=0.25, rely=0.20)
+        self.button_1.grid(row=1, column=0, padx=0, pady=10)
 
 
 class RadioButtonFrame(customtkinter.CTkFrame):
@@ -55,7 +80,7 @@ class RadioButtonFrame(customtkinter.CTkFrame):
             """ returns selected value as a string, returns an empty string if nothing selected """
             return self.radio_button_var.get()
         self.frame_1_button = customtkinter.CTkButton(self, text="Selecteer", command=get_value)
-        self.frame_1_button.grid(row=3, column=0, padx=20, pady=10)
+        self.frame_1_button.grid(row=3, column=0, padx=20, pady=30)
 
   
 
@@ -78,11 +103,11 @@ class App(customtkinter.CTk):
 
         
         self.my_frame = MyFrame(master=self, header_name="Warmlopen starten:")
-        self.my_frame.grid(row=0, column=0, padx=20, pady=20, sticky="nsew")
-
-        
+        self.my_frame.grid(row=0, column=0, padx=20, pady=20, sticky="nsew") 
         self.radio_button_frame_1 = RadioButtonFrame(self, header_name="Besturingsmodus")
         self.radio_button_frame_1.grid(row=0, column=3, padx=20, pady=20)
+        self.my_frame2 = MyFrame2(master=self, header_name="Status machine")
+        self.my_frame2.grid(row=0, column=4, padx=20, pady=20)
 
         
         
