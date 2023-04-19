@@ -67,14 +67,11 @@ class MyFrame(customtkinter.CTkFrame):
 
         
         self.header_name = header_name
-
-        self.header = customtkinter.CTkLabel(self, text=self.header_name)
-        self.header.place(relx=0.27, rely=0.05 )
-
-        
+        self.label = customtkinter.CTkLabel(self, width=120, height=25, fg_color=("dark gray", "gray75"), corner_radius=8,anchor="center", text="Warmlooptimer")
+        self.label.grid(row=0, column=0, padx=0, pady=10)
 
         self.progressbar = customtkinter.CTkProgressBar(self, height=20)
-        self.progressbar.grid(row=0, column=0, padx=20, pady=80)
+        self.progressbar.grid(row=1, column=0, padx=20, pady=80)
         self.progressbar.set(0)
         self.progressbar._border_width=(1)
         self.progressbar._fg_color=("red")
@@ -87,7 +84,7 @@ class MyFrame(customtkinter.CTkFrame):
             self.progressbar.start()
         
         self.button_1 =customtkinter.CTkButton(self, text="Start", border_width=0,corner_radius=8,width=120,height=32,command=start_progress_bar)
-        self.button_1.grid(row=1, column=0, padx=0, pady=10)
+        self.button_1.grid(row=2, column=0, padx=0, pady=10)
 
 
 class RadioButtonFrame(customtkinter.CTkFrame):
@@ -96,8 +93,9 @@ class RadioButtonFrame(customtkinter.CTkFrame):
         
         self.header_name = header_name
 
-        self.header = customtkinter.CTkLabel(self, text=self.header_name)
-        self.header.grid(row=0, column=0, padx=10, pady=10)
+        self.label = customtkinter.CTkLabel(self, width=120, height=25, fg_color=("dark gray", "gray75"), corner_radius=8,anchor="center", text="Besturingsmodus")
+
+        self.label.grid(row=0, column=0, padx=10, pady=10)
 
         self.radio_button_var = customtkinter.StringVar(value="")
 
@@ -134,13 +132,13 @@ class App(customtkinter.CTk):
         self.my_frame.grid(row=0, column=0, padx=20, pady=20, sticky="nsew") 
         
         self.radio_button_frame_1 = RadioButtonFrame(self, header_name="Besturingsmodus")
-        self.radio_button_frame_1.grid(row=0, column=3, padx=20, pady=20)
+        self.radio_button_frame_1.grid(row=0, column=1, padx=20, pady=20)
         
         self.my_frame2 = MyFrame2(master=self, header_name="Status machine")
-        self.my_frame2.grid(row=0, column=4, padx=20, pady=20)
+        self.my_frame2.grid(row=0, column=2, padx=20, pady=20)
         
         self.temp = temp(master=self,header_name="temp")
-        self.temp.grid(row=0, column=5, padx=20,pady=20)
+        self.temp.grid(row=0, column=3, padx=20,pady=20)
 
         self.Control_panel = ControlPanel(master=self, header_name="Besturingspaneel")
         self.Control_panel.grid(row=3, column=1, padx=20, pady=10)
