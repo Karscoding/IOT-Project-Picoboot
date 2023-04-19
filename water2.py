@@ -98,7 +98,7 @@ def adjusttide():
      global y
      global run
      i=0
-     wy= random.randint(500,600)
+     wy= random.randint(500,575)
      if abs(y-wy)<=50:
         if y-wy<0:
             wy+=50
@@ -109,15 +109,15 @@ def adjusttide():
         if y!=wy:
             if y-wy<0:
                 y+=1
-                sleep(0.02)
+                sleep(0.01)
             elif y-wy>0:
                 y-=1
-                sleep(0.02)
+                sleep(0.01)
         else:
             i+=1
-            if i == 6:
+            if i == 10:
                 run=False
-            wy= random.randint(500,600)
+            wy= random.randint(500,575)
             if abs(y-wy)<=50:
                 if y-wy<0:
                     wy+=50
@@ -126,7 +126,7 @@ def adjusttide():
                         wy=400 
                     else:
                         wy-=50
-            sleep(4)
+            sleep(1)
 
 
 thread1=threading.Thread(target=runengine).start()
