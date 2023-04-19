@@ -15,6 +15,7 @@ root.grid_rowconfigure(0, weight=1)
 root.grid_columnconfigure((0,5), weight=1)
 
 font = 'Cascadia Code'
+
 #Functions
 def startTimer():
     progressbar.set(0)
@@ -24,7 +25,6 @@ def TempReading():
     run = True
     while run:
         f = open(os.path.join(sys.path[0], 'temp.txt'), 'r')
-        
         Temp = f.read()
         text_label.configure(text=f"Temp : {Temp}")
         f.close()

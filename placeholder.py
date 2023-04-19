@@ -1,7 +1,34 @@
 import customtkinter 
+import threading
+import time
+import os
+import sys
 
 customtkinter.set_default_color_theme("blue")
 customtkinter.set_appearance_mode("light")
+
+def TempReading(label):
+    run=True
+    while run:
+        path=os.path.join(sys.path[0], 'temp.txt')
+        f=open(path,'r')
+        Temp = f.read()
+        label.configure(text=f"Temp : {Temp}")
+        f.close()
+        time.sleep(5)
+
+
+class temp(customtkinter.CTkFrame):
+    def __init__(self, *args, master, header_name="Tempratuur", **kwargs):
+        super().__init__(master,*args, **kwargs)
+        self.header_name= header_name
+
+        self.label = customtkinter.CTkLabel(self, width=120, height=25, corner_radius=8,anchor="center", text=f"Temp: ")
+        self.label.grid(row=3,column=2)
+
+        self.button = customtkinter.CTkButton(self, text='Start Reading', command=lambda: TempReading(self.label))
+        self.button.grid()
+
 
 class MyFrame2(customtkinter.CTkFrame):
     def __init__(self, *args, master,header_name="Status machine", **kwargs):
@@ -101,13 +128,17 @@ class App(customtkinter.CTk):
         self.geometry('1280x720')
         self.title("placeholder dashboard")
 
-        
         self.my_frame = MyFrame(master=self, header_name="Warmlopen starten:")
         self.my_frame.grid(row=0, column=0, padx=20, pady=20, sticky="nsew") 
+        
         self.radio_button_frame_1 = RadioButtonFrame(self, header_name="Besturingsmodus")
         self.radio_button_frame_1.grid(row=0, column=3, padx=20, pady=20)
+        
         self.my_frame2 = MyFrame2(master=self, header_name="Status machine")
         self.my_frame2.grid(row=0, column=4, padx=20, pady=20)
+        
+        self.temp = temp(master=self,header_name="temp")
+        self.temp.grid(row=0, column=5, padx=20,pady=20)
 
         
         
@@ -115,18 +146,10 @@ class App(customtkinter.CTk):
     def print_value_frame_1(self):
         print(f"Frame 1 value: {self.radio_button_frame_1.get_value()}")
 
-        
-
-
-        
-
-
-        
-
 
 
 
 
 if __name__ == "__main__":
-    app = App()
+    app=App()
     app.mainloop()
