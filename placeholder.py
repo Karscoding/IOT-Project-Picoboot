@@ -1,5 +1,4 @@
 import customtkinter 
-import threading
 from time import sleep
 import os
 import sys
@@ -21,12 +20,18 @@ class temp(customtkinter.CTkFrame):
         self.header_name= header_name
 
         self.label = customtkinter.CTkLabel(self, width=120, height=25, corner_radius=8,anchor="center", text=f"Temp: ")
-        self.label.grid(row=3,column=2)
+        self.label.grid()
 
-        self.button = customtkinter.CTkButton(self, text='Haal Temperatuur', command= TempReading(self.label))
+        self.button = customtkinter.CTkButton(self, text='Haal Temperatuur', command= self.update_temp)
         self.button.grid()
 
-
+    def update_temp(self):
+        path = os.path.join(sys.path[0], 'temp.txt')
+        with open(path, 'r') as f:
+            temp = f.read().strip()
+        self.label.configure(text=f"Temp : {temp}")
+        # schedule the next update after 1 second
+        self.after(1000, self.update_temp)
 
 class ControlPanel(customtkinter.CTkFrame):    
     def __init__(self, *args, master, header_name="Besturingspaneel", **kwargs):
@@ -67,7 +72,7 @@ class MyFrame(customtkinter.CTkFrame):
 
         
         self.header_name = header_name
-        self.label = customtkinter.CTkLabel(self, width=120, height=25, fg_color=("dark gray", "gray75"), corner_radius=8,anchor="center", text="Warmlooptimer")
+        self.label = customtkinter.CTkLabel(self, width=120, height=25, fg_color=("dark gray", "gray75"), corner_radius=8,anchor="center", text="Timer (5 minuten)")
         self.label.grid(row=0, column=0, padx=0, pady=10)
 
         self.progressbar = customtkinter.CTkProgressBar(self, height=20)
