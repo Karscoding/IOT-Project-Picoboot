@@ -19,11 +19,14 @@ class temp(customtkinter.CTkFrame):
         super().__init__(master,*args, **kwargs)
         self.header_name= header_name
 
+        self.label = customtkinter.CTkLabel(self, width=120, height=25, fg_color=("dark gray", "gray75"), corner_radius=8,anchor="center", text="Temperatuur Motorkamer")
+        self.label.grid(row=0,column=0,padx=20,pady=10)
+
         self.label = customtkinter.CTkLabel(self, width=120, height=25, corner_radius=8,anchor="center", text="Temperatuur: nog niet gemeten")
-        self.label.grid()
+        self.label.grid(row=1,column=0,padx=0,pady=80)
 
         self.button = customtkinter.CTkButton(self, text='Start met lezen', command= self.update_temp)
-        self.button.grid()
+        self.button.grid(row=2,column=0,padx=0,pady=20)
 
     def update_temp(self):
         path = os.path.join(sys.path[0], 'temp.txt')
