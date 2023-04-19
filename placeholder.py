@@ -145,9 +145,7 @@ class App(customtkinter.CTk):
         
         self.temp = temp(master=self,header_name="temp")
         self.temp.grid(row=0, column=5, padx=20,pady=20)
-        self.radio_button_frame_1.grid(row=0, column=1, padx=20, pady=20)
-        self.my_frame2 = MyFrame2(master=self, header_name="Status machine")
-        self.my_frame2.grid(row=0, column=2, padx=20, pady=20)
+
         self.Control_panel = ControlPanel(master=self, header_name="Besturingspaneel")
         self.Control_panel.grid(row=3, column=1, padx=20, pady=10)
 
