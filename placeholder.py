@@ -19,18 +19,18 @@ class temp(customtkinter.CTkFrame):
         super().__init__(master,*args, **kwargs)
         self.header_name= header_name
 
-        self.label = customtkinter.CTkLabel(self, width=120, height=25, corner_radius=8,anchor="center", text=f"Temp: ")
+        self.label = customtkinter.CTkLabel(self, width=120, height=25, corner_radius=8,anchor="center", text="Temperatuur: nog niet gemeten")
         self.label.grid()
 
-        self.button = customtkinter.CTkButton(self, text='Haal Temperatuur', command= self.update_temp)
+        self.button = customtkinter.CTkButton(self, text='Start met lezen', command= self.update_temp)
         self.button.grid()
 
     def update_temp(self):
         path = os.path.join(sys.path[0], 'temp.txt')
         with open(path, 'r') as f:
             temp = f.read().strip()
-        self.label.configure(text=f"Temp : {temp}")
-        # schedule the next update after 1 second
+        self.label.configure(text=f"Temperatuur : {temp}")
+        # schedule the next update after 5 seconds
         self.after(5000, self.update_temp)
 
 class ControlPanel(customtkinter.CTkFrame):    
