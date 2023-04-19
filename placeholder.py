@@ -3,6 +3,21 @@ import customtkinter
 customtkinter.set_default_color_theme("blue")
 customtkinter.set_appearance_mode("light")
 
+
+class ControlPanel(customtkinter.CTkFrame):
+    
+    def __init__(self, *args, master, header_name="Besturingspaneel", **kwargs):
+        super().__init__(master, *args, **kwargs)
+        # add widgets onto the frame...
+        self.header_name = header_name
+
+        self.label = customtkinter.CTkLabel(self, width=120, height=25, fg_color=("white", "gray75"), corner_radius=8,anchor="center", text="Besturingspaneel")
+        self.label.grid(row=2, column=0, padx=20, pady=10)
+
+
+
+
+
 class MyFrame2(customtkinter.CTkFrame):
     def __init__(self, *args, master,header_name="Status machine", **kwargs):
         super().__init__(master, *args, **kwargs)
@@ -21,12 +36,6 @@ class MyFrame2(customtkinter.CTkFrame):
         self.label.grid(row=4, column=0, padx=0, pady=10)
         self.label = customtkinter.CTkLabel(self, width=120, height=25, fg_color=("green", "gray75"), corner_radius=8,anchor="center", text="Status Achterschuif")
         self.label.grid(row=5, column=0, padx=0, pady=10)
-
-
-
-
-
-
 
 
 class MyFrame(customtkinter.CTkFrame):
@@ -105,9 +114,12 @@ class App(customtkinter.CTk):
         self.my_frame = MyFrame(master=self, header_name="Warmlopen starten:")
         self.my_frame.grid(row=0, column=0, padx=20, pady=20, sticky="nsew") 
         self.radio_button_frame_1 = RadioButtonFrame(self, header_name="Besturingsmodus")
-        self.radio_button_frame_1.grid(row=0, column=3, padx=20, pady=20)
+        self.radio_button_frame_1.grid(row=0, column=1, padx=20, pady=20)
         self.my_frame2 = MyFrame2(master=self, header_name="Status machine")
-        self.my_frame2.grid(row=0, column=4, padx=20, pady=20)
+        self.my_frame2.grid(row=0, column=2, padx=20, pady=20)
+        self.Control_panel = ControlPanel(master=self, header_name="Besturingspaneel")
+        self.Control_panel.grid(row=3, column=1, padx=20, pady=10)
+
 
         
         
