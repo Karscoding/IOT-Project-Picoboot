@@ -129,9 +129,7 @@ def adjusttide():
             sleep(4)
 
 
-thread1=threading.Thread(target=runengine)
-thread1.start()
-thread2 = threading.Thread(target=adjusttide)
-thread2.start()
+thread1=threading.Thread(target=runengine).start()
+thread2 = threading.Thread(target=adjusttide).start()
 
 

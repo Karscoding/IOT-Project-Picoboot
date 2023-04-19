@@ -1,6 +1,6 @@
 import customtkinter 
 import threading
-import time
+from time import sleep
 import os
 import sys
 
@@ -8,25 +8,22 @@ customtkinter.set_default_color_theme("blue")
 customtkinter.set_appearance_mode("light")
 
 def TempReading(label):
-    #run=True
-    #while run:
-        path=os.path.join(sys.path[0], 'temp.txt')
-        f=open(path,'r')
-        Temp = f.read()
-        label.configure(text=f"Temp : {Temp}")
-        f.close()
-        #time.sleep(5)
+    path=os.path.join(sys.path[0], 'temp.txt')
+    f=open(path,'r')
+    Temp = f.read()
+    label.configure(text=f"Temp : {Temp}")
+    f.close()
 
 
 class temp(customtkinter.CTkFrame):
-    def __init__(self, *args, master, header_name="Tempratuur", **kwargs):
+    def __init__(self, *args, master, header_name="Temperatuur", **kwargs):
         super().__init__(master,*args, **kwargs)
         self.header_name= header_name
 
         self.label = customtkinter.CTkLabel(self, width=120, height=25, corner_radius=8,anchor="center", text=f"Temp: ")
         self.label.grid(row=3,column=2)
 
-        self.button = customtkinter.CTkButton(self, text='Start Reading', command=lambda: TempReading(self.label))
+        self.button = customtkinter.CTkButton(self, text='Haal Temperatuur', command= TempReading(self.label))
         self.button.grid()
 
 
@@ -130,7 +127,6 @@ class App(customtkinter.CTk):
     def __init__(self):
         super().__init__()
 
-
         self.geometry('1280x720')
         self.title("placeholder dashboard")
 
@@ -148,16 +144,6 @@ class App(customtkinter.CTk):
 
         self.Control_panel = ControlPanel(master=self, header_name="Besturingspaneel")
         self.Control_panel.grid(row=3, column=1, padx=20, pady=10)
-
-
-        
-        
-
-    def print_value_frame_1(self):
-        print(f"Frame 1 value: {self.radio_button_frame_1.get_value()}")
-
-
-
 
 
 if __name__ == "__main__":
