@@ -7,6 +7,42 @@ import sys
 customtkinter.set_default_color_theme("blue")
 customtkinter.set_appearance_mode("light")
 
+def TempReading(label):
+    run=True
+    while run:
+        path=os.path.join(sys.path[0], 'temp.txt')
+        f=open(path,'r')
+        Temp = f.read()
+        label.configure(text=f"Temp : {Temp}")
+        f.close()
+        time.sleep(5)
+
+
+class temp(customtkinter.CTkFrame):
+    def __init__(self, *args, master, header_name="Tempratuur", **kwargs):
+        super().__init__(master,*args, **kwargs)
+        self.header_name= header_name
+
+        self.label = customtkinter.CTkLabel(self, width=120, height=25, corner_radius=8,anchor="center", text=f"Temp: ")
+        self.label.grid(row=3,column=2)
+
+        self.button = customtkinter.CTkButton(self, text='Start Reading', command=lambda: TempReading(self.label))
+        self.button.grid()
+
+class ControlPanel(customtkinter.CTkFrame):
+    
+    def __init__(self, *args, master, header_name="Besturingspaneel", **kwargs):
+        super().__init__(master, *args, **kwargs)
+        # add widgets onto the frame...
+        self.header_name = header_name
+
+        self.label = customtkinter.CTkLabel(self, width=120, height=25, fg_color=("white", "gray75"), corner_radius=8,anchor="center", text="Besturingspaneel")
+        self.label.grid(row=2, column=0, padx=20, pady=10)
+
+
+
+
+
 class MyFrame2(customtkinter.CTkFrame):
     def __init__(self, *args, master,header_name="Status machine", **kwargs):
         super().__init__(master, *args, **kwargs)
@@ -103,9 +139,22 @@ class App(customtkinter.CTk):
         self.my_frame.grid(row=0, column=0, padx=20, pady=20, sticky="nsew") 
         
         self.radio_button_frame_1 = RadioButtonFrame(self, header_name="Besturingsmodus")
+<<<<<<< HEAD
         self.radio_button_frame_1.grid(row=0, column=3, padx=20, pady=20)
+        
         self.my_frame2 = MyFrame2(master=self, header_name="Status machine")
         self.my_frame2.grid(row=0, column=4, padx=20, pady=20)
+        
+        self.temp = temp(master=self,header_name="temp")
+        self.temp.grid(row=0, column=5, padx=20,pady=20)
+=======
+        self.radio_button_frame_1.grid(row=0, column=1, padx=20, pady=20)
+        self.my_frame2 = MyFrame2(master=self, header_name="Status machine")
+        self.my_frame2.grid(row=0, column=2, padx=20, pady=20)
+        self.Control_panel = ControlPanel(master=self, header_name="Besturingspaneel")
+        self.Control_panel.grid(row=3, column=1, padx=20, pady=10)
+
+>>>>>>> 95bdb3fa7a2b35dcf7aede8ec47fae11bd647fa6
 
         
         
