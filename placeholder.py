@@ -8,14 +8,14 @@ customtkinter.set_default_color_theme("blue")
 customtkinter.set_appearance_mode("light")
 
 def TempReading(label):
-    run=True
-    while run:
+    #run=True
+    #while run:
         path=os.path.join(sys.path[0], 'temp.txt')
         f=open(path,'r')
         Temp = f.read()
         label.configure(text=f"Temp : {Temp}")
         f.close()
-        time.sleep(5)
+        #time.sleep(5)
 
 
 class temp(customtkinter.CTkFrame):
