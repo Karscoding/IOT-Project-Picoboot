@@ -29,8 +29,9 @@ class temp(customtkinter.CTkFrame):
         self.button = customtkinter.CTkButton(self, text='Start Reading', command=lambda: TempReading(self.label))
         self.button.grid()
 
-class ControlPanel(customtkinter.CTkFrame):
-    
+
+
+class ControlPanel(customtkinter.CTkFrame):    
     def __init__(self, *args, master, header_name="Besturingspaneel", **kwargs):
         super().__init__(master, *args, **kwargs)
         # add widgets onto the frame...
@@ -38,8 +39,6 @@ class ControlPanel(customtkinter.CTkFrame):
 
         self.label = customtkinter.CTkLabel(self, width=120, height=25, fg_color=("white", "gray75"), corner_radius=8,anchor="center", text="Besturingspaneel")
         self.label.grid(row=2, column=0, padx=20, pady=10)
-
-
 
 
 
@@ -139,7 +138,6 @@ class App(customtkinter.CTk):
         self.my_frame.grid(row=0, column=0, padx=20, pady=20, sticky="nsew") 
         
         self.radio_button_frame_1 = RadioButtonFrame(self, header_name="Besturingsmodus")
-<<<<<<< HEAD
         self.radio_button_frame_1.grid(row=0, column=3, padx=20, pady=20)
         
         self.my_frame2 = MyFrame2(master=self, header_name="Status machine")
@@ -147,14 +145,12 @@ class App(customtkinter.CTk):
         
         self.temp = temp(master=self,header_name="temp")
         self.temp.grid(row=0, column=5, padx=20,pady=20)
-=======
         self.radio_button_frame_1.grid(row=0, column=1, padx=20, pady=20)
         self.my_frame2 = MyFrame2(master=self, header_name="Status machine")
         self.my_frame2.grid(row=0, column=2, padx=20, pady=20)
         self.Control_panel = ControlPanel(master=self, header_name="Besturingspaneel")
         self.Control_panel.grid(row=3, column=1, padx=20, pady=10)
 
->>>>>>> 95bdb3fa7a2b35dcf7aede8ec47fae11bd647fa6
 
         
         
