@@ -31,7 +31,7 @@ class temp(customtkinter.CTkFrame):
             temp = f.read().strip()
         self.label.configure(text=f"Temp : {temp}")
         # schedule the next update after 1 second
-        self.after(1000, self.update_temp)
+        self.after(5000, self.update_temp)
 
 class ControlPanel(customtkinter.CTkFrame):    
     def __init__(self, *args, master, header_name="Besturingspaneel", **kwargs):
