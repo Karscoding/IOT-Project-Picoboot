@@ -19,11 +19,13 @@ class temp(customtkinter.CTkFrame):
         super().__init__(master,*args, **kwargs)
         self.header_name= header_name
 
+        self.label = customtkinter.CTkLabel(self, width=120, height=25, fg_color=("dark gray", "gray75"), corner_radius=8, text="Temperatuur motorkamer")
+        self.label.grid(row=0, column=0, padx=0, pady=10)
         self.label = customtkinter.CTkLabel(self, width=120, height=25, corner_radius=8,anchor="center", text=f"Temp: ")
-        self.label.grid()
+        self.label.grid(row=1, column=0, padx=0, pady=80)
 
-        self.button = customtkinter.CTkButton(self, text='Haal Temperatuur', command= self.update_temp)
-        self.button.grid()
+        self.button = customtkinter.CTkButton(self, text='Haal Temperatuur op', command= self.update_temp)
+        self.button.grid(row=2, column=0, padx=20, pady=20)
 
     def update_temp(self):
         path = os.path.join(sys.path[0], 'temp.txt')
@@ -39,8 +41,8 @@ class ControlPanel(customtkinter.CTkFrame):
         # add widgets onto the frame...
         self.header_name = header_name
 
-        self.label = customtkinter.CTkLabel(self, width=120, height=25, fg_color=("white", "gray75"), corner_radius=8,anchor="center", text="Besturingspaneel")
-        self.label.grid(row=2, column=0, padx=20, pady=10)
+        self.label = customtkinter.CTkLabel(self, width=120, height=25, fg_color=("dark gray", "gray75"), corner_radius=8,anchor="center", text="Besturingspaneel")
+        self.label.grid(row=0, column=0, padx=20, pady=10)
 
 
 
@@ -72,7 +74,7 @@ class MyFrame(customtkinter.CTkFrame):
 
         
         self.header_name = header_name
-        self.label = customtkinter.CTkLabel(self, width=120, height=25, fg_color=("dark gray", "gray75"), corner_radius=8,anchor="center", text="Timer (5 minuten)")
+        self.label = customtkinter.CTkLabel(self, width=120, height=25, fg_color=("dark gray", "gray75"), corner_radius=8, anchor="center", text="Timer (5 minuten)")
         self.label.grid(row=0, column=0, padx=0, pady=10)
 
         self.progressbar = customtkinter.CTkProgressBar(self, height=20)
@@ -88,8 +90,8 @@ class MyFrame(customtkinter.CTkFrame):
         def start_progress_bar():
             self.progressbar.start()
         
-        self.button_1 =customtkinter.CTkButton(self, text="Start", border_width=0,corner_radius=8,width=120,height=32,command=start_progress_bar)
-        self.button_1.grid(row=2, column=0, padx=0, pady=10)
+        self.button_1 =customtkinter.CTkButton(self, text="Start", border_width=0,corner_radius=8,width=120,height=25,command=start_progress_bar)
+        self.button_1.grid(row=2, column=0, padx=0, pady=20)
 
 
 class RadioButtonFrame(customtkinter.CTkFrame):
@@ -100,19 +102,19 @@ class RadioButtonFrame(customtkinter.CTkFrame):
 
         self.label = customtkinter.CTkLabel(self, width=120, height=25, fg_color=("dark gray", "gray75"), corner_radius=8,anchor="center", text="Besturingsmodus")
 
-        self.label.grid(row=0, column=0, padx=10, pady=10)
+        self.label.grid(row=0, column=0, padx=0, pady=10)
 
         self.radio_button_var = customtkinter.StringVar(value="")
 
         self.radio_button_1 = customtkinter.CTkRadioButton(self, text="Handmatig", value="Handmatig", variable=self.radio_button_var)
-        self.radio_button_1.grid(row=1, column=0, padx=10, pady=10)
+        self.radio_button_1.grid(row=1, column=0, padx=10, pady=70)
         self.radio_button_2 = customtkinter.CTkRadioButton(self, text="Automatisch", value="Automatisch", variable=self.radio_button_var)
         self.radio_button_2.grid(row=2, column=0, padx=10, pady=10)
 
         def get_value():
             """ returns selected value as a string, returns an empty string if nothing selected """
             return self.radio_button_var.get()
-        self.frame_1_button = customtkinter.CTkButton(self, text="Selecteer", command=get_value)
+        self.frame_1_button = customtkinter.CTkButton(self, text="Selecteer",height=25, command=get_value)
         self.frame_1_button.grid(row=3, column=0, padx=20, pady=30)
 
   
@@ -146,7 +148,7 @@ class App(customtkinter.CTk):
         self.temp.grid(row=0, column=3, padx=20,pady=20)
 
         self.Control_panel = ControlPanel(master=self, header_name="Besturingspaneel")
-        self.Control_panel.grid(row=3, column=1, padx=20, pady=10)
+        self.Control_panel.grid(row=0, column=4, padx=20, pady=20)
 
 
 if __name__ == "__main__":
