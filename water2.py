@@ -12,7 +12,7 @@ win = pygame.display.set_mode(SIZE)
 pygame.display.set_caption("Water Simulator")
 
 x=500
-y=400
+y=500
 
 vel=5
 
@@ -32,8 +32,8 @@ def add_zand(zand):
 
 boat=pygame.image.load('boot.png')
 def add_boat(boat):
-    size=pygame.transform.scale(boat,(600,200))
-    win.blit(size,(x,y-50))
+    size=pygame.transform.scale(boat,(600,300))
+    win.blit(size,(x,y-200))
 
 water= pygame.image.load('water.png')
 def polder(image):
@@ -55,7 +55,7 @@ motor=pygame.image.load('motor.png')
 greenmotor=pygame.image.load('motorgeel.png')
 def add_motor(motor):
     size=pygame.transform.scale(motor,(100,100))
-    win.blit(size,(x+100,y-50))
+    win.blit(size,(x+100,y))
 
 # Define color constants
 BLACK = (0, 0, 0)
@@ -86,11 +86,11 @@ def runengine():
         elif mnr==0:
             add_motor(greenmotor)
                     
-        # Draw black box around "esp" text
+        '''# Draw black box around "esp" text
         font = pygame.font.SysFont(None, 25)
         text = font.render("Computer/ESP", True, WHITE)
         pygame.draw.rect(win, BLACK, (x+300, y-20, 150, 50))
-        win.blit(text, (x+300, y))    
+        win.blit(text, (x+300, y))    '''
 
         pygame.display.update()
 
@@ -98,7 +98,7 @@ def adjusttide():
      global y
      global run
      i=0
-     wy= random.randint(400,600)
+     wy= random.randint(500,600)
      if abs(y-wy)<=50:
         if y-wy<0:
             wy+=50
@@ -117,7 +117,7 @@ def adjusttide():
             i+=1
             if i == 6:
                 run=False
-            wy= random.randint(400,600)
+            wy= random.randint(500,600)
             if abs(y-wy)<=50:
                 if y-wy<0:
                     wy+=50
