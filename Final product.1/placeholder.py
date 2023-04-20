@@ -12,7 +12,7 @@ class afstand(customtkinter.CTkFrame):
         self.header_name = header_name
 
         self.label = customtkinter.CTkLabel(self, width=120, height=25, fg_color=("dark gray", "gray75"), corner_radius=8,anchor="center", text="Afstand tot bodem")
-        self.label.grid(row=0,column=0,padx=20,pady=10)
+        self.label.grid(row=0,column=0,padx=80,pady=10)
 
         self.label = customtkinter.CTkLabel(self, width=120, height=25, corner_radius=8,anchor="center", text="Afstand: nog niet gemeten")
         self.label.grid(row=1,column=0,padx=0,pady=80)
