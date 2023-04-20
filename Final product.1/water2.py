@@ -11,12 +11,13 @@ win = pygame.display.set_mode(SIZE)
 
 pygame.display.set_caption("Water Simulator")
 
+ex=1080+600
 x=500
 y=500
 
 vel=5
 
-
+spawnenemy=False
 run=True
 
 
@@ -34,6 +35,11 @@ boat=pygame.image.load('boot.png')
 def add_boat(boat):
     size=pygame.transform.scale(boat,(600,300))
     win.blit(size,(x,y-200))
+
+enemy=pygame.image.load('boot2.png')
+def add_enemy(enemy):
+    size=pygame.transform.scale(enemy,(600,200))
+    win.blit(size,(ex,y-100))
 
 water= pygame.image.load('water.png')
 def polder(image):
@@ -68,6 +74,7 @@ def runengine():
     global run
     global mnr
     global x
+    global ex
 
     while run:
         pygame.time.delay(10)
@@ -82,18 +89,16 @@ def runengine():
         add_boat(boat)
         add_schuif(schuif)
         add_motor(motor)
+        add_enemy(enemy)
 
-        '''# Draw black box around "esp" text
-        font = pygame.font.SysFont(None, 25)
-        text = font.render("Computer/ESP", True, WHITE)
-        pygame.draw.rect(win, BLACK, (x+300, y-20, 150, 50))
-        win.blit(text, (x+300, y))    '''
 
         pygame.display.update()
 
 def adjusttide():
      global y
      global run
+     global spawnenemy
+     global ex
      i=0
      wy= random.randint(500,575)
      if abs(y-wy)<=50:
@@ -112,7 +117,7 @@ def adjusttide():
                 sleep(0.01)
         else:
             i+=1
-            if i == 10:
+            if i == 6:
                 run=False
             wy= random.randint(500,575)
             if abs(y-wy)<=50:
@@ -123,10 +128,31 @@ def adjusttide():
                         wy=400 
                     else:
                         wy-=50
-            sleep(1)
+            sleep(3)
+            if random.randint(0,4)==0:
+                if spawnenemy==False:
+                    spawnenemy=True
+                    threading.Thread(target=spawne).start()
 
 
-thread1=threading.Thread(target=runengine).start()
+def spawne():
+    global y
+    global ex
+    global spawnenemy
+
+    while spawnenemy and ex>=-600:
+        print('')
+        ex-=0.2
+        circle_pos = (x+465, y-185)
+        circle_radius = 15
+        pygame.draw.circle(win, WHITE, circle_pos, circle_radius)
+    spawnenemy=False
+    ex=1080+600
+
+            
+
+
+thread1 = threading.Thread(target=runengine).start()
 thread2 = threading.Thread(target=adjusttide).start()
 
 
