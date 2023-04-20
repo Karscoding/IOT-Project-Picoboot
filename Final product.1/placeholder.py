@@ -7,15 +7,18 @@ customtkinter.set_default_color_theme("blue")
 customtkinter.set_appearance_mode("light")
 
 class afstand(customtkinter.CTkFrame):
-    def __init__(self, *args, master ,header_name="Adstand", **kwargs):
+    def __init__(self, *args, master ,header_name="Afstand", **kwargs):
         super().__init__(master,*args, **kwargs)
         self.header_name = header_name
 
+        self.label = customtkinter.CTkLabel(self, width=120, height=25, fg_color=("dark gray", "gray75"), corner_radius=8,anchor="center", text="Afstand tot bodem")
+        self.label.grid(row=0,column=0,padx=20,pady=10)
+
         self.label = customtkinter.CTkLabel(self, width=120, height=25, corner_radius=8,anchor="center", text="Afstand: nog niet gemeten")
-        self.label.grid()
+        self.label.grid(row=1,column=0,padx=0,pady=80)
 
         self.button = customtkinter.CTkButton(self, text='Start met lezen', command= self.update_afstand)
-        self.button.grid()
+        self.button.grid(row=2,column=0,padx=0,pady=20)
     
     def update_afstand(self):
         path = os.path.join(sys.path[0], 'afstand.txt')
@@ -30,11 +33,17 @@ class temp(customtkinter.CTkFrame):
         super().__init__(master,*args, **kwargs)
         self.header_name= header_name
 
+        self.label = customtkinter.CTkLabel(self, width=120, height=25, fg_color=("dark gray", "gray75"), corner_radius=8,anchor="center", text="Temperatuur Motorkamer")
+        self.label.grid(row=0,column=0,padx=20,pady=10)
+
+
         self.label = customtkinter.CTkLabel(self, width=120, height=25, corner_radius=8,anchor="center", text="Temperatuur: nog niet gemeten")
-        self.label.grid()
+        self.label.grid(row=1,column=0,padx=0,pady=80)
+        
 
         self.button = customtkinter.CTkButton(self, text='Start met lezen', command= self.update_temp)
-        self.button.grid()
+        self.button.grid(row=2,column=0,padx=0,pady=20)
+        
 
     def update_temp(self):
         path = os.path.join(sys.path[0], 'temp.txt')
@@ -157,8 +166,7 @@ class App(customtkinter.CTk):
         self.afstand = afstand(master=self, header_name='afstand')
         self.afstand.grid(row=0,column = 4 , padx=20, pady=20)
 
-        self.Control_panel = ControlPanel(master=self, header_name="Besturingspaneel")
-        self.Control_panel.grid(row=3, column=1, padx=20, pady=10)
+        
 
 
 if __name__ == "__main__":
