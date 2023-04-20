@@ -26,7 +26,7 @@ class Tijd(customtkinter.CTkFrame):
         self.label.configure(text=f"Tijd : {tijd}")
         self.after(1000, self.time)
 
-class afstand(customtkinter.CTkFrame):
+class Afstand(customtkinter.CTkFrame):
     def __init__(self, *args, master ,header_name="Afstand", **kwargs):
         super().__init__(master,*args, **kwargs)
         self.header_name = header_name
@@ -48,7 +48,7 @@ class afstand(customtkinter.CTkFrame):
         # schedule the next update after 5 seconds
         self.after(5000, self.update_afstand)
 
-class temp(customtkinter.CTkFrame):
+class Temp(customtkinter.CTkFrame):
     def __init__(self, *args, master, header_name="Temperatuur", **kwargs):
         super().__init__(master,*args, **kwargs)
         self.header_name= header_name
