@@ -183,10 +183,10 @@ class App(customtkinter.CTk):
         self.my_frame2 = MyFrame2(master=self, header_name="Status machine")
         self.my_frame2.grid(row=0, column=2, padx=20, pady=20)
         
-        self.temp = temp(master=self,header_name="temp")
+        self.temp = Temp(master=self,header_name="temp")
         self.temp.grid(row=0, column=3, padx=20,pady=20)
 
-        self.afstand = afstand(master=self, header_name='afstand')
+        self.afstand = Afstand(master=self, header_name='afstand')
         self.afstand.grid(row=0,column = 4 , padx=20, pady=20)
 
         
