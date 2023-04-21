@@ -122,12 +122,12 @@ def adjusttide():
             wy= random.randint(500,575)
             if abs(y-wy)<=50:
                 if y-wy<0:
-                    wy+=25
+                    wy+=50
                 else:
                     if wy-50 <=400:
                         wy=400 
                     else:
-                        wy-=25
+                        wy-=50
             sleep(3)
             if random.randint(0,4)==0:
                 if spawnenemy==False:
