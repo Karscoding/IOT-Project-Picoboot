@@ -35,6 +35,33 @@ def afstand():
     else:
         print("fout")
         return "" 
-
+    
+    
+#Krijgt input van placeholder.py en schrijft het in opdracht.txt
+@app.route("/input", methods=["POST"])
+def input():
+    data=request.json
+    
+    if data=='Bakboord':
+        f = open('opdracht.txt', 'w')
+        f.write("Bakboord")
+        f.close()
+        return ""
+    elif data=='Stuurboord':
+        f = open('opdracht.txt', 'w')
+        f.write("Stuurboord")
+        f.close()
+        return ""
+    else:
+        print("Nothing")
+        return ""
+    
+#Returned opdracht
+@app.route("/get", methods=["POST"])
+def get():
+    f = open('opdracht.txt', 'r')
+    opdracht = f.read()
+    return jsonify(opdracht)
+    
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)

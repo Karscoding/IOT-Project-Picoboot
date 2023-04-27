@@ -3,10 +3,16 @@ from time import sleep
 import os
 import sys
 import datetime
+import config
+import requests
+import json
+import threading
 
+url = f"http://localhost:{config.PORT}{config.SENDPOINT}"
 
 customtkinter.set_default_color_theme("blue")
 customtkinter.set_appearance_mode("light")
+
 
 class Tijd(customtkinter.CTkFrame):
     def __init__(self,*args,master,header_name='tijd', **kwargs):
@@ -26,6 +32,7 @@ class Tijd(customtkinter.CTkFrame):
         self.label.configure(text=f"Tijd : {tijd}")
         self.after(1000, self.time)
 
+
 class Afstand(customtkinter.CTkFrame):
     def __init__(self, *args, master ,header_name="Afstand", **kwargs):
         super().__init__(master,*args, **kwargs)
@@ -37,16 +44,17 @@ class Afstand(customtkinter.CTkFrame):
         self.label = customtkinter.CTkLabel(self, width=120, height=25, corner_radius=8,anchor="center", text="Afstand: nog niet gemeten")
         self.label.grid(row=1,column=0,padx=0,pady=80)
 
-        self.button = customtkinter.CTkButton(self, text='Start met lezen', command= self.update_afstand)
+        self.button = customtkinter.CTkButton(self, text='Start met lezen', command= self.distanceRead)
         self.button.grid(row=2,column=0,padx=0,pady=20)
     
-    def update_afstand(self):
+    def distanceRead(self):
         path = os.path.join(sys.path[0], 'afstand.txt')
         with open(path, 'r') as f:
-            temp = f.read().strip()
-        self.label.configure(text=f"Afstand : {temp}")
+            distance = f.read().strip()
+        self.label.configure(text=f"Afstand : {distance}")
         # schedule the next update after 5 seconds
-        self.after(5000, self.update_afstand)
+        self.after(5000, self.distanceRead)
+
 
 class Temp(customtkinter.CTkFrame):
     def __init__(self, *args, master, header_name="Temperatuur", **kwargs):
@@ -61,17 +69,18 @@ class Temp(customtkinter.CTkFrame):
         self.label.grid(row=1,column=0,padx=0,pady=80)
         
 
-        self.button = customtkinter.CTkButton(self, text='Start met lezen', command= self.update_temp)
+        self.button = customtkinter.CTkButton(self, text='Start met lezen', command= self.tempRead)
         self.button.grid(row=2,column=0,padx=0,pady=20)
         
 
-    def update_temp(self):
+    def tempRead(self):
         path = os.path.join(sys.path[0], 'temp.txt')
         with open(path, 'r') as f:
             temp = f.read().strip()
         self.label.configure(text=f"Temperatuur : {temp}")
         # schedule the next update after 5 seconds
-        self.after(5000, self.update_temp)
+        self.after(5000, self.tempRead)
+
 
 class ControlPanel(customtkinter.CTkFrame):    
     def __init__(self, *args, master, header_name="Besturingspaneel", **kwargs):
@@ -81,7 +90,6 @@ class ControlPanel(customtkinter.CTkFrame):
 
         self.label = customtkinter.CTkLabel(self, width=120, height=25, fg_color=("white", "gray75"), corner_radius=8,anchor="center", text="Besturingspaneel")
         self.label.grid(row=2, column=0, padx=20, pady=10)
-
 
 
 class MyFrame2(customtkinter.CTkFrame):
@@ -158,12 +166,38 @@ class RadioButtonFrame(customtkinter.CTkFrame):
     def set_value(self, selection):
         """ selects the corresponding radio button, selects nothing if no corresponding radio button """
         self.radio_button_var.set(selection)
-
        
+   
+#Lights control panel
+class LightsControl(customtkinter.CTkFrame):    
+    def __init__(self, *args, master, header_name="Lampen Besturing", **kwargs):
+        super().__init__(master, *args, **kwargs)
+        # add widgets onto the frame...
+        self.header_name = header_name
 
+        self.label = customtkinter.CTkLabel(self, width=120, height=25, fg_color=("dark gray", "gray75"), corner_radius=8,anchor="center", text="Besturingsmodus")
 
+        self.label.grid(row=0, column=0, padx=10, pady=10)
 
+        self.radio_button_var = customtkinter.StringVar(value="")
 
+        self.radio_button_1 = customtkinter.CTkRadioButton(self, text="Bakboord", value="Bakboord", variable=self.radio_button_var)
+        self.radio_button_1.grid(row=1, column=0, padx=10, pady=10)
+        self.radio_button_2 = customtkinter.CTkRadioButton(self, text="Stuurboord", value="Stuurboord", variable=self.radio_button_var)
+        self.radio_button_2.grid(row=2, column=0, padx=10, pady=10)
+
+        #Deze functie zal elke 2 seconden de ingevulde waarde sturen
+        #Misschien handig om deze functie alleen te runnen als de waarde wordt veranderd...
+        def send_value():
+            """
+            Sends value to app.py"""
+            while True:
+                lights = self.radio_button_var.get()
+                requests.post(url, json=lights)
+                sleep(2)
+                
+        threading.Thread(target=send_value).start()
+             
 class App(customtkinter.CTk):
     def __init__(self):
         super().__init__()
@@ -188,8 +222,9 @@ class App(customtkinter.CTk):
 
         self.afstand = Afstand(master=self, header_name='afstand')
         self.afstand.grid(row=0,column = 4 , padx=20, pady=20)
-
         
+        self.light_control = LightsControl(master=self, header_name="Lampen Besturing")
+        self.light_control.grid(row=1, column=1, padx=20, pady=20)
 
 
 if __name__ == "__main__":

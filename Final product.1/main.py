@@ -7,6 +7,7 @@ import json
 
 url = f"http://{config.SERVER}:{config.PORT}{config.ENDPOINT}"
 aurl= f'http://{config.SERVER}:{config.PORT}{config.AENDPOINT}'
+gurl= f'http://{config.SERVER}:{config.PORT}{config.GETPOINT}'
 
 sharp_sensor = Pin(26, Pin.IN)
 
@@ -24,7 +25,6 @@ while connection.isconnected():
     print("Distance:", distance)
     
     afstand= requests.post(aurl, json=distance)
-    
     
     # read temperature
     v_out = adc.read_u16() * prop
@@ -47,5 +47,17 @@ while connection.isconnected():
     else:
         print(antwoord)
         secled.off()
+        
+    #Stuurt een request naar /Input met als string "Requests"
+    #Deze returned een opdracht
+    lights = requests.post(gurl, json=None)
+    opdracht=lights.json()
+    if opdracht == 'Stuurboord':
+        #Stuurboord lampen aan
+        pass
+    elif opdracht == 'Bakboord':
+        #Bakboord lampen aan
+        pass
+    
     # sleep a little until next temperature reading
     sleep(5)
