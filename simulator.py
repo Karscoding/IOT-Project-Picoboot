@@ -21,32 +21,32 @@ spawnenemy=False
 run=True
 
 
-image= pygame.image.load('noordpolderzijl.jpg')
+image= pygame.image.load('./Images/noordpolderzijl.jpg')
 def background(image):
     size=pygame.transform.scale(image,(1920,1080))
     win.blit(size,(0,0))
 
-zand=pygame.image.load('zand.png')
+zand=pygame.image.load('./Images/zand.png')
 def add_zand(zand):
     size=pygame.transform.scale(zand,(1920,200))
     win.blit(size,(0,700))
 
-boat=pygame.image.load('boot.png')
+boat=pygame.image.load('./Images/boot.png')
 def add_boat(boat):
     size=pygame.transform.scale(boat,(600,300))
     win.blit(size,(x,y-200))
 
-enemy=pygame.image.load('boot2.png')
+enemy=pygame.image.load('./Images/boot2.png')
 def add_enemy(enemy):
     size=pygame.transform.scale(enemy,(600,200))
     win.blit(size,(ex,y-100))
 
-water= pygame.image.load('water.png')
+water= pygame.image.load('./Images/water.png')
 def polder(image):
     size=pygame.transform.scale(image,(1920,1080))
     win.blit(size,(0,y))
 
-schuif=pygame.image.load('schuif.png')
+schuif=pygame.image.load('./Images/schuif.png')
 def add_schuif(schuif):
     global y
     size=pygame.transform.scale(schuif,(100,150))
@@ -57,7 +57,7 @@ def add_schuif(schuif):
     win.blit(size,(x+550,sy))
 
 mnr=1
-motor=pygame.image.load('motor.png')
+motor=pygame.image.load('./Images/motor.png')
 
 def add_motor(motor):
     size=pygame.transform.scale(motor,(100,100))

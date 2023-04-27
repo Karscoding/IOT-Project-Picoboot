@@ -48,7 +48,7 @@ class Afstand(customtkinter.CTkFrame):
         self.button.grid(row=2,column=0,padx=0,pady=20)
     
     def distanceRead(self):
-        path = os.path.join(sys.path[0], 'afstand.txt')
+        path = os.path.join(sys.path[0], './Texts/afstand.txt')
         with open(path, 'r') as f:
             distance = f.read().strip()
         self.label.configure(text=f"Afstand : {distance}")
@@ -74,7 +74,7 @@ class Temp(customtkinter.CTkFrame):
         
 
     def tempRead(self):
-        path = os.path.join(sys.path[0], 'temp.txt')
+        path = os.path.join(sys.path[0], './Texts/temp.txt')
         with open(path, 'r') as f:
             temp = f.read().strip()
         self.label.configure(text=f"Temperatuur : {temp}")
@@ -92,7 +92,7 @@ class ControlPanel(customtkinter.CTkFrame):
         self.label.grid(row=2, column=0, padx=20, pady=10)
 
 
-class MyFrame2(customtkinter.CTkFrame):
+class StatusFrame(customtkinter.CTkFrame):
     def __init__(self, *args, master,header_name="Status machine", **kwargs):
         super().__init__(master, *args, **kwargs)
         # add widgets onto the frame...
@@ -112,7 +112,7 @@ class MyFrame2(customtkinter.CTkFrame):
         self.label.grid(row=5, column=0, padx=0, pady=10)
 
 
-class MyFrame(customtkinter.CTkFrame):
+class ProgressFrame(customtkinter.CTkFrame):
     def __init__(self, *args, master,header_name="Warmlopen starten:", **kwargs):
         super().__init__(master, *args, **kwargs)
         # add widgets onto the frame...
@@ -125,7 +125,6 @@ class MyFrame(customtkinter.CTkFrame):
         self.progressbar.grid(row=1, column=0, padx=20, pady=80)
         self.progressbar.set(0)
         self.progressbar._border_width=(1)
-        self.progressbar._fg_color=("red")
         self.progressbar._progress_color=("green")
         self.progressbar._border_color=("black")
         self.progressbar._mode=("determinate")
@@ -208,13 +207,13 @@ class App(customtkinter.CTk):
         self.tijd= Tijd(master=self,header_name="Tijd")
         self.tijd.grid(row=1, column=0, padx=20,pady=20)
 
-        self.my_frame = MyFrame(master=self, header_name="Warmlopen starten:")
+        self.my_frame = ProgressFrame(master=self, header_name="Warmlopen starten:")
         self.my_frame.grid(row=0, column=0, padx=20, pady=20, sticky="nsew") 
         
         self.radio_button_frame_1 = RadioButtonFrame(self, header_name="Besturingsmodus")
         self.radio_button_frame_1.grid(row=0, column=1, padx=20, pady=20)
         
-        self.my_frame2 = MyFrame2(master=self, header_name="Status machine")
+        self.my_frame2 = StatusFrame(master=self, header_name="Status machine")
         self.my_frame2.grid(row=0, column=2, padx=20, pady=20)
         
         self.temp = Temp(master=self,header_name="temp")

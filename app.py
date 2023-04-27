@@ -6,7 +6,7 @@ app = Flask(__name__)
 def temperature():
     data = request.json
 
-    f = open('temp.txt', 'w')
+    f = open('./Texts/temp.txt', 'w')
     printedData = round(float(data), 2)
     f.write(str(printedData))
     f.close()
@@ -23,12 +23,12 @@ def afstand():
     data=request.json
 
     if data==0:
-        f = open('afstand.txt', 'w')
+        f = open('./Texts/afstand.txt', 'w')
         f.write("Afstand groot, Niks aan de hand")
         f.close()
         return ""
     elif data==1:
-        f = open('afstand.txt', 'w')
+        f = open('./Texts/afstand.txt', 'w')
         f.write("Afstand klein, schuif omhoog!")
         f.close()
         return ""
@@ -43,12 +43,12 @@ def input():
     data=request.json
     
     if data=='Bakboord':
-        f = open('opdracht.txt', 'w')
+        f = open('./Texts/opdracht.txt', 'w')
         f.write("Bakboord")
         f.close()
         return ""
     elif data=='Stuurboord':
-        f = open('opdracht.txt', 'w')
+        f = open('./Texts/opdracht.txt', 'w')
         f.write("Stuurboord")
         f.close()
         return ""
@@ -59,7 +59,7 @@ def input():
 #Returned opdracht
 @app.route("/get", methods=["POST"])
 def get():
-    f = open('opdracht.txt', 'r')
+    f = open('./Texts/opdracht.txt', 'r')
     opdracht = f.read()
     return jsonify(opdracht)
     
