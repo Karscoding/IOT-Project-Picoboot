@@ -11,7 +11,6 @@ gurl= f'http://{config.SERVER}:{config.PORT}{config.GETPOINT}'
 
 sharp_sensor = Pin(26, Pin.IN)
 
-
 tmp34 = Pin(34, Pin.IN)
 adc = ADC(tmp34)
 prop = 1100 / 65535
@@ -19,14 +18,16 @@ prop = 1100 / 65535
 
 led = Pin(2, Pin.OUT)
 secled= Pin(32, Pin.OUT)
+
 while connection.isconnected():
-    sensor_value = sharp_sensor.value()
-    distance =sensor_value
+    led.off()
+    #Read Distance
+    distance = sharp_sensor.value()
     print("Distance:", distance)
     
     afstand= requests.post(aurl, json=distance)
     
-    # read temperature
+    #Read Temperature
     v_out = adc.read_u16() * prop
 
     temp = (v_out - 500) / 10
@@ -35,7 +36,6 @@ while connection.isconnected():
     
     led.on()
     temperatuur = requests.post(url, json=temp)
-    led.off()
 
     # flash blue LED indicating temperature was sent
 
