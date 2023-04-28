@@ -1,6 +1,8 @@
 from flask import Flask, request, jsonify
+from databasevuller import Temperatuur,Afstand,db,app
+import datetime
 
-app = Flask(__name__)
+
 
 @app.route("/temperature", methods=["POST"])
 def temperature():
@@ -10,7 +12,18 @@ def temperature():
     printedData = round(float(data), 2)
     f.write(str(printedData))
     f.close()
-    
+
+    now = datetime.datetime.now()
+    tijd=(now.strftime("%A, %B %d %Y %H:%M:%S"))
+    with app.app_context():
+            if Temperatuur.query.all()==[]:
+                id=1
+            else:
+                highestid = Temperatuur.query.all()
+                id=(highestid[-1].id+1)
+    db.session.add_all([Temperatuur(id,tijd, printedData)])
+    db.session.commit()
+
     if data>25:
         opdracht='BAAN'
         return jsonify(opdracht)  
@@ -22,6 +35,17 @@ def temperature():
 def afstand():
     data=request.json
 
+    now = datetime.datetime.now()
+    tijd=(now.strftime("%A, %B %d %Y %H:%M:%S"))
+    with app.app_context():
+            if Afstand.query.all()==[]:
+                id=1
+            else:
+                highestid = Afstand.query.all()
+                id=(highestid[-1].id+1)
+    db.session.add_all([Afstand(id,tijd, data)])
+    db.session.commit()
+
     if data==0:
         f = open('./Texts/afstand.txt', 'w')
         f.write("Afstand groot, Niks aan de hand")
@@ -32,9 +56,7 @@ def afstand():
         f.write("Afstand klein, schuif omhoog!")
         f.close()
         return ""
-    else:
-        print("fout")
-        return "" 
+
     
     
 #Krijgt input van placeholder.py en schrijft het in opdracht.txt
