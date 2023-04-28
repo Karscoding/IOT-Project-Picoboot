@@ -1,6 +1,9 @@
-WIFI_SSID = "JULIANSLAPTOP"
+import socket
+hostname = socket.gethostname()
+
+WIFI_SSID = hostname
 WIFI_PASSWORD = "3@093p3Q"
-SERVER = "192.168.137.1"
+SERVER = socket.gethostbyname(hostname)
 ENDPOINT='/temperature'
 AENDPOINT='/afstand'
 SENDPOINT='/input'
