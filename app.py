@@ -3,7 +3,6 @@ from databasevuller import Temperatuur,Afstand,db,app
 import datetime
 
 
-
 @app.route("/temperature", methods=["POST"])
 def temperature():
     data = request.json
