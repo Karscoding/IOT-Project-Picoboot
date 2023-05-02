@@ -180,22 +180,23 @@ class LightsControl(customtkinter.CTkFrame):
 
         self.radio_button_var = customtkinter.StringVar(value="")
 
-        self.radio_button_1 = customtkinter.CTkRadioButton(self, text="Bakboord", value="Bakboord", variable=self.radio_button_var)
+        self.radio_button_1 = customtkinter.CTkRadioButton(self, text="Bakboord", value="Bakboord", variable=self.radio_button_var, command=self.send_value)
         self.radio_button_1.grid(row=1, column=0, padx=10, pady=10)
-        self.radio_button_2 = customtkinter.CTkRadioButton(self, text="Stuurboord", value="Stuurboord", variable=self.radio_button_var)
+        self.radio_button_2 = customtkinter.CTkRadioButton(self, text="Stuurboord", value="Stuurboord", variable=self.radio_button_var,command=self.send_value)
         self.radio_button_2.grid(row=2, column=0, padx=10, pady=10)
 
         #Deze functie zal elke 2 seconden de ingevulde waarde sturen
         #Misschien handig om deze functie alleen te runnen als de waarde wordt veranderd...
-        def send_value():
-            """
-            Sends value to app.py"""
-            while True:
-                lights = self.radio_button_var.get()
-                requests.post(url, json=lights)
-                sleep(2)
+    def send_value(self):
+        """
+        Sends value to opdracht.txt"""
+        path = os.path.join(sys.path[0], './Texts/opdracht.txt')
+        lights = self.radio_button_var.get()
+        with open(path, 'w') as f:
+            f.write(lights)
+            f.close()    
+
                 
-        threading.Thread(target=send_value).start()
              
 class App(customtkinter.CTk):
     def __init__(self):

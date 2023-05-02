@@ -16,8 +16,10 @@ adc = ADC(tmp34)
 prop = 1100 / 65535
 
 
+
 led = Pin(2, Pin.OUT)
 secled= Pin(32, Pin.OUT)
+greenled=Pin(14,Pin.OUT)
 
 while connection.isconnected():
     led.off()
@@ -53,11 +55,9 @@ while connection.isconnected():
     lights = requests.post(gurl, json=None)
     opdracht=lights.json()
     if opdracht == 'Stuurboord':
-        #Stuurboord lampen aan
-        pass
+        greenled.on()
     elif opdracht == 'Bakboord':
-        #Bakboord lampen aan
-        pass
+        greenled.off()
     
     # sleep a little until next temperature reading
     sleep(5)
