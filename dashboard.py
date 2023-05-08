@@ -133,9 +133,7 @@ class ProgressFrame(customtkinter.CTkFrame):
 
         def start_progress_bar():
             self.progressbar.start()
-
-            
-            
+        
         
         self.button_1 =customtkinter.CTkButton(self, text="Start", border_width=0,corner_radius=8,width=120,height=32,command=start_progress_bar)
         self.button_1.grid(row=2, column=0, padx=0, pady=10)
