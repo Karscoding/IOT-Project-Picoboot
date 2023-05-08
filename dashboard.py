@@ -106,10 +106,10 @@ class StatusFrame(customtkinter.CTkFrame):
         self.label.grid(row=2, column=0, padx=0, pady=10)
         self.label = customtkinter.CTkLabel(self, width=120, height=25, fg_color=("green", "gray75"), corner_radius=8,anchor="center", text="Status Verlichting")
         self.label.grid(row=3, column=0, padx=0, pady=10)
-        self.label = customtkinter.CTkLabel(self, width=120, height=25, fg_color=("green", "gray75"), corner_radius=8,anchor="center", text="Status Voorschuif")
+        self.label = customtkinter.CTkLabel(self, width=120, height=25, fg_color=("green", "gray75"), corner_radius=8,anchor="center", text="Status Schuif")
         self.label.grid(row=4, column=0, padx=0, pady=10)
-        self.label = customtkinter.CTkLabel(self, width=120, height=25, fg_color=("green", "gray75"), corner_radius=8,anchor="center", text="Status Achterschuif")
-        self.label.grid(row=5, column=0, padx=0, pady=10)
+        
+      
 
 
 class ProgressFrame(customtkinter.CTkFrame):
@@ -127,11 +127,15 @@ class ProgressFrame(customtkinter.CTkFrame):
         self.progressbar._border_width=(1)
         self.progressbar._progress_color=("green")
         self.progressbar._border_color=("black")
+        self.progressbar._fg_color=("red")
         self.progressbar._mode=("determinate")
         self.progressbar._determinate_speed=(1/300)
 
         def start_progress_bar():
             self.progressbar.start()
+
+            
+            
         
         self.button_1 =customtkinter.CTkButton(self, text="Start", border_width=0,corner_radius=8,width=120,height=32,command=start_progress_bar)
         self.button_1.grid(row=2, column=0, padx=0, pady=10)
@@ -174,7 +178,7 @@ class LightsControl(customtkinter.CTkFrame):
         # add widgets onto the frame...
         self.header_name = header_name
 
-        self.label = customtkinter.CTkLabel(self, width=120, height=25, fg_color=("dark gray", "gray75"), corner_radius=8,anchor="center", text="Besturingsmodus")
+        self.label = customtkinter.CTkLabel(self, width=120, height=25, fg_color=("dark gray", "gray75"), corner_radius=8,anchor="center", text="Richting")
 
         self.label.grid(row=0, column=0, padx=10, pady=10)
 
