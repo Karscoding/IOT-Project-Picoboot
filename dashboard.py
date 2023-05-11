@@ -10,8 +10,8 @@ import threading
 
 url = f"http://localhost:{config.PORT}{config.SENDPOINT}"
 
-customtkinter.set_default_color_theme("blue")
-customtkinter.set_appearance_mode("light")
+customtkinter.set_default_color_theme("dark-blue")
+customtkinter.set_appearance_mode("dark")
 
 
 class Tijd(customtkinter.CTkFrame):
@@ -19,7 +19,7 @@ class Tijd(customtkinter.CTkFrame):
         super().__init__(master, *args, **kwargs)
         self.header_name= header_name
 
-        self.label = self.label = customtkinter.CTkLabel(self, width=120, height=25, fg_color=("dark gray", "gray75"), corner_radius=8,anchor="center", text="Tijd")
+        self.label = self.label = customtkinter.CTkLabel(self, width=120, height=25, fg_color=("light red", "red"), corner_radius=8,anchor="center", text="Tijd", font=('Arial', 18))
         self.label.grid(row=0,column=0,padx=80,pady=10)
 
         self.label = customtkinter.CTkLabel(self, width=120, height=25, corner_radius=8,anchor="center", text="")
@@ -29,7 +29,7 @@ class Tijd(customtkinter.CTkFrame):
     def time(self):
         now = datetime.datetime.now()
         tijd=(now.strftime("%A, %B %d %Y %H:%M:%S"))
-        self.label.configure(text=f"Tijd : {tijd}")
+        self.label.configure(text=f"Tijd : {tijd}", font=('Arial', 18))
         self.after(1000, self.time)
 
 
@@ -38,20 +38,20 @@ class Afstand(customtkinter.CTkFrame):
         super().__init__(master,*args, **kwargs)
         self.header_name = header_name
 
-        self.label = customtkinter.CTkLabel(self, width=120, height=25, fg_color=("dark gray", "gray75"), corner_radius=8,anchor="center", text="Afstand tot bodem")
+        self.label = customtkinter.CTkLabel(self, width=120, height=25, fg_color=("light red", "red"), corner_radius=8,anchor="center", text="Afstand tot bodem",font=('Arial', 18))
         self.label.grid(row=0,column=0,padx=80,pady=10)
 
-        self.label = customtkinter.CTkLabel(self, width=120, height=25, corner_radius=8,anchor="center", text="Afstand: nog niet gemeten")
+        self.label = customtkinter.CTkLabel(self, width=120, height=25, corner_radius=8,anchor="center", text="Afstand: nog niet gemeten",font=('Arial', 18))
         self.label.grid(row=1,column=0,padx=0,pady=80)
 
-        self.button = customtkinter.CTkButton(self, text='Start met lezen', command= self.distanceRead)
+        self.button = customtkinter.CTkButton(self, text='Start met lezen', command= self.distanceRead,font=('Arial', 18))
         self.button.grid(row=2,column=0,padx=0,pady=20)
     
     def distanceRead(self):
         path = os.path.join(sys.path[0], './Texts/afstand.txt')
         with open(path, 'r') as f:
             distance = f.read().strip()
-        self.label.configure(text=f"Afstand : {distance}")
+        self.label.configure(text=f"Afstand : {distance}",font=('Arial', 18))
         # schedule the next update after 5 seconds
         self.after(5000, self.distanceRead)
 
@@ -61,15 +61,15 @@ class Temp(customtkinter.CTkFrame):
         super().__init__(master,*args, **kwargs)
         self.header_name= header_name
 
-        self.label = customtkinter.CTkLabel(self, width=120, height=25, fg_color=("dark gray", "gray75"), corner_radius=8,anchor="center", text="Temperatuur Motorkamer")
+        self.label = customtkinter.CTkLabel(self, width=120, height=25, fg_color=("light red", "red"), corner_radius=8,anchor="center", text="Temperatuur Motorkamer", font=('Arial', 18))
         self.label.grid(row=0,column=0,padx=20,pady=10)
 
 
-        self.label = customtkinter.CTkLabel(self, width=120, height=25, corner_radius=8,anchor="center", text="Temperatuur: nog niet gemeten")
+        self.label = customtkinter.CTkLabel(self, width=120, height=25, corner_radius=8,anchor="center", text="Temperatuur: nog niet gemeten", font=('Arial', 18))
         self.label.grid(row=1,column=0,padx=0,pady=80)
         
 
-        self.button = customtkinter.CTkButton(self, text='Start met lezen', command= self.tempRead)
+        self.button = customtkinter.CTkButton(self, text='Start met lezen', command= self.tempRead, font=('Arial', 18))
         self.button.grid(row=2,column=0,padx=0,pady=20)
         
 
@@ -88,7 +88,7 @@ class ControlPanel(customtkinter.CTkFrame):
         # add widgets onto the frame...
         self.header_name = header_name
 
-        self.label = customtkinter.CTkLabel(self, width=120, height=25, fg_color=("white", "gray75"), corner_radius=8,anchor="center", text="Besturingspaneel")
+        self.label = customtkinter.CTkLabel(self, width=120, height=20, fg_color=("white", "gray75"), corner_radius=8,anchor="center", text="Besturingspaneel", font=('Arial', 18))
         self.label.grid(row=2, column=0, padx=20, pady=10)
 
 
@@ -98,16 +98,16 @@ class StatusFrame(customtkinter.CTkFrame):
         # add widgets onto the frame...
 
         self.header_name = header_name
-        self.label = customtkinter.CTkLabel(self, width=120, height=25, fg_color=("orange", "gray75"), corner_radius=8,anchor="center", text="Status Machine")
+        self.label = customtkinter.CTkLabel(self, width=120, height=25, fg_color=("orange", "orange"), corner_radius=8,anchor="center", text="Status Machine",font=('Arial', 18))
         self.label.grid(row=0, column=0, padx=10, pady=30)
-        self.label = customtkinter.CTkLabel(self, width=120, height=25, fg_color=("red", "gray75"), corner_radius=8,anchor="center", text="Status Aggregraat")
-        self.label.grid(row=1, column=0, padx=0, pady=10)
-        self.label = customtkinter.CTkLabel(self, width=120, height=25, fg_color=("green", "gray75"), corner_radius=8,anchor="center", text="Status Compressor")
-        self.label.grid(row=2, column=0, padx=0, pady=10)
-        self.label = customtkinter.CTkLabel(self, width=120, height=25, fg_color=("green", "gray75"), corner_radius=8,anchor="center", text="Status Verlichting")
-        self.label.grid(row=3, column=0, padx=0, pady=10)
-        self.label = customtkinter.CTkLabel(self, width=120, height=25, fg_color=("green", "gray75"), corner_radius=8,anchor="center", text="Status Schuif")
-        self.label.grid(row=4, column=0, padx=0, pady=10)
+        self.label = customtkinter.CTkLabel(self, width=120, height=25, fg_color=("red", "red"), corner_radius=8,anchor="center", text="Status Aggregraat", font=('Arial', 18))
+        self.label.grid(row=1, column=0, padx=10, pady=10)
+        self.label = customtkinter.CTkLabel(self, width=120, height=25, fg_color=("green", "green"), corner_radius=8,anchor="center", text="Status Compressor", font=('Arial', 18))
+        self.label.grid(row=2, column=0, padx=10, pady=10)
+        self.label = customtkinter.CTkLabel(self, width=120, height=25, fg_color=("green", "green"), corner_radius=8,anchor="center", text="Status Verlichting", font=('Arial', 18))
+        self.label.grid(row=3, column=0, padx=10, pady=10)
+        self.label = customtkinter.CTkLabel(self, width=120, height=25, fg_color=("green", "green"), corner_radius=8,anchor="center", text="Status Schuif", font=('Arial', 18))
+        self.label.grid(row=4, column=0, padx=10, pady=10)
         
       
 
@@ -118,8 +118,8 @@ class ProgressFrame(customtkinter.CTkFrame):
         # add widgets onto the frame...
         
         self.header_name = header_name
-        self.label = customtkinter.CTkLabel(self, width=120, height=25, fg_color=("dark gray", "gray75"), corner_radius=8,anchor="center", text="Timer (5 minuten)")
-        self.label.grid(row=0, column=0, padx=0, pady=10)
+        self.label = customtkinter.CTkLabel(self, width=120, height=25, fg_color=("light red", "red"), corner_radius=8,anchor="center", text="Timer (5 minuten)", font=('Arial', 18))
+        self.label.grid(row=0, column=0, padx=20, pady=10)
 
         self.progressbar = customtkinter.CTkProgressBar(self, height=20)
         self.progressbar.grid(row=1, column=0, padx=20, pady=80)
@@ -135,8 +135,8 @@ class ProgressFrame(customtkinter.CTkFrame):
             self.progressbar.start()
         
         
-        self.button_1 =customtkinter.CTkButton(self, text="Start", border_width=0,corner_radius=8,width=120,height=32,command=start_progress_bar)
-        self.button_1.grid(row=2, column=0, padx=0, pady=10)
+        self.button_1 =customtkinter.CTkButton(self, text="Start", border_width=0,corner_radius=8,width=120,command=start_progress_bar, font=('Arial', 18))
+        self.button_1.grid(row=2, column=0, padx=0, pady=20)
 
 
 class RadioButtonFrame(customtkinter.CTkFrame):
@@ -145,23 +145,23 @@ class RadioButtonFrame(customtkinter.CTkFrame):
         
         self.header_name = header_name
 
-        self.label = customtkinter.CTkLabel(self, width=120, height=25, fg_color=("dark gray", "gray75"), corner_radius=8,anchor="center", text="Besturingsmodus")
+        self.label = customtkinter.CTkLabel(self, width=120, height=25, fg_color=("light red", "red"), corner_radius=8,anchor="center", text="Besturingsmodus",font=('Arial', 18))
 
         self.label.grid(row=0, column=0, padx=10, pady=10)
 
         self.radio_button_var = customtkinter.StringVar(value="")
 
-        self.radio_button_1 = customtkinter.CTkRadioButton(self, text="Handmatig", value="Handmatig", variable=self.radio_button_var)
-        self.radio_button_1.grid(row=1, column=0, padx=10, pady=10)
-        self.radio_button_2 = customtkinter.CTkRadioButton(self, text="Automatisch", value="Automatisch", variable=self.radio_button_var)
-        self.radio_button_2.grid(row=2, column=0, padx=10, pady=10)
+        self.radio_button_1 = customtkinter.CTkRadioButton(self, text="Handmatig", value="Handmatig", variable=self.radio_button_var, font=('Arial', 18))
+        self.radio_button_1.grid(row=1, column=0, padx=10, pady=20)
+        self.radio_button_2 = customtkinter.CTkRadioButton(self, text="Automatisch", value="Automatisch", variable=self.radio_button_var, font=('Arial', 18))
+        self.radio_button_2.grid(row=2, column=0, padx=10, pady=50)
         
 
         def get_value():
             """ returns selected value as a string, returns an empty string if nothing selected """
             return self.radio_button_var.get()
-        self.frame_1_button = customtkinter.CTkButton(self, text="Selecteer", command=get_value)
-        self.frame_1_button.grid(row=3, column=0, padx=20, pady=30)
+        self.frame_1_button = customtkinter.CTkButton(self, text="Selecteer", command=get_value, font=('Arial', 18),anchor="center")
+        self.frame_1_button.grid(row=3, column=0, padx=20, pady=20)
 
   
 
@@ -177,18 +177,18 @@ class LightsControl(customtkinter.CTkFrame):
         # add widgets onto the frame...
         self.header_name = header_name
 
-        self.label = customtkinter.CTkLabel(self, width=120, height=25, fg_color=("dark gray", "gray75"), corner_radius=8,anchor="center", text="Richting")
+        self.label = customtkinter.CTkLabel(self, width=120, height=25, fg_color=("light red", "red"), corner_radius=8,anchor="center", text="Richting", font=('Arial', 18))
 
         self.label.grid(row=0, column=0, padx=10, pady=10)
 
         self.radio_button_var = customtkinter.StringVar(value="")
 
         self.radio_button_1 = customtkinter.CTkRadioButton(self, text="Bakboord", value="Bakboord", variable=self.radio_button_var, command=self.send_value)
-        self.radio_button_1.grid(row=1, column=0, padx=10, pady=10)
+        self.radio_button_1.grid(row=1, column=0, padx=10, pady=20)
         self.radio_button_2 = customtkinter.CTkRadioButton(self, text="Stuurboord", value="Stuurboord", variable=self.radio_button_var,command=self.send_value)
-        self.radio_button_2.grid(row=2, column=0, padx=10, pady=10)
+        self.radio_button_2.grid(row=2, column=0, padx=10, pady=20)
         self.radio_button_2 = customtkinter.CTkRadioButton(self, text="Uit", value="Uit", variable=self.radio_button_var,command=self.send_value)
-        self.radio_button_2.grid(row=3, column=0, padx=10, pady=10)
+        self.radio_button_2.grid(row=3, column=0, padx=10, pady=20)
 
         #Deze functie zal elke 2 seconden de ingevulde waarde sturen
         #Misschien handig om deze functie alleen te runnen als de waarde wordt veranderd...
@@ -219,13 +219,13 @@ class App(customtkinter.CTk):
         self.radio_button_frame_1.grid(row=0, column=1, padx=20, pady=20)
         
         self.my_frame2 = StatusFrame(master=self, header_name="Status machine")
-        self.my_frame2.grid(row=0, column=2, padx=20, pady=20)
+        self.my_frame2.grid(row=1, column=2, padx=20, pady=20)
         
         self.temp = Temp(master=self,header_name="temp")
-        self.temp.grid(row=0, column=3, padx=20,pady=20)
+        self.temp.grid(row=0, column=2, padx=20,pady=20)
 
         self.afstand = Afstand(master=self, header_name='afstand')
-        self.afstand.grid(row=0,column = 4 , padx=20, pady=20)
+        self.afstand.grid(row=0,column = 3 , padx=20, pady=20)
         
         self.light_control = LightsControl(master=self, header_name="Lampen Besturing")
         self.light_control.grid(row=1, column=1, padx=20, pady=20)
