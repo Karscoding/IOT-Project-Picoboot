@@ -4,15 +4,11 @@ import os
 import sys
 import datetime
 import config
-import requests
-import json
-import threading
 
 url = f"http://localhost:{config.PORT}{config.SENDPOINT}"
 
-customtkinter.set_default_color_theme("dark-blue")
+customtkinter.set_default_color_theme("blue")
 customtkinter.set_appearance_mode("dark")
-
 
 class Tijd(customtkinter.CTkFrame):
     def __init__(self,*args,master,header_name='tijd', **kwargs):
