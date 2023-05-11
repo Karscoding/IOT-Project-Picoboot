@@ -155,6 +155,7 @@ class RadioButtonFrame(customtkinter.CTkFrame):
         self.radio_button_1.grid(row=1, column=0, padx=10, pady=10)
         self.radio_button_2 = customtkinter.CTkRadioButton(self, text="Automatisch", value="Automatisch", variable=self.radio_button_var)
         self.radio_button_2.grid(row=2, column=0, padx=10, pady=10)
+        
 
         def get_value():
             """ returns selected value as a string, returns an empty string if nothing selected """
@@ -186,12 +187,13 @@ class LightsControl(customtkinter.CTkFrame):
         self.radio_button_1.grid(row=1, column=0, padx=10, pady=10)
         self.radio_button_2 = customtkinter.CTkRadioButton(self, text="Stuurboord", value="Stuurboord", variable=self.radio_button_var,command=self.send_value)
         self.radio_button_2.grid(row=2, column=0, padx=10, pady=10)
+        self.radio_button_2 = customtkinter.CTkRadioButton(self, text="Uit", value="Uit", variable=self.radio_button_var,command=self.send_value)
+        self.radio_button_2.grid(row=3, column=0, padx=10, pady=10)
 
         #Deze functie zal elke 2 seconden de ingevulde waarde sturen
         #Misschien handig om deze functie alleen te runnen als de waarde wordt veranderd...
     def send_value(self):
-        """
-        Sends value to opdracht.txt"""
+        """Sends value to opdracht.txt"""
         path = os.path.join(sys.path[0], './Texts/opdracht.txt')
         lights = self.radio_button_var.get()
         with open(path, 'w') as f:

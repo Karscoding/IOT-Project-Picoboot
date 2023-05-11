@@ -56,7 +56,12 @@ while connection.isconnected():
     opdracht=lights.json()
     if opdracht == 'Stuurboord':
         greenled.on()
+        led.off()
     elif opdracht == 'Bakboord':
+        led.on()
+        greenled.off()
+    elif opdracht == 'Uit':
+        led.off()
         greenled.off()
     
     # sleep a little until next temperature reading
