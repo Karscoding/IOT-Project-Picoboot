@@ -27,41 +27,35 @@ while connection.isconnected():
     distance = sharp_sensor.value()
     print("Distance:", distance)
     
-    afstand= requests.post(aurl, json=distance)
-    
     #Read Temperature
     v_out = adc.read_u16() * prop
-
     temp = (v_out - 500) / 10
-
     print(temp)
     
     led.on()
-    temperatuur = requests.post(url, json=temp)
-
+    try:
+        temperatuur = requests.post(url, json=temp)
+        afstand= requests.post(aurl, json=distance)
+        lights = requests.post(gurl, json=None)
+        led.off()
+    except:
+        print('mislukt')
     # flash blue LED indicating temperature was sent
 
     antwoord=temperatuur.json()
     print(f'het gekregen antwoord is {antwoord}')
-    if antwoord =='BAAN':
-        secled.on()
-        print('temperatuur ontvangen en is boven de 20')
-    else:
-        print(antwoord)
-        secled.off()
-        
+
     #Stuurt een request naar /Input met als string "Requests"
     #Deze returned een opdracht
-    lights = requests.post(gurl, json=None)
     opdracht=lights.json()
     if opdracht == 'Stuurboord':
         greenled.on()
-        led.off()
+        secled.off()
     elif opdracht == 'Bakboord':
-        led.on()
+        secled.on()
         greenled.off()
     elif opdracht == 'Uit':
-        led.off()
+        secled.off()
         greenled.off()
     
     # sleep a little until next temperature reading
