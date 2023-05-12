@@ -34,9 +34,9 @@ while connection.isconnected():
     
     led.on()
     try:
+        lights = requests.post(gurl, json=None)
         temperatuur = requests.post(url, json=temp)
         afstand= requests.post(aurl, json=distance)
-        lights = requests.post(gurl, json=None)
         led.off()
     except:
         print('mislukt')
