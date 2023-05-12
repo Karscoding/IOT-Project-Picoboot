@@ -19,7 +19,7 @@ class Tijd(customtkinter.CTkFrame):
         super().__init__(master, *args, **kwargs)
         self.header_name= header_name
 
-        self.label = self.label = customtkinter.CTkLabel(self, width=120, height=25, fg_color=("light red", "red"), corner_radius=8,anchor="center", text="Tijd", font=('Arial', 18))
+        self.label = self.label = customtkinter.CTkLabel(self, width=120, height=25, fg_color=("light blue", "blue"), corner_radius=8,anchor="center", text="Tijd", font=('Arial', 18))
         self.label.grid(row=0,column=0,padx=80,pady=10)
 
         self.label = customtkinter.CTkLabel(self, width=120, height=25, corner_radius=8,anchor="center", text="")
@@ -38,7 +38,7 @@ class Afstand(customtkinter.CTkFrame):
         super().__init__(master,*args, **kwargs)
         self.header_name = header_name
 
-        self.label = customtkinter.CTkLabel(self, width=120, height=25, fg_color=("light red", "red"), corner_radius=8,anchor="center", text="Afstand tot bodem",font=('Arial', 18))
+        self.label = customtkinter.CTkLabel(self, width=120, height=25, fg_color=("light blue", "blue"), corner_radius=8,anchor="center", text="Afstand tot bodem",font=('Arial', 18))
         self.label.grid(row=0,column=0,padx=80,pady=10)
 
         self.label = customtkinter.CTkLabel(self, width=120, height=25, corner_radius=8,anchor="center", text="Afstand: nog niet gemeten",font=('Arial', 18))
@@ -61,14 +61,14 @@ class Temp(customtkinter.CTkFrame):
         super().__init__(master,*args, **kwargs)
         self.header_name= header_name
 
-        self.label = customtkinter.CTkLabel(self, width=120, height=25, fg_color=("light red", "red"), corner_radius=8,anchor="center", text="Temperatuur Motorkamer", font=('Arial', 18))
+        self.label = customtkinter.CTkLabel(self, width=120, height=25, fg_color=("dark blue", "blue"), corner_radius=8,anchor="center", text="Temperatuur Motorkamer", font=('Arial', 18))
         self.label.grid(row=0,column=0,padx=20,pady=10)
 
 
         self.label = customtkinter.CTkLabel(self, width=120, height=25, corner_radius=8,anchor="center", text="Temperatuur: nog niet gemeten", font=('Arial', 18))
         self.label.grid(row=1,column=0,padx=0,pady=80)
         
-
+        
         self.button = customtkinter.CTkButton(self, text='Start met lezen', command= self.tempRead, font=('Arial', 18))
         self.button.grid(row=2,column=0,padx=0,pady=20)
         
@@ -80,6 +80,8 @@ class Temp(customtkinter.CTkFrame):
         self.label.configure(text=f"Temperatuur : {temp}")
         # schedule the next update after 5 seconds
         self.after(5000, self.tempRead)
+    
+   
 
 
 class ControlPanel(customtkinter.CTkFrame):    
@@ -100,7 +102,7 @@ class StatusFrame(customtkinter.CTkFrame):
         self.header_name = header_name
         self.label = customtkinter.CTkLabel(self, width=120, height=25, fg_color=("orange", "orange"), corner_radius=8,anchor="center", text="Status Machine",font=('Arial', 18))
         self.label.grid(row=0, column=0, padx=10, pady=30)
-        self.label = customtkinter.CTkLabel(self, width=120, height=25, fg_color=("red", "red"), corner_radius=8,anchor="center", text="Status Aggregraat", font=('Arial', 18))
+        self.label = customtkinter.CTkLabel(self, width=120, height=25, fg_color=("blue", "blue"), corner_radius=8,anchor="center", text="Status Aggregraat", font=('Arial', 18))
         self.label.grid(row=1, column=0, padx=10, pady=10)
         self.label = customtkinter.CTkLabel(self, width=120, height=25, fg_color=("green", "green"), corner_radius=8,anchor="center", text="Status Compressor", font=('Arial', 18))
         self.label.grid(row=2, column=0, padx=10, pady=10)
@@ -118,7 +120,7 @@ class ProgressFrame(customtkinter.CTkFrame):
         # add widgets onto the frame...
         
         self.header_name = header_name
-        self.label = customtkinter.CTkLabel(self, width=120, height=25, fg_color=("light red", "red"), corner_radius=8,anchor="center", text="Timer (5 minuten)", font=('Arial', 18))
+        self.label = customtkinter.CTkLabel(self, width=120, height=25, fg_color=("light blue", "blue"), corner_radius=8,anchor="center", text="Timer (5 minuten)", font=('Arial', 18))
         self.label.grid(row=0, column=0, padx=20, pady=10)
 
         self.progressbar = customtkinter.CTkProgressBar(self, height=20)
@@ -127,7 +129,7 @@ class ProgressFrame(customtkinter.CTkFrame):
         self.progressbar._border_width=(1)
         self.progressbar._progress_color=("green")
         self.progressbar._border_color=("black")
-        self.progressbar._fg_color=("red")
+        self.progressbar._fg_color=("blue")
         self.progressbar._mode=("determinate")
         self.progressbar._determinate_speed=(1/300)
 
@@ -145,7 +147,7 @@ class RadioButtonFrame(customtkinter.CTkFrame):
         
         self.header_name = header_name
 
-        self.label = customtkinter.CTkLabel(self, width=120, height=25, fg_color=("light red", "red"), corner_radius=8,anchor="center", text="Besturingsmodus",font=('Arial', 18))
+        self.label = customtkinter.CTkLabel(self, width=120, height=25, fg_color=("light blue", "blue"), corner_radius=8,anchor="center", text="Besturingsmodus",font=('Arial', 18))
 
         self.label.grid(row=0, column=0, padx=10, pady=10)
 
@@ -177,7 +179,7 @@ class LightsControl(customtkinter.CTkFrame):
         # add widgets onto the frame...
         self.header_name = header_name
 
-        self.label = customtkinter.CTkLabel(self, width=120, height=25, fg_color=("light red", "red"), corner_radius=8,anchor="center", text="Richting", font=('Arial', 18))
+        self.label = customtkinter.CTkLabel(self, width=120, height=25, fg_color=("light blue", "blue"), corner_radius=8,anchor="center", text="Richting", font=('Arial', 18))
 
         self.label.grid(row=0, column=0, padx=10, pady=10)
 
