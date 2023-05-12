@@ -21,6 +21,11 @@ spawnenemy=False
 run=True
 
 
+lucass= pygame.image.load('./Images/LucasBit.png')
+def lucas(image):
+    size= pygame.transform.scale(image,(150,200))
+    win.blit(size,(x+200,y-250))
+
 image= pygame.image.load('./Images/noordpolderzijl.jpg')
 def background(image):
     size=pygame.transform.scale(image,(1920,1080))
@@ -65,8 +70,7 @@ def add_motor(motor):
 
 # Define color constants
 BLACK = (0, 0, 0)
-WHITE=(255,255,255)
-
+WHITE=(124,252,0)
 run=True
 
 def runengine():
@@ -90,6 +94,7 @@ def runengine():
         add_schuif(schuif)
         add_motor(motor)
         add_enemy(enemy)
+        lucas(lucass)
 
 
         pygame.display.update()
@@ -117,7 +122,7 @@ def adjusttide():
                 sleep(0.01)
         else:
             i+=1
-            if i == 12:
+            if i == 2:
                 run=False
             wy= random.randint(500,575)
             if abs(y-wy)<=50:
