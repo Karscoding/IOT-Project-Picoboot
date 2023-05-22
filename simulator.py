@@ -122,7 +122,7 @@ def adjusttide():
                 sleep(0.01)
         else:
             i+=1
-            if i == 2:
+            if i == 12:
                 run=False
             wy= random.randint(500,575)
             if abs(y-wy)<=50:
