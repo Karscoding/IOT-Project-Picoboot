@@ -45,14 +45,18 @@ def afstand():
     db.session.add_all([Afstand(id,tijd, data)])
     db.session.commit()
 
+    nap = open('./Texts/nap.txt', 'r').read()
+    diepte= 4 +nap
+    schuifhoogte= diepte +0.04
+     
     if data==0:
         f = open('./Texts/afstand.txt', 'w')
-        f.write("Afstand groot, Niks aan de hand")
+        f.write(f"Afstand groot, Niks aan de hand. Schuifhoogte:{schuifhoogte}")
         f.close()
         return ""
     elif data==1:
         f = open('./Texts/afstand.txt', 'w')
-        f.write("Afstand klein, schuif omhoog!")
+        f.write(f"Afstand klein, schuif omhoog! Schuifhoogte:{schuifhoogte}")
         f.close()
         return ""
 

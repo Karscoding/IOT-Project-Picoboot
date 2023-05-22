@@ -137,8 +137,8 @@ class ProgressFrame(customtkinter.CTkFrame):
         self.button_1.grid(row=2, column=0, padx=0, pady=20)
 
 
-class RadioButtonFrame(customtkinter.CTkFrame):
-    def __init__(self, *args, header_name="RadioButtonFrame", **kwargs):
+class Besturingsmodus(customtkinter.CTkFrame):
+    def __init__(self, *args, header_name="Besturingsmodus", **kwargs):
         super().__init__(*args, **kwargs)
         
         self.header_name = header_name
@@ -155,17 +155,7 @@ class RadioButtonFrame(customtkinter.CTkFrame):
         self.radio_button_2.grid(row=2, column=0, padx=10, pady=50)
         
 
-        def get_value():
-            """ returns selected value as a string, returns an empty string if nothing selected """
-            return self.radio_button_var.get()
-        self.frame_1_button = customtkinter.CTkButton(self, text="Selecteer", command=get_value, font=('Arial', 18),anchor="center")
-        self.frame_1_button.grid(row=3, column=0, padx=20, pady=20)
 
-  
-
-    def set_value(self, selection):
-        """ selects the corresponding radio button, selects nothing if no corresponding radio button """
-        self.radio_button_var.set(selection)
        
    
 #Lights control panel
@@ -188,8 +178,6 @@ class LightsControl(customtkinter.CTkFrame):
         self.radio_button_2 = customtkinter.CTkRadioButton(self, text="Uit", value="Uit", variable=self.radio_button_var,command=self.send_value)
         self.radio_button_2.grid(row=3, column=0, padx=10, pady=20)
 
-        #Deze functie zal elke 2 seconden de ingevulde waarde sturen
-        #Misschien handig om deze functie alleen te runnen als de waarde wordt veranderd...
     def send_value(self):
         """Sends value to opdracht.txt"""
         path = os.path.join(sys.path[0], './Texts/opdracht.txt')
@@ -213,7 +201,7 @@ class App(customtkinter.CTk):
         self.my_frame = ProgressFrame(master=self, header_name="Warmlopen starten:")
         self.my_frame.grid(row=0, column=0, padx=20, pady=20, sticky="nsew") 
         
-        self.radio_button_frame_1 = RadioButtonFrame(self, header_name="Besturingsmodus")
+        self.radio_button_frame_1 = Besturingsmodus(self, header_name="Besturingsmodus")
         self.radio_button_frame_1.grid(row=0, column=1, padx=20, pady=20)
         
         self.my_frame2 = StatusFrame(master=self, header_name="Status machine")
