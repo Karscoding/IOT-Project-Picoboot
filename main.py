@@ -60,12 +60,14 @@ while connection.isconnected():
         elif opdracht[1] == 'L':
             secled.on()
             greenled.off()
-        if opdracht[0] == 'P':
+        elif opdracht[1] == 'P':
             secled.off()
             greenled.off()
-            restleds.off()
-        elif opdracht[0] == 'X':
+
+        if opdracht[0] == 'X':
             restleds.on()
+        elif opdracht[0] == 'U':
+            restleds.off()
         
     # sleep a little until next temperature reading
         sleep(3)
