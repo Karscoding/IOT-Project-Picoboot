@@ -204,20 +204,19 @@ class LightsControl(customtkinter.CTkFrame):
 
         self.radio_button_var = customtkinter.StringVar(value="")
 
-        self.radio_button_1 = customtkinter.CTkRadioButton(self, text="P bakboord  ", value="L",width=20, variable=self.radio_button_var, command=self.send_value)
+        self.radio_button_1 = customtkinter.CTkRadioButton(self, text="P bakboord  ", value="L",width=20, variable=self.radio_button_var, command=self.call_to_write)
         self.radio_button_1.grid(row=1, column=0, padx=10, pady=20)
-        self.radio_button_2 = customtkinter.CTkRadioButton(self, text="P stuurboord", value="R",width=20, variable=self.radio_button_var,command=self.send_value)
+        self.radio_button_2 = customtkinter.CTkRadioButton(self, text="P stuurboord", value="R",width=20, variable=self.radio_button_var,command=self.call_to_write)
         self.radio_button_2.grid(row=2, column=0, padx=10, pady=20)
-        self.radio_button_2 = customtkinter.CTkRadioButton(self, text="     P uit       ", value="P",width=20, variable=self.radio_button_var,command=self.send_value)
+        self.radio_button_2 = customtkinter.CTkRadioButton(self, text="     P uit       ", value="P",width=20, variable=self.radio_button_var,command=self.call_to_write)
         self.radio_button_2.grid(row=3, column=0, padx=10, pady=20)
-        self.radio_button_3 = customtkinter.CTkRadioButton(self, text="alle verlichting    ", value="X",width=20, variable=self.radio_button_var,command=self.send_value)
+        self.radio_button_3 = customtkinter.CTkRadioButton(self, text="alle verlichting    ", value="X",width=20, variable=self.radio_button_var,command=self.call_to_write)
         self.radio_button_3.grid(row=1, column=1, padx=10, pady=20)
-        self.radio_button_3 = customtkinter.CTkRadioButton(self, text="alle verlichting uit", value="U",width=20, variable=self.radio_button_var,command=self.send_value)
+        self.radio_button_3 = customtkinter.CTkRadioButton(self, text="alle verlichting uit", value="U",width=20, variable=self.radio_button_var,command=self.call_to_write)
         self.radio_button_3.grid(row=3, column=1, padx=10, pady=20)
 
-    def send_value(self):
+    def call_to_write(self):
         """Sends value to opdracht.txt"""
-        path = os.path.join(sys.path[0], './Texts/opdracht.txt')
         lights = self.radio_button_var.get()
         WritetoFile(lights, 'P')
         self.after(1000, self.call_write)
