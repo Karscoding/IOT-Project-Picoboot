@@ -21,7 +21,7 @@ spawnenemy=False
 run=True
 
 
-lucass= pygame.image.load('./Images/LucasBit.png')
+lucass= pygame.image.load('./Images/donut.jpg')
 def lucas(image):
     size= pygame.transform.scale(image,(150,200))
     win.blit(size,(x+200,y-250))
