@@ -10,6 +10,39 @@ url = f"http://localhost:{config.PORT}{config.SENDPOINT}"
 customtkinter.set_default_color_theme("blue")
 customtkinter.set_appearance_mode("dark")
 
+
+def WritetoFile(value, subject):
+    """
+    Value = string
+    Subject = string
+    Value will be referred to in the discord, it can be a single capital character
+    Subject will be 'P' for 'Passeerlicht' and 'L' for other Lights.
+    This way the function knows what panel is calling this function.
+    """
+    path = os.path.join(sys.path[0], './Texts/opdracht.txt')
+    current = ''
+    #Function attempts to open file
+    try:
+        f= open(path, 'r')
+        current = f.read()
+        f.close()
+    #Exception creates the file
+    except:
+        f = open(path, 'x')
+    
+    #File opens
+    with open(path, 'w') as f:
+        '''Passeerlichten'''
+        if subject == 'P':
+            newstring = current.replace(current[1], value, 1)
+            f.write(newstring)
+        
+        #Rest
+        elif subject == 'L':
+            newstring = current.replace(current[0], value, 1)
+            f.write(newstring)
+    
+
 class Tijd(customtkinter.CTkFrame):
     def __init__(self,*args,master,header_name='tijd', **kwargs):
         super().__init__(master, *args, **kwargs)
@@ -186,9 +219,8 @@ class LightsControl(customtkinter.CTkFrame):
         """Sends value to opdracht.txt"""
         path = os.path.join(sys.path[0], './Texts/opdracht.txt')
         lights = self.radio_button_var.get()
-        with open(path, 'w') as f:
-            f.write(lights)
-            f.close()    
+        WritetoFile(lights, 'P')
+        self.after(1000, self.call_write)
 
 class NAPINPUT(customtkinter.CTkFrame):
     def __init__(self, *args, master, header_name="Nap input", **kwargs):
@@ -216,7 +248,7 @@ class NAPINPUT(customtkinter.CTkFrame):
     def send_nap(self):
         path = os.path.join(sys.path[0], './Texts/nap.txt')
         nap=self.entry.get()
-        if -1 < nap < 1:
+        if float(nap) >= -1 and float(nap) <=1:
             with open(path, 'w') as f:
                 f.write(nap)
                 f.close() 
