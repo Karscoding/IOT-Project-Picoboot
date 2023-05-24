@@ -31,21 +31,13 @@ def WritetoFile(value, subject):
         f = open(path, 'x')
     #File opens
     with open(path, 'w') as f:
-        position = len(current)
         if subject == 'P':
-            #Function checks if something in this subject was already written
-            #All of this works so that the Passeerlicht Letter is always behind the Lights letter.
-            if 'R' in current or 'L' in current or 'P' in current:
-                newstring = current.replace(current[position-1], value, 1)
-                f.write(newstring)
-            else:
-                f.write(current + value)
+            newstring = current.replace(current[1], value, 1)
+            f.write(newstring)
+            
         elif subject == 'L':
-            if 'S' in current or 'T' in current or 'U' in current:
-                newstring = current.replace(current[position-2], value, 1)
-                f.write(newstring)
-            else:
-                f.write(value + current)
+            newstring = current.replace(current[0], value, 1)
+            f.write(newstring)
     
 
 class Tijd(customtkinter.CTkFrame):
