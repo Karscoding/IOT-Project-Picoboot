@@ -8,8 +8,8 @@ current=3
 def generatediepte(current):
     verschil=random.randrange(-10,10)
     verschil=verschil/10
-    if (2<(current+verschil)<4):
-        return current+verschil
+    if (current+verschil) >2 and (current+verschil)<4:
+        return (current+verschil)
     else:
         return generatediepte(current) 
 
@@ -33,21 +33,22 @@ def temperature():
     db.session.add_all([Temperatuur(id,tijd, printedData)])
     db.session.commit()
 
-    with app.app_context():
-            if Afstand.query.all()==[]:
-                id=1
-            else:
-                highestid = Afstand.query.all()
-                id=(highestid[-1].id+1)
-    db.session.add_all([Afstand(id,tijd, data)])
-    db.session.commit()
-
     diepte=generatediepte(current)
     nap = float(open('./Texts/nap.txt', 'r').read())
     
     slib=0.04
     schuifhoogte= diepte +slib
     maxdiepte=4
+
+    
+    with app.app_context():
+            if Afstand.query.all()==[]:
+                id=1
+            else:
+                highestid = Afstand.query.all()
+                id=(highestid[-1].id+1)
+    db.session.add_all([Afstand(id,tijd, diepte)])
+    db.session.commit()
 
     if diepte + nap + slib < maxdiepte:
         f = open('./Texts/afstand.txt', 'w')
