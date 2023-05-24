@@ -218,7 +218,10 @@ class LightsControl(customtkinter.CTkFrame):
     def call_to_write(self):
         """Sends value to opdracht.txt"""
         lights = self.radio_button_var.get()
-        WritetoFile(lights, 'P')
+        subject = 'P'
+        if lights == 'X' or lights == 'U':
+            subject = 'L'
+        WritetoFile(lights, subject)
         self.after(1000, self.call_write)
 
 class NAPINPUT(customtkinter.CTkFrame):
