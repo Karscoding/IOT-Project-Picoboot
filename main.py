@@ -20,6 +20,8 @@ prop = 1100 / 65535
 led = Pin(2, Pin.OUT)
 secled= Pin(32, Pin.OUT)
 greenled=Pin(14,Pin.OUT)
+restleds=Pin(25,Pin.OUT)
+
 
 while connection.isconnected():
     try:
@@ -51,15 +53,20 @@ while connection.isconnected():
     #Deze returned een opdracht
 
         opdracht=lights.json()
-        if opdracht == 'Stuurboord':
+
+        if opdracht[1] == 'R':
             greenled.on()
             secled.off()
-        elif opdracht == 'Bakboord':
+        elif opdracht[1] == 'L':
             secled.on()
             greenled.off()
-        elif opdracht == 'Uit':
+        if opdracht[0] == 'P':
             secled.off()
             greenled.off()
+            restleds.off()
+        elif opdracht[0] == 'X':
+            restleds.on()
+        
     # sleep a little until next temperature reading
         sleep(3)
     except:

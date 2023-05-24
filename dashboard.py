@@ -29,12 +29,15 @@ def WritetoFile(value, subject):
     #Exception creates the file
     except:
         f = open(path, 'x')
+    
     #File opens
     with open(path, 'w') as f:
+        '''Passeerlichten'''
         if subject == 'P':
             newstring = current.replace(current[1], value, 1)
             f.write(newstring)
-            
+        
+        #Rest
         elif subject == 'L':
             newstring = current.replace(current[0], value, 1)
             f.write(newstring)
@@ -211,7 +214,7 @@ class LightsControl(customtkinter.CTkFrame):
     def call_write(self):
         lights = self.radio_button_var.get()
         WritetoFile(lights, 'P')
-        self.after(1000, self.time)
+        self.after(1000, self.call_write)
 
 class NAPINPUT(customtkinter.CTkFrame):
     def __init__(self, *args, master, header_name="Nap input", **kwargs):
