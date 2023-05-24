@@ -219,7 +219,7 @@ class LightsControl(customtkinter.CTkFrame):
         """Sends value to opdracht.txt"""
         lights = self.radio_button_var.get()
         WritetoFile(lights, 'P')
-        self.after(1000, self.call_write)
+        self.after(1000, self.call_to_write)
 
 class NAPINPUT(customtkinter.CTkFrame):
     def __init__(self, *args, master, header_name="Nap input", **kwargs):
