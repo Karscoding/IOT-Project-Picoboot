@@ -222,7 +222,7 @@ class LightsControl(customtkinter.CTkFrame):
         if lights == 'X' or lights == 'U':
             subject = 'L'
         WritetoFile(lights, subject)
-        self.after(1000, self.call_write)
+        self.after(1000, self.call_to_write)
 
 class NAPINPUT(customtkinter.CTkFrame):
     def __init__(self, *args, master, header_name="Nap input", **kwargs):
