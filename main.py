@@ -22,41 +22,45 @@ secled= Pin(32, Pin.OUT)
 greenled=Pin(14,Pin.OUT)
 
 while connection.isconnected():
-    led.off()
-    #Read Distance
-    #distance = sharp_sensor.value()
-    #print("Distance:", distance)
-    
-    #Read Temperature
-    v_out = adc.read_u16() * prop
-    temp = (v_out - 500) / 10
-    print(temp)
-    
-    led.on()
     try:
+        led.off()
+        #Read Distance
+        #distance = sharp_sensor.value()
+        #print("Distance:", distance)
+        
+        #Read Temperature
+        v_out = adc.read_u16() * prop
+        temp = (v_out - 500) / 10
+        print(temp)
+        
+        led.on()
+
         lights = requests.post(gurl, json=None)
         temperatuur = requests.post(url, json=temp)
         #afstand= requests.post(aurl, json=1)
         led.off()
-    except:
-        print('mislukt')
+
+    
+    
     # flash blue LED indicating temperature was sent
 
-    antwoord=temperatuur.json()
-    print(f'het gekregen antwoord is {antwoord}')
+    #antwoord=temperatuur.json()
+    #print(f'het gekregen antwoord is {antwoord}')
 
     #Stuurt een request naar /Input met als string "Requests"
     #Deze returned een opdracht
-    opdracht=lights.json()
-    if opdracht == 'Stuurboord':
-        greenled.on()
-        secled.off()
-    elif opdracht == 'Bakboord':
-        secled.on()
-        greenled.off()
-    elif opdracht == 'Uit':
-        secled.off()
-        greenled.off()
-    
+
+        opdracht=lights.json()
+        if opdracht == 'Stuurboord':
+            greenled.on()
+            secled.off()
+        elif opdracht == 'Bakboord':
+            secled.on()
+            greenled.off()
+        elif opdracht == 'Uit':
+            secled.off()
+            greenled.off()
     # sleep a little until next temperature reading
-    sleep(5)
+        sleep(3)
+    except:
+        print('fail')
