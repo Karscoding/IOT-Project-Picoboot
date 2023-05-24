@@ -202,9 +202,12 @@ class NAPINPUT(customtkinter.CTkFrame):
     def send_nap(self):
         path = os.path.join(sys.path[0], './Texts/nap.txt')
         nap=self.entry.get()
-        with open(path, 'w') as f:
-            f.write(nap)
-            f.close()    
+        if -1 < nap < 1:
+            with open(path, 'w') as f:
+                f.write(nap)
+                f.close() 
+        else:
+            "code voor labels" 
 
 
              
