@@ -10,6 +10,44 @@ url = f"http://localhost:{config.PORT}{config.SENDPOINT}"
 customtkinter.set_default_color_theme("blue")
 customtkinter.set_appearance_mode("dark")
 
+
+def WritetoFile(value, subject):
+    """
+    Value = string
+    Subject = string
+    Value will be referred to in the discord, it can be a single capital character
+    Subject will be 'P' for 'Passeerlicht' and 'L' for other Lights.
+    This way the function knows what panel is calling this function.
+    """
+    path = os.path.join(sys.path[0], './Texts/opdracht.txt')
+    current = ''
+    #Function attempts to open file
+    try:
+        f= open(path, 'r')
+        current = f.read()
+        f.close()
+    #Exception creates the file
+    except:
+        f = open(path, 'x')
+    #File opens
+    with open(path, 'w') as f:
+        position = len(current)
+        if subject == 'P':
+            #Function checks if something in this subject was already written
+            #All of this works so that the Passeerlicht Letter is always behind the Lights letter.
+            if 'R' in current or 'L' in current or 'P' in current:
+                newstring = current.replace(current[position-1], value, 1)
+                f.write(newstring)
+            else:
+                f.write(current + value)
+        elif subject == 'L':
+            if 'S' in current or 'T' in current or 'U' in current:
+                newstring = current.replace(current[position-2], value, 1)
+                f.write(newstring)
+            else:
+                f.write(value + current)
+    
+
 class Tijd(customtkinter.CTkFrame):
     def __init__(self,*args,master,header_name='tijd', **kwargs):
         super().__init__(master, *args, **kwargs)
@@ -171,20 +209,17 @@ class LightsControl(customtkinter.CTkFrame):
 
         self.radio_button_var = customtkinter.StringVar(value="")
 
-        self.radio_button_1 = customtkinter.CTkRadioButton(self, text="Bakboord", value="Bakboord", variable=self.radio_button_var, command=self.send_value)
+        self.radio_button_1 = customtkinter.CTkRadioButton(self, text="Bakboord", value="L", variable=self.radio_button_var, command=self.call_write)
         self.radio_button_1.grid(row=1, column=0, padx=10, pady=20)
-        self.radio_button_2 = customtkinter.CTkRadioButton(self, text="Stuurboord", value="Stuurboord", variable=self.radio_button_var,command=self.send_value)
+        self.radio_button_2 = customtkinter.CTkRadioButton(self, text="Stuurboord", value="R", variable=self.radio_button_var, command=self.call_write)
         self.radio_button_2.grid(row=2, column=0, padx=10, pady=20)
-        self.radio_button_2 = customtkinter.CTkRadioButton(self, text="Uit", value="Uit", variable=self.radio_button_var,command=self.send_value)
+        self.radio_button_2 = customtkinter.CTkRadioButton(self, text="Uit", value="P", variable=self.radio_button_var, command=self.call_write)
         self.radio_button_2.grid(row=3, column=0, padx=10, pady=20)
-
-    def send_value(self):
-        """Sends value to opdracht.txt"""
-        path = os.path.join(sys.path[0], './Texts/opdracht.txt')
+    
+    def call_write(self):
         lights = self.radio_button_var.get()
-        with open(path, 'w') as f:
-            f.write(lights)
-            f.close()    
+        WritetoFile(lights, 'P')
+        self.after(1000, self.time)
 
 class NAPINPUT(customtkinter.CTkFrame):
     def __init__(self, *args, master, header_name="Nap input", **kwargs):
