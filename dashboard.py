@@ -134,7 +134,7 @@ class ProgressFrame(customtkinter.CTkFrame):
         
         
         self.button_1 =customtkinter.CTkButton(self, text="Start", border_width=0,corner_radius=8,width=120,command=start_progress_bar, font=('Arial', 18))
-        self.button_1.grid(row=2, column=0, padx=0, pady=20)
+        self.button_1.grid(row=2, column=0, padx=100, pady=20)
 
 
 class Besturingsmodus(customtkinter.CTkFrame):
@@ -150,7 +150,7 @@ class Besturingsmodus(customtkinter.CTkFrame):
         self.radio_button_var = customtkinter.StringVar(value="")
 
         self.radio_button_1 = customtkinter.CTkRadioButton(self, text="Handmatig", value="Handmatig", variable=self.radio_button_var, font=('Arial', 18))
-        self.radio_button_1.grid(row=1, column=0, padx=10, pady=20)
+        self.radio_button_1.grid(row=1, column=0, padx=10, pady=50)
         self.radio_button_2 = customtkinter.CTkRadioButton(self, text="Automatisch", value="Automatisch", variable=self.radio_button_var, font=('Arial', 18))
         self.radio_button_2.grid(row=2, column=0, padx=10, pady=50)
         
@@ -192,12 +192,22 @@ class NAPINPUT(customtkinter.CTkFrame):
         self.header_name = header_name
         self.label = customtkinter.CTkLabel(self, width=120, height=25, fg_color=("light blue", "blue"), corner_radius=8,anchor="center", text="Nap input", font=('Arial', 18))
         self.label.grid(row=0, column=0, padx=10, pady=10)
+
+
+        self.entry = customtkinter.CTkEntry(self, width=120, height=25, corner_radius=10)
+                
+        self.entry.grid(row=1, column=0, padx=10, pady=40)
+
+        self.napvalue=self.entry.get()
+
+        self.napbutton = customtkinter.CTkButton(self, text="Nap versturen", command= self.send_nap, width=120, height=20, border_width=0, corner_radius=8, font=('Arial', 18) )
+        self.napbutton.grid(row=2, column=0, padx=10, pady=30)
         #self.label = customtkinter.CTkLabel(self, width=120, height=25, corner_radius=8,anchor="center", text=f"Het nap is: {self.get_nap}", font=('Arial', 18))
         #self.label.grid(row=1,column=0,padx=0,pady=80)
-        self.entry = customtkinter.CTkEntry(self, width=80, height=25, corner_radius=10)        
-        self.entry.grid(row=2, column=0, padx=10, pady=20)
-        self.napbutton = customtkinter.CTkButton(self, text="Nap versturen", command= self.send_nap, width=80, height=20, border_width=0, corner_radius=8)
-        self.napbutton.grid(row=3, column=0, padx=10, pady=5)
+        #self.entry = customtkinter.CTkEntry(self, width=80, height=25, corner_radius=10)        
+        #self.entry.grid(row=2, column=0, padx=10, pady=20)
+        #self.napbutton = customtkinter.CTkButton(self, text="Nap versturen", command= self.send_nap, width=80, height=20, border_width=0, corner_radius=8)
+        #self.napbutton.grid(row=3, column=0, padx=10, pady=5)
 
     def send_nap(self):
         path = os.path.join(sys.path[0], './Texts/nap.txt')
@@ -234,13 +244,13 @@ class App(customtkinter.CTk):
         self.temp.grid(row=0, column=2, padx=20,pady=20)
 
         self.afstand = Afstand(master=self, header_name='afstand')
-        self.afstand.grid(row=0,column = 3 , padx=20, pady=20)
+        self.afstand.grid(row=0,column=3 , padx=20, pady=20)
         
         self.light_control = LightsControl(master=self, header_name="Lampen Besturing")
-        self.light_control.grid(row=1, column=1, padx=20, pady=20)
+        self.light_control.grid(row=1, column=3, padx=20, pady=20)
 
         self.NAPINPUT = NAPINPUT(master=self, header_name="Nap input")
-        self.NAPINPUT.grid(row=1, column=3, padx=20, pady=20)
+        self.NAPINPUT.grid(row=1, column=1, padx=20, pady=20)
 
 
 if __name__ == "__main__":
