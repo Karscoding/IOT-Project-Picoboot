@@ -9,7 +9,7 @@ from panel_lights import LightsControl
 from panel_nap import NAPINPUT
 
 
-url = f"http://localhost:{config.PORT}{config.SENDPOINT}"
+url = f"http://localhost:{PORT}{SENDPOINT}"
 
 customtkinter.set_default_color_theme("blue")
 customtkinter.set_appearance_mode("dark")
