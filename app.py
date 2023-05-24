@@ -33,19 +33,6 @@ def temperature():
     db.session.add_all([Temperatuur(id,tijd, printedData)])
     db.session.commit()
 
-    if data>25:
-        opdracht='BAAN'
-        return jsonify(opdracht)  
-    else:
-        opdracht='HK'
-        return jsonify(opdracht)
-
-@app.route("/afstand", methods=["POST"])
-def afstand():
-    data=request.json
-
-    now = datetime.datetime.now()
-    tijd=(now.strftime("%A, %B %d %Y %H:%M:%S"))
     with app.app_context():
             if Afstand.query.all()==[]:
                 id=1
@@ -73,7 +60,15 @@ def afstand():
         f.close()
         return ""
 
-    
+
+'''@app.route("/afstand", methods=["POST"])
+def afstand():
+    data=request.json
+
+    now = datetime.datetime.now()
+    tijd=(now.strftime("%A, %B %d %Y %H:%M:%S"))
+'''
+
     
 #Krijgt input van placeholder.py en schrijft het in opdracht.txt
 @app.route("/input", methods=["POST"])
