@@ -165,7 +165,7 @@ class LightsControl(customtkinter.CTkFrame):
         # add widgets onto the frame...
         self.header_name = header_name
 
-        self.label = customtkinter.CTkLabel(self, width=120, height=25, fg_color=("light blue", "blue"), corner_radius=8,anchor="center", text="Richting", font=('Arial', 18))
+        self.label = customtkinter.CTkLabel(self, width=120, height=25, fg_color=("light blue", "blue"), corner_radius=8,anchor="center", text="Passeerlicht", font=('Arial', 18))
 
         self.label.grid(row=0, column=0, padx=10, pady=10)
 
@@ -190,20 +190,14 @@ class NAPINPUT(customtkinter.CTkFrame):
     def __init__(self, *args, master, header_name="Nap input", **kwargs):
         super().__init__(master, *args, **kwargs)
         self.header_name = header_name
-
         self.label = customtkinter.CTkLabel(self, width=120, height=25, fg_color=("light blue", "blue"), corner_radius=8,anchor="center", text="Nap input", font=('Arial', 18))
-
         self.label.grid(row=0, column=0, padx=10, pady=10)
-
-
-        self.entry = customtkinter.CTkEntry(self, width=80, height=25, corner_radius=10)
-                
-        self.entry.grid(row=1, column=0, padx=10, pady=20)
-
-        self.napvalue=self.entry.get()
-
+        #self.label = customtkinter.CTkLabel(self, width=120, height=25, corner_radius=8,anchor="center", text=f"Het nap is: {self.get_nap}", font=('Arial', 18))
+        #self.label.grid(row=1,column=0,padx=0,pady=80)
+        self.entry = customtkinter.CTkEntry(self, width=80, height=25, corner_radius=10)        
+        self.entry.grid(row=2, column=0, padx=10, pady=20)
         self.napbutton = customtkinter.CTkButton(self, text="Nap versturen", command= self.send_nap, width=80, height=20, border_width=0, corner_radius=8)
-        self.napbutton.grid(row=2, column=0, padx=10, pady=20)
+        self.napbutton.grid(row=3, column=0, padx=10, pady=5)
 
     def send_nap(self):
         path = os.path.join(sys.path[0], './Texts/nap.txt')
@@ -211,6 +205,8 @@ class NAPINPUT(customtkinter.CTkFrame):
         with open(path, 'w') as f:
             f.write(nap)
             f.close()    
+
+
              
 class App(customtkinter.CTk):
     def __init__(self):
