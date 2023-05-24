@@ -3,6 +3,8 @@ from databasevuller import Temperatuur,Afstand,db,app
 import datetime
 import random
 
+current=3
+
 def generatediepte(current):
     verschil=random(range(-1,1,0.1))
     if (2<(current+verschil)<4):
@@ -52,26 +54,22 @@ def afstand():
     db.session.add_all([Afstand(id,tijd, data)])
     db.session.commit()
 
-    diepte=generatediepte(3)
+    diepte=generatediepte(current)
     nap = open('./Texts/nap.txt', 'r').read()
     slib=0.04
     schuifhoogte= diepte +slib
     maxdiepte=4
 
-    if diepte + nap + slib <maxdiepte:
-        'schuif omlaag tot diepte + slib'
-    else:
-        'schuif omhoog tot 0'
-     
-    if data==0:
-        f = open('./Texts/afstand.txt', 'w')
-        f.write(f"Afstand groot, Niks aan de hand. Schuifhoogte:{schuifhoogte}")
-        f.close()
-        return ""
-    elif data==1:
-        f = open('./Texts/afstand.txt', 'w')
-        f.write(f"Afstand klein, schuif omhoog! Schuifhoogte:{schuifhoogte}")
-        f.close()
+    if data==1:
+        if diepte + nap + slib <maxdiepte:
+            f = open('./Texts/afstand.txt', 'w')
+            f.write(f"Schuif omlaag tot diepte + slib' Schuifhoogte:{schuifhoogte}")
+            f.close()
+            
+        else:
+            f = open('./Texts/afstand.txt', 'w')
+            f.write(f"Schuif omhoog tot 0 Schuifhoogte:{schuifhoogte}")
+            f.close()
         return ""
 
     
