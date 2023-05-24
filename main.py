@@ -24,8 +24,8 @@ greenled=Pin(14,Pin.OUT)
 while connection.isconnected():
     led.off()
     #Read Distance
-    distance = sharp_sensor.value()
-    print("Distance:", distance)
+    #distance = sharp_sensor.value()
+    #print("Distance:", distance)
     
     #Read Temperature
     v_out = adc.read_u16() * prop
@@ -36,7 +36,7 @@ while connection.isconnected():
     try:
         lights = requests.post(gurl, json=None)
         temperatuur = requests.post(url, json=temp)
-        afstand= requests.post(aurl, json=distance)
+        #afstand= requests.post(aurl, json=1)
         led.off()
     except:
         print('mislukt')
