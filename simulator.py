@@ -21,7 +21,7 @@ spawnenemy=False
 run=True
 
 
-lucass= pygame.image.load('./Images/donut.jpg')
+lucass= pygame.image.load('./Images/LucasBit.png')
 def lucas(image):
     size= pygame.transform.scale(image,(150,200))
     win.blit(size,(x+200,y-250))
@@ -93,9 +93,8 @@ def runengine():
         add_boat(boat)
         add_schuif(schuif)
         add_motor(motor)
-        add_enemy(enemy)
         lucas(lucass)
-
+        add_enemy(enemy)
 
         pygame.display.update()
 
