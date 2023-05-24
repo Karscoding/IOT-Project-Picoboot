@@ -1,7 +1,14 @@
 from flask import Flask, request, jsonify
 from databasevuller import Temperatuur,Afstand,db,app
 import datetime
+import random
 
+def generatediepte(current):
+    verschil=random(range(-1,1,0.1))
+    if (2<(current+verschil)<4):
+        return current+verschil
+    else:
+        generatediepte(current) 
 
 @app.route("/temperature", methods=["POST"])
 def temperature():
@@ -45,9 +52,16 @@ def afstand():
     db.session.add_all([Afstand(id,tijd, data)])
     db.session.commit()
 
+    diepte=generatediepte(3)
     nap = open('./Texts/nap.txt', 'r').read()
-    diepte= 4 +nap
-    schuifhoogte= diepte +0.04
+    slib=0.04
+    schuifhoogte= diepte +slib
+    maxdiepte=4
+
+    if diepte + nap + slib <maxdiepte:
+        'schuif omlaag tot diepte + slib'
+    else:
+        'schuif omhoog tot 0'
      
     if data==0:
         f = open('./Texts/afstand.txt', 'w')
