@@ -6,11 +6,12 @@ import random
 current=3
 
 def generatediepte(current):
-    verschil=random(range(-1,1,0.1))
+    verschil=random.randrange(-10,10)
+    verschil=verschil/10
     if (2<(current+verschil)<4):
         return current+verschil
     else:
-        generatediepte(current) 
+        return generatediepte(current) 
 
 @app.route("/temperature", methods=["POST"])
 def temperature():
@@ -55,21 +56,21 @@ def afstand():
     db.session.commit()
 
     diepte=generatediepte(current)
-    nap = open('./Texts/nap.txt', 'r').read()
+    nap = float(open('./Texts/nap.txt', 'r').read())
+    
     slib=0.04
     schuifhoogte= diepte +slib
     maxdiepte=4
 
-    if data==1:
-        if diepte + nap + slib <maxdiepte:
-            f = open('./Texts/afstand.txt', 'w')
-            f.write(f"Schuif omlaag tot diepte + slib' Schuifhoogte:{schuifhoogte}")
-            f.close()
-            
-        else:
-            f = open('./Texts/afstand.txt', 'w')
-            f.write(f"Schuif omhoog tot 0 Schuifhoogte:{schuifhoogte}")
-            f.close()
+    if diepte + nap + slib < maxdiepte:
+        f = open('./Texts/afstand.txt', 'w')
+        f.write(f"Schuif omlaag\n Schuifhoogte:{schuifhoogte}")
+        f.close()
+        return ""
+    else:
+        f = open('./Texts/afstand.txt', 'w')
+        f.write(f"Schuif omhoog\n Schuifhoogte:{schuifhoogte}")
+        f.close()
         return ""
 
     
