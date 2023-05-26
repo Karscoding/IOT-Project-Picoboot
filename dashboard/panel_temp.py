@@ -36,7 +36,7 @@ class Temp(customtkinter.CTkFrame):
         
 
     def tempRead(self):
-        path = os.path.join(sys.path[0], './Texts/temp.txt')
+        path = os.path.join(sys.path[0], '../Texts/temp.txt')
         with open(path, 'r') as f:
             temp = f.read().strip()
         self.label.configure(text=f"Temperatuur : {temp}")

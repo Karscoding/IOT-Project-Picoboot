@@ -36,7 +36,7 @@ class Afstand(customtkinter.CTkFrame):
     
     
     def distanceRead(self):
-        path = os.path.join(sys.path[0], './Texts/afstand.txt')
+        path = os.path.join(sys.path[0], '../Texts/afstand.txt')
         
         with open(path, 'r') as f:
             distance = f.read().strip()

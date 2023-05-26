@@ -51,7 +51,7 @@ class NAPINPUT(customtkinter.CTkFrame):
 
 
     def send_nap(self):
-        path = os.path.join(sys.path[0], './Texts/nap.txt')
+        path = os.path.join(sys.path[0], '../Texts/nap.txt')
         nap=self.entry.get()
         if float(nap) >= -1 and float(nap) <=1:
             self.Errorlabel.configure(text_color='#FFFFFF', text=f"NAP is : {nap}")
