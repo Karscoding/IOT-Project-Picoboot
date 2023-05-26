@@ -24,35 +24,35 @@ class App(customtkinter.CTk):
         
         
         self.tijd= Tijd(master=self,header_name="Tijd")
-        self.tijd.grid(row=1, column=0, padx=20,pady=20)
+        self.tijd.pack(ipadx=20, ipady=20, anchor=customtkinter.W,  expand=True)
         
 
         self.my_frame = ProgressFrame(master=self, header_name="Warmlopen starten:")
-        self.my_frame.grid(row=0, column=0, padx=20, pady=20, sticky="nsew") 
+        self.my_frame.pack(padx=20, pady=20) 
         
         
         self.radio_button_frame_1 = Besturingsmodus(self, header_name="Besturingsmodus")
-        self.radio_button_frame_1.grid(row=0, column=1, padx=20, pady=20)
+        self.radio_button_frame_1.pack(padx=20, pady=20)
         
         
         self.my_frame2 = StatusFrame(master=self, header_name="Status machine")
-        self.my_frame2.grid(row=1, column=2, padx=20, pady=20)
+        self.my_frame2.pack(padx=20, pady=20)
         
         
         self.temp = Temp(master=self,header_name="temp")
-        self.temp.grid(row=0, column=2, padx=20,pady=20)
+        self.temp.pack(padx=20,pady=20)
         
 
         self.afstand = Afstand(master=self, header_name='afstand')
-        self.afstand.grid(row=0,column=3 , padx=20, pady=20)
+        self.afstand.pack(padx=20, pady=20)
         
         
         self.light_control = LightsControl(master=self, header_name="Lampen Besturing")
-        self.light_control.grid(row=1, column=3, padx=20, pady=20)
+        self.light_control.pack(padx=20, pady=20)
         
 
         self.NAPINPUT = NAPINPUT(master=self, header_name="Nap input")
-        self.NAPINPUT.grid(row=1, column=1, padx=20, pady=20)
+        self.NAPINPUT.pack(padx=20, pady=20)
         
 
 if __name__ == "__main__":

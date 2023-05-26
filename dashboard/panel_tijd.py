@@ -14,7 +14,7 @@ class Tijd(customtkinter.CTkFrame):
                                                          text="Tijd",
                                                          font=('Arial', 18))
         
-        self.label.grid(row=0,column=0,padx=80,pady=10)
+        self.label.pack(padx=20,pady=10)
 
 
         self.label = customtkinter.CTkLabel(self,
@@ -24,7 +24,7 @@ class Tijd(customtkinter.CTkFrame):
                                             anchor="center", 
                                             text="")
         
-        self.label.grid(row=1,column=0,padx=0,pady=80)
+        self.label.pack(padx=0,pady=10)
         
         self.time()
     

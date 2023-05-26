@@ -15,7 +15,7 @@ class StatusFrame(customtkinter.CTkFrame):
                                             text="Status Machine",
                                             font=('Arial', 18))
         
-        self.label.grid(row=0, column=0, padx=10, pady=30)
+        self.label.pack(padx=10, pady=30)
         
         
         self.label = customtkinter.CTkLabel(self, 
@@ -27,7 +27,7 @@ class StatusFrame(customtkinter.CTkFrame):
                                             text="Status Aggregraat", 
                                             font=('Arial', 18))
         
-        self.label.grid(row=1, column=0, padx=10, pady=10)
+        self.label.pack(padx=10, pady=10)
         
         
         self.label = customtkinter.CTkLabel(self, 
@@ -39,7 +39,7 @@ class StatusFrame(customtkinter.CTkFrame):
                                             text="Status Compressor", 
                                             font=('Arial', 18))
         
-        self.label.grid(row=2, column=0, padx=10, pady=10)
+        self.label.pack(padx=10, pady=10)
         
         
         self.label = customtkinter.CTkLabel(self, 
@@ -51,7 +51,7 @@ class StatusFrame(customtkinter.CTkFrame):
                                             text="Status Verlichting", 
                                             font=('Arial', 18))
         
-        self.label.grid(row=3, column=0, padx=10, pady=10)
+        self.label.pack(padx=10, pady=10)
         
         
         self.label = customtkinter.CTkLabel(self, 
@@ -63,4 +63,4 @@ class StatusFrame(customtkinter.CTkFrame):
                                             text="Status Schuif", 
                                             font=('Arial', 18))
         
-        self.label.grid(row=4, column=0, padx=10, pady=10)
+        self.label.pack(padx=10, pady=10)

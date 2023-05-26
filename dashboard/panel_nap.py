@@ -14,7 +14,7 @@ class NAPINPUT(customtkinter.CTkFrame):
                                             text="Nap input", 
                                             font=('Arial', 18))
         
-        self.label.grid(row=0, column=0, padx=10, pady=10)
+        self.label.pack(padx=10, pady=10)
 
 
         self.entry = customtkinter.CTkEntry(self, 
@@ -22,7 +22,7 @@ class NAPINPUT(customtkinter.CTkFrame):
                                             height=25, 
                                             corner_radius=10)
                 
-        self.entry.grid(row=1, column=0, padx=10, pady=40)
+        self.entry.pack(padx=10, pady=40)
         
 
         self.napvalue=self.entry.get()
@@ -35,7 +35,7 @@ class NAPINPUT(customtkinter.CTkFrame):
                                                  text= "nap invoeren!", 
                                                  font=('Arial', 18), )
         
-        self.Errorlabel.grid(row=2, column=0, padx=10, pady=10)
+        self.Errorlabel.pack(padx=10, pady=10)
         
 
         self.napbutton = customtkinter.CTkButton(self, 
@@ -47,7 +47,7 @@ class NAPINPUT(customtkinter.CTkFrame):
                                                  corner_radius=8, 
                                                  font=('Arial', 18) )
         
-        self.napbutton.grid(row=3, column=0, padx=10, pady=10)
+        self.napbutton.pack(padx=10, pady=10)
 
 
     def send_nap(self):

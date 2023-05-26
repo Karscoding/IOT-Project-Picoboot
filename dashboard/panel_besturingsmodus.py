@@ -15,7 +15,7 @@ class Besturingsmodus(customtkinter.CTkFrame):
                                             text="Besturingsmodus",
                                             font=('Arial', 18))
 
-        self.label.grid(row=0, column=0, padx=10, pady=10)
+        self.label.pack(padx=10, pady=10)
 
         self.radio_button_var = customtkinter.StringVar(value="")
 
@@ -25,7 +25,7 @@ class Besturingsmodus(customtkinter.CTkFrame):
                                                            variable=self.radio_button_var, 
                                                            font=('Arial', 18))
         
-        self.radio_button_1.grid(row=1, column=0, padx=10, pady=50)
+        self.radio_button_1.pack(padx=10, pady=50)
         
         
         self.radio_button_2 = customtkinter.CTkRadioButton(self, 
@@ -34,4 +34,4 @@ class Besturingsmodus(customtkinter.CTkFrame):
                                                            variable=self.radio_button_var, 
                                                            font=('Arial', 18))
         
-        self.radio_button_2.grid(row=2, column=0, padx=10, pady=50)
+        self.radio_button_2.pack(padx=10, pady=50)

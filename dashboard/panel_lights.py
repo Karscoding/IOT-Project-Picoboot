@@ -15,7 +15,7 @@ class LightsControl(customtkinter.CTkFrame):
                                             text="Passeerlicht", 
                                             font=('Arial', 18))
 
-        self.label.grid(row=0, column=0, padx=20, pady=20)
+        self.label.pack(padx=20, pady=20)
         
 
         self.radio_button_var = customtkinter.StringVar(value="")
@@ -27,7 +27,7 @@ class LightsControl(customtkinter.CTkFrame):
                                                            variable=self.radio_button_var, 
                                                            command=self.call_to_write)
         
-        self.radio_button_1.grid(row=1, column=0, padx=10, pady=20)
+        self.radio_button_1.pack(padx=10, pady=20)
         
         
         self.radio_button_2 = customtkinter.CTkRadioButton(self, 
@@ -37,7 +37,7 @@ class LightsControl(customtkinter.CTkFrame):
                                                            variable=self.radio_button_var,
                                                            command=self.call_to_write)
         
-        self.radio_button_2.grid(row=2, column=0, padx=10, pady=20)
+        self.radio_button_2.pack(padx=10, pady=20)
         
         
         self.radio_button_2 = customtkinter.CTkRadioButton(self, 
@@ -47,7 +47,7 @@ class LightsControl(customtkinter.CTkFrame):
                                                            variable=self.radio_button_var,
                                                            command=self.call_to_write)
         
-        self.radio_button_2.grid(row=3, column=0, padx=10, pady=20)
+        self.radio_button_2.pack(padx=10, pady=20)
         
         
         self.radio_button_3 = customtkinter.CTkRadioButton(self, 
@@ -57,7 +57,7 @@ class LightsControl(customtkinter.CTkFrame):
                                                            variable=self.radio_button_var,
                                                            command=self.call_to_write)
         
-        self.radio_button_3.grid(row=1, column=1, padx=10, pady=20)
+        self.radio_button_3.pack(padx=10, pady=20)
         
         
         self.radio_button_3 = customtkinter.CTkRadioButton(self, 
@@ -67,7 +67,7 @@ class LightsControl(customtkinter.CTkFrame):
                                                            variable=self.radio_button_var,
                                                            command=self.call_to_write)
         
-        self.radio_button_3.grid(row=3, column=1, padx=10, pady=20)
+        self.radio_button_3.pack(padx=10, pady=20)
         
 
     def call_to_write(self):

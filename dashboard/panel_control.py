@@ -14,4 +14,4 @@ class ControlPanel(customtkinter.CTkFrame):
                                             text="Besturingspaneel", 
                                             font=('Arial', 18))
         
-        self.label.grid(row=2, column=0, padx=20, pady=10)
+        self.label.pack(padx=20, pady=10)

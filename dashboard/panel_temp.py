@@ -13,7 +13,7 @@ class Temp(customtkinter.CTkFrame):
                                             text="Temperatuur Motorkamer", 
                                             font=('Arial', 18))
         
-        self.label.grid(row=0,column=0,padx=20,pady=10)
+        self.label.pack(padx=20,pady=10)
 
 
         self.label = customtkinter.CTkLabel(self, 
@@ -25,7 +25,7 @@ class Temp(customtkinter.CTkFrame):
                                             text="Temperatuur: nog niet gemeten",
                                             font=('Arial', 18))
         
-        self.label.grid(row=1,column=0,padx=0,pady=80)
+        self.label.pack(padx=0,pady=80)
         
         
         self.button = customtkinter.CTkButton(self, 
@@ -33,7 +33,7 @@ class Temp(customtkinter.CTkFrame):
                                               command=self.tempRead, 
                                               font=('Arial', 18))
         
-        self.button.grid(row=2,column=0,padx=0,pady=20)
+        self.button.pack(padx=0,pady=20)
         
 
     def tempRead(self):

@@ -13,7 +13,7 @@ class Afstand(customtkinter.CTkFrame):
                                             text="Afstand tot bodem",
                                             font=('Arial', 18))
         
-        self.label.grid(row=0,column=0,padx=80,pady=10)
+        self.label.pack(padx=80,pady=10)
         
 
         self.label = customtkinter.CTkLabel(self, 
@@ -24,7 +24,7 @@ class Afstand(customtkinter.CTkFrame):
                                             text="Afstand: nog niet gemeten",
                                             font=('Arial', 18))
         
-        self.label.grid(row=1,column=0,padx=0,pady=80)
+        self.label.pack(padx=0,pady=80)
         
 
         self.button = customtkinter.CTkButton(self, 
@@ -32,7 +32,7 @@ class Afstand(customtkinter.CTkFrame):
                                               command=self.distanceRead,
                                               font=('Arial', 18))
         
-        self.button.grid(row=2,column=0,padx=0,pady=20)
+        self.button.pack(padx=0,pady=20)
     
     
     def distanceRead(self):
