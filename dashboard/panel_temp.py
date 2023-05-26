@@ -19,6 +19,7 @@ class Temp(customtkinter.CTkFrame):
         self.label = customtkinter.CTkLabel(self, 
                                             width=120, 
                                             height=25, 
+                                            text_color='#FFFFFF',
                                             corner_radius=8,
                                             anchor="center", 
                                             text="Temperatuur: nog niet gemeten",
@@ -38,7 +39,12 @@ class Temp(customtkinter.CTkFrame):
     def tempRead(self):
         path = os.path.join(sys.path[0], '../Texts/temp.txt')
         with open(path, 'r') as f:
-            temp = f.read().strip()
-        self.label.configure(text=f"Temperatuur : {temp}")
+            temp = float(f.read().strip())
+        if temp > 50:
+            self.label.configure(text_color='#FF0000', text=f"Temperatuur : {temp}")     
+        elif temp <= 20:
+            self.label.configure(text_color='#333FFF', text=f"Temperatuur : {temp}")
+        else:
+            self.label.configure(text_color='#FFFFFF', text=f"Temperatuur : {temp}")
         # schedule the next update after 5 seconds
-        self.after(5000, self.tempRead)
+        self.after(3000, self.tempRead)
