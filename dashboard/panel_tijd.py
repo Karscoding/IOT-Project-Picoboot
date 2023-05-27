@@ -5,14 +5,14 @@ class Tijd(customtkinter.CTkFrame):
         super().__init__(master, *args, **kwargs)
         self.header_name= header_name
         
-        self.font = customtkinter.CTkFont(family=fontname, size=fontsizebold, weight="bold")
+        self.font = customtkinter.CTkFont(**fontbold)
         
         self.tijdlabel = customtkinter.CTkLabel(self,
                                             anchor="center", 
                                             text="",
                                             font=self.font)
         
-        self.tijdlabel.pack(ipadx=615, ipady=25)
+        self.tijdlabel.pack(ipadx=600, ipady=25)
         
         self.logo=customtkinter.CTkImage(Image.open("images/logo.png"), size=(80,80))
         self.logowindow=customtkinter.CTkLabel(master=self,image=self.logo, text="")

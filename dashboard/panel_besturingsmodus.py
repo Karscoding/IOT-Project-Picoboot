@@ -6,8 +6,8 @@ class Besturingsmodus(customtkinter.CTkFrame):
         
         self.header_name = header_name
         
-        self.fontbold = customtkinter.CTkFont(family=fontname, size=fontsizebold, weight="bold")
-        self.fontmedium = customtkinter.CTkFont(family=fontname, size=fontsizemed)
+        self.fontbold = customtkinter.CTkFont(**fontbold)
+        self.fontmedium = customtkinter.CTkFont(**fontmedium)
 
         self.label = customtkinter.CTkLabel(self, 
                                             width=120, 

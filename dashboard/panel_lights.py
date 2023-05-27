@@ -10,8 +10,6 @@ class LightsMaster(customtkinter.CTkFrame):
 
         
         self.label = customtkinter.CTkLabel(self, 
-                                            width=120, 
-                                            height=25, 
                                             fg_color=("light blue", color), 
                                             corner_radius=8,
                                             anchor="center", 
@@ -30,42 +28,33 @@ class PLights(customtkinter.CTkFrame):
 
 
         self.radio_button_var = customtkinter.StringVar(value="")
+        
+        self.radiobutton = {"hover_color":color,
+                            "border_width_checked":13,
+                            "font":self.font,
+                            "variable":self.radio_button_var,
+                            "command":self.call_to_write}
 
         self.radio_button_1 = customtkinter.CTkRadioButton(self, 
                                                            text="Bakboord",
-                                                           hover_color=color,
-                                                           border_width_checked=13,
-                                                           font=self.font,
-                                                           value="L",
-                                                           width=20, 
-                                                           variable=self.radio_button_var, 
-                                                           command=self.call_to_write)
+                                                           **self.radiobutton,
+                                                           value="L")
         
         self.radio_button_1.pack(padx=10, pady=20)
         
         
         self.radio_button_2 = customtkinter.CTkRadioButton(self, 
                                                            text="Stuurboord",
-                                                           hover_color=color,
-                                                           border_width_checked=13,
-                                                           font=self.font,
-                                                           value="R",
-                                                           width=20, 
-                                                           variable=self.radio_button_var,
-                                                           command=self.call_to_write)
+                                                           **self.radiobutton,
+                                                           value="R")
         
         self.radio_button_2.pack(padx=10, pady=20)
         
         
         self.radio_button_2 = customtkinter.CTkRadioButton(self, 
                                                            text="Passeer UIT", 
-                                                           hover_color=color,
-                                                           border_width_checked=13,
-                                                           font=self.font,
-                                                           value="P",
-                                                           width=20, 
-                                                           variable=self.radio_button_var,
-                                                           command=self.call_to_write)
+                                                           **self.radiobutton,
+                                                           value="P")
         
         self.radio_button_2.pack(padx=10, pady=20)
         
@@ -88,28 +77,24 @@ class MainLights(customtkinter.CTkFrame):
 
         self.radio_button_var = customtkinter.StringVar(value="")
         
+        self.radiobutton = {"hover_color":color,
+                            "border_width_checked":13,
+                            "font":self.font,
+                            "variable":self.radio_button_var,
+                            "command":self.call_to_write}
+        
         self.radio_button_3 = customtkinter.CTkRadioButton(self, 
                                                            text="Verlichting AAN",
-                                                           hover_color=color,
-                                                           border_width_checked=13,
-                                                           font=self.font, 
-                                                           value="X",
-                                                           width=20, 
-                                                           variable=self.radio_button_var,
-                                                           command=self.call_to_write)
+                                                           **self.radiobutton,
+                                                           value="X")
         
         self.radio_button_3.pack(padx=10, pady=20)
         
         
         self.radio_button_3 = customtkinter.CTkRadioButton(self, 
                                                            text="Verlichting UIT",
-                                                           hover_color=color,
-                                                           border_width_checked=13,
-                                                           font=self.font, 
-                                                           value="U",
-                                                           width=20, 
-                                                           variable=self.radio_button_var,
-                                                           command=self.call_to_write)
+                                                           **self.radiobutton,
+                                                           value="U")
         
         self.radio_button_3.pack(padx=10, pady=20)
         

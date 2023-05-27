@@ -6,8 +6,8 @@ class StatusFrame(customtkinter.CTkFrame):
         # add widgets onto the frame...
         self.header_name = header_name
         
-        self.fontbold = customtkinter.CTkFont(family=fontname, size=30, weight="bold")
-        self.fontmedium = customtkinter.CTkFont(family=fontname, size=26)
+        self.fontbold = customtkinter.CTkFont(**fontbold)
+        self.fontmedium = customtkinter.CTkFont(**fontmedium)
         
         self.label = customtkinter.CTkLabel(self, 
                                             width=120, 

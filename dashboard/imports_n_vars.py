@@ -6,14 +6,20 @@ import sys
 import datetime
 from function_filewrite import WritetoFile
 
+#Color Variable
+color="#00A0AC"
+
+#Font Dictionaries
 fontbold={"family":"Roboto",
-          "size":26,
+          "size":30,
           "weight":"bold"}
 
 fontmedium={"family":"Roboto",
-          "size":18}
+          "size":24}
 
-color="#00A0AC"
+fontsmall={"family":"Roboto",
+           "size":20}
 
+#Server Config Variables
 SENDPOINT='/input'
 PORT= '5000'
