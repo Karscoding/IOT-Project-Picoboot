@@ -1,4 +1,4 @@
-from imports import *
+from imports_n_vars import *
 
 class LightsMaster(customtkinter.CTkFrame):    
     def __init__(self, *args, master, header_name="Lampen Besturing", **kwargs):
@@ -6,7 +6,7 @@ class LightsMaster(customtkinter.CTkFrame):
         # add widgets onto the frame...
         self.header_name = header_name
         
-        self.font = customtkinter.CTkFont(family=fontname, size=fontsizebold, weight="bold")
+        self.font = customtkinter.CTkFont(**fontbold)
 
         
         self.label = customtkinter.CTkLabel(self, 
@@ -26,7 +26,7 @@ class PLights(customtkinter.CTkFrame):
         # add widgets onto the frame...
         self.header_name = header_name
         
-        self.font = customtkinter.CTkFont(family=fontname, size=fontsizemed)
+        self.font = customtkinter.CTkFont(**fontbold)
 
 
         self.radio_button_var = customtkinter.StringVar(value="")
@@ -83,7 +83,7 @@ class MainLights(customtkinter.CTkFrame):
         # add widgets onto the frame...
         self.header_name = header_name
         
-        self.font = customtkinter.CTkFont(family=fontname, size=fontsizemed)
+        self.font = customtkinter.CTkFont(**fontbold)
 
 
         self.radio_button_var = customtkinter.StringVar(value="")

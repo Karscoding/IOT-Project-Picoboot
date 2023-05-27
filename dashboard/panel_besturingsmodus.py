@@ -1,4 +1,4 @@
-from imports import *
+from imports_n_vars import *
 
 class Besturingsmodus(customtkinter.CTkFrame):
     def __init__(self, *args, header_name="Besturingsmodus", **kwargs):

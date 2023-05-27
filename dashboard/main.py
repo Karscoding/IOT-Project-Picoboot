@@ -1,4 +1,4 @@
-from imports import *
+from imports_n_vars import *
 from panel_tijd import Tijd
 from panel_progress import ProgressFrame
 from panel_besturingsmodus import Besturingsmodus

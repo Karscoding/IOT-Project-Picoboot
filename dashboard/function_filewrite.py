@@ -1,4 +1,4 @@
-from imports import os, sys
+from imports_n_vars import os, sys
 
 def WritetoFile(value):
     """

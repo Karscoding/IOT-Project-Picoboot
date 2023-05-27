@@ -1,4 +1,4 @@
-from imports import *
+from imports_n_vars import *
 
 class Afstand(customtkinter.CTkFrame):
     def __init__(self, *args, master ,header_name="Afstand", **kwargs):

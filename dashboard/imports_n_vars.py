@@ -13,10 +13,6 @@ fontbold={"family":"Roboto",
 fontmedium={"family":"Roboto",
           "size":18}
 
-fontname="Roboto"
-fontsizebold=26
-fontsizemed=18
-
 color="#00A0AC"
 
 SENDPOINT='/input'
