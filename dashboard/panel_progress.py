@@ -39,7 +39,7 @@ class ProgressFrame(customtkinter.CTkFrame):
                                                border_width=0,
                                                corner_radius=8,
                                                width=120,
-                                               command=start_progress_bar, 
+                                               command=self.start_progress_bar, 
                                                font=('Arial', 18))
         
         self.button_1.pack(padx=100, pady=20)

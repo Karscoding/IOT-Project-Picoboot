@@ -10,6 +10,10 @@ from function_filewrite import WritetoFile
 color="#00A0AC"
 
 #Font Dictionaries
+fonthuge={"family":"Roboto",
+          "size":48,
+          "weight":"bold"}
+
 fontbold={"family":"Roboto",
           "size":30,
           "weight":"bold"}
@@ -18,7 +22,7 @@ fontmedium={"family":"Roboto",
           "size":24}
 
 fontsmall={"family":"Roboto",
-           "size":20}
+           "size":16}
 
 #Server Config Variables
 SENDPOINT='/input'
