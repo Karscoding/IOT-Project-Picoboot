@@ -9,61 +9,42 @@ class StatusFrame(customtkinter.CTkFrame):
         self.fontbold = customtkinter.CTkFont(**fontbold)
         self.fontmedium = customtkinter.CTkFont(**fontmedium)
         
-        self.label = customtkinter.CTkLabel(self, 
-                                            width=120, 
-                                            height=25, 
+        self.statuslabel = {"corner_radius":8,
+                            "font":self.fontbold,
+                            "fg_color":("green", "#3e8747")}
+        
+        self.label = customtkinter.CTkLabel(self,
                                             fg_color=("orange", color), 
                                             corner_radius=8,
-                                            anchor="center", 
                                             text="Status Machine",
                                             font=self.fontbold)
         
-        self.label.pack(padx=75, pady=20)
+        self.label.pack(padx=167, pady=30)
         
         
-        self.label = customtkinter.CTkLabel(self, 
-                                            width=120, 
-                                            height=25, 
-                                            fg_color=("red", "#3F8748"), 
-                                            corner_radius=8,
-                                            anchor="center", 
-                                            text="Aggregraat", 
-                                            font=self.fontmedium)
+        self.label = customtkinter.CTkLabel(self,
+                                            **self.statuslabel,
+                                            text="Aggregraat")
         
-        self.label.pack(padx=75, pady=10)
+        self.label.pack(padx=150, pady=20)
         
         
-        self.label = customtkinter.CTkLabel(self, 
-                                            width=120, 
-                                            height=25, 
-                                            fg_color=("green", "#3F8748"), 
-                                            corner_radius=8,
-                                            anchor="center", 
-                                            text="Compressor", 
-                                            font=self.fontmedium)
+        self.label = customtkinter.CTkLabel(self,
+                                            **self.statuslabel, 
+                                            text="Compressor")
         
-        self.label.pack(padx=75, pady=10)
+        self.label.pack(padx=150, pady=20)
         
         
-        self.label = customtkinter.CTkLabel(self, 
-                                            width=120, 
-                                            height=25, 
-                                            fg_color=("green", "#3F8748"), 
-                                            corner_radius=8,
-                                            anchor="center", 
-                                            text="Verlichting", 
-                                            font=self.fontmedium)
+        self.label = customtkinter.CTkLabel(self,
+                                            **self.statuslabel,
+                                            text="Verlichting")
         
-        self.label.pack(padx=75, pady=10)
+        self.label.pack(padx=150, pady=20)
         
         
-        self.label = customtkinter.CTkLabel(self, 
-                                            width=120, 
-                                            height=25, 
-                                            fg_color=("green", "#3F8748"), 
-                                            corner_radius=8,
-                                            anchor="center", 
-                                            text="Schuif", 
-                                            font=self.fontmedium)
+        self.label = customtkinter.CTkLabel(self,
+                                            **self.statuslabel, 
+                                            text="Schuif")
         
-        self.label.pack(padx=75, pady=10)
+        self.label.pack(padx=150, pady=20)

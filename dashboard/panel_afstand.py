@@ -27,11 +27,11 @@ class Afstand(customtkinter.CTkFrame):
                                             text="Afstand: nog niet gemeten",
                                             font=self.fontbold)
         
-        self.label.pack(padx=60,pady=10)
+        self.label.pack(padx=210,pady=200)
         
         self.icon=customtkinter.CTkImage(Image.open("images/DepthSymbol.png"), size=(40,40))
         self.iconwindow=customtkinter.CTkLabel(master=self,image=self.icon, text="")
-        self.iconwindow.place(x=10,y=20)
+        self.iconwindow.place(x=100,y=220)
         
 
         # self.button = customtkinter.CTkButton(self, 

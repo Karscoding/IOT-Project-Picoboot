@@ -20,6 +20,7 @@ class App(customtkinter.CTk):
         super().__init__()
 
         self.geometry('1600x900')
+        self.resizable(width=0, height=0)
         self.title("Baggerboot Control Panel")
         
         self.tijd=Tijd(master=self,header_name="Tijd")
@@ -31,11 +32,11 @@ class App(customtkinter.CTk):
         
         
         self.besturings = Besturingsmodus(self, header_name="Besturingsmodus")
-        self.besturings.place(x=500, y=100)
+        self.besturings.place(x=120, y=10)
         
         
         self.Status = StatusFrame(master=self, header_name="Status machine")
-        self.Status.place(x=20, y=500)
+        self.Status.place(x=20, y=470)
         
         
         self.temp=Temp(master=self,header_name="temp")
@@ -44,7 +45,7 @@ class App(customtkinter.CTk):
         
 
         self.afstand = Afstand(master=self, header_name='afstand')
-        self.afstand.place(x=1025, y=100)
+        self.afstand.place(x=625, y=100)
         self.afstand.distanceRead()
         
         
@@ -59,7 +60,7 @@ class App(customtkinter.CTk):
         
 
         self.NAPINPUT = NAPINPUT(master=self, header_name="Nap Invoer")
-        self.NAPINPUT.place(x=1400, y=100)
+        self.NAPINPUT.place(x=1300, y=100)
         
 
 if __name__ == "__main__":
