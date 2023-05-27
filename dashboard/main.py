@@ -57,6 +57,7 @@ class App(customtkinter.CTk):
         
         def Start():
             self.login_button.destroy()
+            self.logowindow.destroy()
             self.tijd.place(x=0,y=0)
             # self.my_frame.place(x=0,y=100)
             self.besturings.place(x=120, y=10)
@@ -80,6 +81,11 @@ class App(customtkinter.CTk):
                                                   font=self.fontbold)
         
         self.login_button.place(x=615,y=375)
+        
+
+        self.logo=customtkinter.CTkImage(Image.open("images/logo.png"), size=(110,110))
+        self.logowindow=customtkinter.CTkLabel(master=self,image=self.logo, text="")
+        self.logowindow.place(x=755,y=200)
             
         
 
