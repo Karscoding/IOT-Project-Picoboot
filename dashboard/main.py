@@ -25,6 +25,7 @@ class App(customtkinter.CTk):
         self.title("Baggerboot Control Panel")
         
         self.fontbold = customtkinter.CTkFont(**fonthuge)
+        self.fontmedium = customtkinter.CTkFont(**fontbold)
         
         self.tijd=Tijd(master=self,header_name="Tijd")
         
@@ -56,31 +57,57 @@ class App(customtkinter.CTk):
         self.log = HistoryLog(master=self, header_name="History Log")
         
         def Start():
-            self.login_button.destroy()
-            self.logowindow.destroy()
-            self.tijd.place(x=0,y=0)
-            # self.my_frame.place(x=0,y=100)
-            self.besturings.place(x=120, y=10)
-            self.Status.place(x=20, y=470)
-            self.temp.place(x=1400, y=0)
-            self.temp.tempRead()
-            self.afstand.place(x=625, y=100)
-            self.afstand.distanceRead()
-            self.light_master.place(x=20, y=100)
-            self.plight.pack(padx=20, pady=20, side=customtkinter.LEFT)
-            self.lights_control.pack(padx=20, pady=20, side=customtkinter.RIGHT)
-            self.NAPINPUT.place(x=1300, y=100)
-            self.log.place(x=1300, y=340)
+            userInput = self.loginfield.get()
+            if userInput == "1234":
+                self.login_button.destroy()
+                self.logowindow.destroy()
+                self.loginfield.destroy()
+                self.Errorlabel.destroy()
+                self.tijd.place(x=0,y=0)
+                # self.my_frame.place(x=0,y=100)
+                self.besturings.place(x=120, y=10)
+                self.Status.place(x=20, y=470)
+                self.temp.place(x=1400, y=0)
+                self.temp.tempRead()
+                self.afstand.place(x=625, y=100)
+                self.afstand.distanceRead()
+                self.light_master.place(x=20, y=100)
+                self.plight.pack(padx=20, pady=20, side=customtkinter.LEFT)
+                self.lights_control.pack(padx=20, pady=20, side=customtkinter.RIGHT)
+                self.NAPINPUT.place(x=1300, y=100)
+                self.log.place(x=1300, y=340)
+            else:
+                self.Errorlabel.configure(text="PIN is Fout")
             
         self.login_button=customtkinter.CTkButton(master=self,
-                                                  text="Start",
+                                                  text="Login",
                                                   command=Start, 
                                                   fg_color=color, 
                                                   width=400, 
                                                   height=100,
                                                   font=self.fontbold)
         
-        self.login_button.place(x=615,y=375)
+        self.login_button.place(x=615,y=600)
+        
+        self.loginfield = customtkinter.CTkEntry(master=self, 
+                                                 placeholder_text='PIN', 
+                                                 show='*',
+                                                 height=50,
+                                                 width=225,
+                                                 font=self.fontmedium)
+        
+        self.loginfield.place(x=700,y=450)
+        
+        self.Errorlabel = customtkinter.CTkLabel(self, 
+                                                 width=120,
+                                                 text_color='#FF0000' ,
+                                                 height=25, 
+                                                 corner_radius=8, 
+                                                 anchor="center", 
+                                                 text= "", 
+                                                 font=self.fontmedium)
+        
+        self.Errorlabel.place(x=730, y=540)
         
 
         self.logo=customtkinter.CTkImage(Image.open("images/logo.png"), size=(110,110))
