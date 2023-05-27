@@ -6,61 +6,64 @@ class StatusFrame(customtkinter.CTkFrame):
         # add widgets onto the frame...
         self.header_name = header_name
         
+        self.fontbold = customtkinter.CTkFont(family=fontname, size=30, weight="bold")
+        self.fontmedium = customtkinter.CTkFont(family=fontname, size=26)
+        
         self.label = customtkinter.CTkLabel(self, 
                                             width=120, 
                                             height=25, 
-                                            fg_color=("orange", "orange"), 
+                                            fg_color=("orange", color), 
                                             corner_radius=8,
                                             anchor="center", 
                                             text="Status Machine",
-                                            font=('Arial', 18))
+                                            font=self.fontbold)
         
-        self.label.pack(padx=10, pady=30)
-        
-        
-        self.label = customtkinter.CTkLabel(self, 
-                                            width=120, 
-                                            height=25, 
-                                            fg_color=("red", "red"), 
-                                            corner_radius=8,
-                                            anchor="center", 
-                                            text="Status Aggregraat", 
-                                            font=('Arial', 18))
-        
-        self.label.pack(padx=10, pady=10)
+        self.label.pack(padx=75, pady=20)
         
         
         self.label = customtkinter.CTkLabel(self, 
                                             width=120, 
                                             height=25, 
-                                            fg_color=("green", "green"), 
+                                            fg_color=("red", "#3F8748"), 
                                             corner_radius=8,
                                             anchor="center", 
-                                            text="Status Compressor", 
-                                            font=('Arial', 18))
+                                            text="Aggregraat", 
+                                            font=self.fontmedium)
         
-        self.label.pack(padx=10, pady=10)
+        self.label.pack(padx=75, pady=10)
         
         
         self.label = customtkinter.CTkLabel(self, 
                                             width=120, 
                                             height=25, 
-                                            fg_color=("green", "green"), 
+                                            fg_color=("green", "#3F8748"), 
                                             corner_radius=8,
                                             anchor="center", 
-                                            text="Status Verlichting", 
-                                            font=('Arial', 18))
+                                            text="Compressor", 
+                                            font=self.fontmedium)
         
-        self.label.pack(padx=10, pady=10)
+        self.label.pack(padx=75, pady=10)
         
         
         self.label = customtkinter.CTkLabel(self, 
                                             width=120, 
                                             height=25, 
-                                            fg_color=("green", "green"), 
+                                            fg_color=("green", "#3F8748"), 
                                             corner_radius=8,
                                             anchor="center", 
-                                            text="Status Schuif", 
-                                            font=('Arial', 18))
+                                            text="Verlichting", 
+                                            font=self.fontmedium)
         
-        self.label.pack(padx=10, pady=10)
+        self.label.pack(padx=75, pady=10)
+        
+        
+        self.label = customtkinter.CTkLabel(self, 
+                                            width=120, 
+                                            height=25, 
+                                            fg_color=("green", "#3F8748"), 
+                                            corner_radius=8,
+                                            anchor="center", 
+                                            text="Schuif", 
+                                            font=self.fontmedium)
+        
+        self.label.pack(padx=75, pady=10)

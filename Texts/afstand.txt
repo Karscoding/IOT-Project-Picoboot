@@ -1,2 +1,2 @@
 Schuif omlaag
- Schuifhoogte:2.54
+Diepte : 2.54

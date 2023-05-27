@@ -5,16 +5,19 @@ class NAPINPUT(customtkinter.CTkFrame):
         super().__init__(master, *args, **kwargs)
         self.header_name = header_name
         
+        self.fontbold = customtkinter.CTkFont(family=fontname, size=fontsizebold, weight="bold")
+        self.fontmedium = customtkinter.CTkFont(family=fontname, size=fontsizemed)
+        
         self.label = customtkinter.CTkLabel(self, 
                                             width=160, 
-                                            height=25, 
-                                            fg_color=("light blue", "blue"), 
+                                            height=25,
+                                            font=self.fontbold, 
+                                            fg_color=("light blue", color), 
                                             corner_radius=8,
                                             anchor="center", 
-                                            text="Nap input", 
-                                            font=('Arial', 18))
+                                            text="Nap Invoer")
         
-        self.label.pack(padx=10, pady=10)
+        self.label.pack(padx=10, pady=20)
 
 
         self.entry = customtkinter.CTkEntry(self, 
