@@ -1,8 +1,8 @@
-from flask import Flask, request, jsonify
+from flask import request, jsonify
 from databasevuller import Temperatuur,Afstand,db,app
 import datetime
 import random
-
+from translate import translate
 current=3
 
 def generatediepte(current):
@@ -24,6 +24,7 @@ def temperature():
 
     now = datetime.datetime.now()
     tijd=(now.strftime("%A, %B %d %Y %H:%M:%S"))
+    tijd=translate(tijd)
     with app.app_context():
             if Temperatuur.query.all()==[]:
                 id=1
@@ -60,15 +61,6 @@ def temperature():
         f.write(f"Schuif omhoog\n Diepte: {schuifhoogte}")
         f.close()
         return ""
-
-
-# '''@app.route("/afstand", methods=["POST"])
-# def afstand():
-#     data=request.json
-
-#     now = datetime.datetime.now()
-#     tijd=(now.strftime("%A, %B %d %Y %H:%M:%S"))
-# '''
 
     
 #Krijgt input van placeholder.py en schrijft het in opdracht.txt

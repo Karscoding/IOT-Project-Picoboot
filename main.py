@@ -3,7 +3,6 @@ from machine import Pin, ADC
 from time import sleep
 import config
 import urequests as requests
-import json
 
 url = f"http://{config.SERVER}:{config.PORT}{config.ENDPOINT}"
 aurl= f'http://{config.SERVER}:{config.PORT}{config.AENDPOINT}'
