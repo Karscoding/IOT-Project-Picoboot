@@ -20,15 +20,17 @@ class HistoryLog(customtkinter.CTkFrame):
         
         
         self.logbox = customtkinter.CTkLabel(self,
-                                             font=self.fontmedium,
-                                             text="26 Mei 19:02 - Uitgelogd\n26 Mei 10:11 - Noodstop")
+                                             font=self.fontmedium,)
         
         self.logbox.pack(padx=20, pady=20)
 
     def change(self,log):
-        self.logbox.configure(text=f"{log}")
-        # incoming=f"{log}"
-        # for x in incoming
-        #     x
-        # output=
-        # self.logbox.configure(text=output)
+        output=''
+        for x in range(1,len(log)):
+            output+=log[-x][0]+','+log[-x][1]+"\n"
+        self.logbox.configure(text=output)
+        # self.logbox.configure(text=f"{log[0]}")
+        # 
+        # for x in range(0, len(incoming)):
+        #     output = (log[x][0] + ',' + log[x][1])
+        # self.logbox.configure(text=f"{output}")
