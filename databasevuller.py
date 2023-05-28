@@ -21,11 +21,13 @@ class Afstand(db.Model):
     id=db.Column(db.Integer,primary_key=True)
     tijd = db.Column(db.Text)
     afstand = db.Column(db.Integer)
+    nap=db.Column(db.Float)
 
-    def __init__(self,id,tijd,afstand):
+    def __init__(self,id,tijd,afstand,nap):
         self.id=id
         self.tijd = tijd
         self.afstand=afstand
+        self.nap = nap
 
 class Temperatuur(db.Model):
     __tablename__ = 'Temperatuur'
@@ -33,11 +35,11 @@ class Temperatuur(db.Model):
     tijd = db.Column(db.Text)
     temperatuur = db.Column(db.Float)
 
+
     def __init__(self,id,tijd,temperatuur):
         self.id=id
         self.tijd = tijd
         self.temperatuur = temperatuur
-
 
 #runnen
 if __name__=='__main__':

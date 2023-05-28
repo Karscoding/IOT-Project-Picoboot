@@ -1,6 +1,5 @@
 import pygame
 from time import sleep
-import threading
 import random
 
 pygame.init()

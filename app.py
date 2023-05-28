@@ -47,7 +47,7 @@ def temperature():
             else:
                 highestid = Afstand.query.all()
                 id=(highestid[-1].id+1)
-    db.session.add_all([Afstand(id,tijd, diepte)])
+    db.session.add_all([Afstand(id,tijd, diepte,nap)])
     db.session.commit()
 
     if diepte + nap + slib < maxdiepte:
