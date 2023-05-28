@@ -26,7 +26,9 @@ class HistoryLog(customtkinter.CTkFrame):
         self.logbox.pack(padx=20, pady=20)
 
     def change(self,log):
-        incoming=f"{log}"
-        for (len(15))
-        output=
-        self.logbox.configure(text=output)
+        self.logbox.configure(text=f"{log}")
+        # incoming=f"{log}"
+        # for x in incoming
+        #     x
+        # output=
+        # self.logbox.configure(text=output)

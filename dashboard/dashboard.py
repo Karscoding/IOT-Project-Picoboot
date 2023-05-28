@@ -10,7 +10,12 @@ from panel_afstand import Afstand
 from panel_lights import LightsMaster, PLights, MainLights
 from panel_nap import NAPINPUT
 from panel_log import HistoryLog
-
+import sys
+import os
+current = os.path.dirname(os.path.realpath(__file__))
+parent = os.path.dirname(current)
+sys.path.append(parent)
+from translate import translate
 
 
 
@@ -62,7 +67,7 @@ class App(customtkinter.CTk):
 
         now = datetime.datetime.now()
         tijd=(now.strftime("%A, %B %d %Y %H:%M:%S"))
-
+        tijd=translate(tijd)
         def Start():
             userInput = self.loginfield.get()
             if userInput == "1234":
@@ -72,11 +77,11 @@ class App(customtkinter.CTk):
                 self.Errorlabel.destroy()
                 try: 
                     lights = requests.post(lurl, json=f"{tijd}")
+                    response=lights.json()
+                    print(response)
+                    self.log.change(response)
                 except:
                     ""
-                response=lights.json()
-                print(response)
-                self.log.change(response)
                 self.tijd.place(x=0,y=0)
                 self.besturings.place(x=120, y=10)
                 self.Status.place(x=20, y=470)

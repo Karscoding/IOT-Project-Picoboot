@@ -96,6 +96,7 @@ def loggen():
     with app.app_context():
         for x in actielog.query.all():
             loglijst.append((x.tijd,x.actions))
+            
     return jsonify(loglijst)
     
 #Returned opdracht
