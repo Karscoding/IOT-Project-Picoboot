@@ -24,3 +24,9 @@ class HistoryLog(customtkinter.CTkFrame):
                                              text="26 Mei 19:02 - Uitgelogd\n26 Mei 10:11 - Noodstop")
         
         self.logbox.pack(padx=20, pady=20)
+
+    def change(self,log):
+        incoming=f"{log}"
+        for (len(15))
+        output=
+        self.logbox.configure(text=output)

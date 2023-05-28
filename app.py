@@ -1,7 +1,8 @@
 from flask import Flask, request, jsonify
-from databasevuller import Temperatuur,Afstand,db,app
+from databasevuller import Temperatuur,Afstand,db,app,actielog
 import datetime
 import random
+
 
 current=3
 
@@ -89,6 +90,22 @@ def input():
     else:
         print("Nothing")
         return ""
+@app.route('/log',methods=["POST"])
+def loggen():
+    data=request.json
+    with app.app_context():
+            if actielog.query.all()==[]:
+                id=1
+            else:
+                highestid = actielog.query.all()
+                id=(highestid[-1].id+1)
+    db.session.add_all([actielog(id,data,"ingelogd")])
+    db.session.commit()
+    loglijst=[]
+    with app.app_context():
+        for x in actielog.query.all():
+            loglijst.append((x.tijd,x.actions))
+    return jsonify(loglijst)
     
 #Returned opdracht
 @app.route("/get", methods=["POST"])
