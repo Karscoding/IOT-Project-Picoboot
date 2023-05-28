@@ -1,4 +1,5 @@
-from imports_n_vars import *
+
+from imports import *
 
 class ProgressFrame(customtkinter.CTkFrame):
     def __init__(self, *args, master,header_name="Warmlopen starten:", **kwargs):
@@ -15,12 +16,12 @@ class ProgressFrame(customtkinter.CTkFrame):
                                             text="Timer (5 minuten)", 
                                             font=('Arial', 18))
         
-        self.label.pack(padx=20, pady=10)
+        self.label.grid(row=0, column=0, padx=20, pady=10)
         
 
         self.progressbar = customtkinter.CTkProgressBar(self, height=20)
         
-        self.progressbar.pack(padx=20, pady=80)
+        self.progressbar.grid(row=1, column=0, padx=20, pady=80)
         self.progressbar.set(0)
         self.progressbar._border_width=(1)
         self.progressbar._progress_color=("green")
@@ -39,7 +40,7 @@ class ProgressFrame(customtkinter.CTkFrame):
                                                border_width=0,
                                                corner_radius=8,
                                                width=120,
-                                               command=self.start_progress_bar, 
+                                               command=start_progress_bar, 
                                                font=('Arial', 18))
         
-        self.button_1.pack(padx=100, pady=20)
+        self.button_1.grid(row=2, column=0, padx=100, pady=20)

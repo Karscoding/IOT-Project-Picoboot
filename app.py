@@ -52,23 +52,23 @@ def temperature():
 
     if diepte + nap + slib < maxdiepte:
         f = open('./Texts/afstand.txt', 'w')
-        f.write(f"Schuif omlaag\n Schuifhoogte:{schuifhoogte}")
+        f.write(f"Schuif omlaag\nDiepte: {schuifhoogte}")
         f.close()
         return ""
     else:
         f = open('./Texts/afstand.txt', 'w')
-        f.write(f"Schuif omhoog\n Schuifhoogte:{schuifhoogte}")
+        f.write(f"Schuif omhoog\n Diepte: {schuifhoogte}")
         f.close()
         return ""
 
 
-'''@app.route("/afstand", methods=["POST"])
-def afstand():
-    data=request.json
+# '''@app.route("/afstand", methods=["POST"])
+# def afstand():
+#     data=request.json
 
-    now = datetime.datetime.now()
-    tijd=(now.strftime("%A, %B %d %Y %H:%M:%S"))
-'''
+#     now = datetime.datetime.now()
+#     tijd=(now.strftime("%A, %B %d %Y %H:%M:%S"))
+# '''
 
     
 #Krijgt input van placeholder.py en schrijft het in opdracht.txt

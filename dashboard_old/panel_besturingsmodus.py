@@ -1,13 +1,21 @@
-from imports_n_vars import *
+from imports import *
 
 class Besturingsmodus(customtkinter.CTkFrame):
     def __init__(self, *args, header_name="Besturingsmodus", **kwargs):
         super().__init__(*args, **kwargs)
         
         self.header_name = header_name
-        
-        self.fontbold = customtkinter.CTkFont(**fontbold)
-        self.fontmedium = customtkinter.CTkFont(**fontmedium)
+
+        self.label = customtkinter.CTkLabel(self, 
+                                            width=120, 
+                                            height=25, 
+                                            fg_color=("light blue", "blue"), 
+                                            corner_radius=8,
+                                            anchor="center", 
+                                            text="Besturingsmodus",
+                                            font=('Arial', 18))
+
+        self.label.grid(row=0, column=0, padx=10, pady=10)
 
         self.radio_button_var = customtkinter.StringVar(value="")
 
@@ -15,15 +23,15 @@ class Besturingsmodus(customtkinter.CTkFrame):
                                                            text="Handmatig", 
                                                            value="Handmatig", 
                                                            variable=self.radio_button_var, 
-                                                           font=self.fontmedium)
+                                                           font=('Arial', 18))
         
-        self.radio_button_1.pack(padx=10, pady=20, side=customtkinter.LEFT)
+        self.radio_button_1.grid(row=1, column=0, padx=10, pady=50)
         
         
         self.radio_button_2 = customtkinter.CTkRadioButton(self, 
                                                            text="Automatisch", 
                                                            value="Automatisch", 
                                                            variable=self.radio_button_var, 
-                                                           font=self.fontmedium)
+                                                           font=('Arial', 18))
         
-        self.radio_button_2.pack(padx=10, pady=20, side=customtkinter.RIGHT)
+        self.radio_button_2.grid(row=2, column=0, padx=10, pady=50)

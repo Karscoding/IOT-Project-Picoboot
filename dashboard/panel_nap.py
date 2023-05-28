@@ -1,30 +1,49 @@
-from imports import *
+from imports_n_vars import *
 
 class NAPINPUT(customtkinter.CTkFrame):
     def __init__(self, *args, master, header_name="Nap input", **kwargs):
         super().__init__(master, *args, **kwargs)
         self.header_name = header_name
         
-        self.label = customtkinter.CTkLabel(self, 
-                                            width=160, 
-                                            height=25, 
-                                            fg_color=("light blue", "blue"), 
-                                            corner_radius=8,
-                                            anchor="center", 
-                                            text="Nap input", 
-                                            font=('Arial', 18))
+        self.fontbold = customtkinter.CTkFont(**fontbold)
+        self.fontmedium = customtkinter.CTkFont(**fontmedium)
         
-        self.label.grid(row=0, column=0, padx=10, pady=10)
+        # self.label = customtkinter.CTkLabel(self, 
+        #                                     width=160, 
+        #                                     height=25,
+        #                                     font=self.fontbold, 
+        #                                     fg_color=("light blue", color), 
+        #                                     corner_radius=8,
+        #                                     anchor="center", 
+        #                                     text="Nap Invoer")
+        
+        # self.label.pack(padx=40, pady=20)
 
 
         self.entry = customtkinter.CTkEntry(self, 
-                                            width=120, 
-                                            height=25, 
-                                            corner_radius=10)
+                                            width=200, 
+                                            height=50, 
+                                            corner_radius=10,
+                                            font=self.fontbold)
                 
-        self.entry.grid(row=1, column=0, padx=10, pady=40)
+        self.entry.pack(padx=0, pady=20)
         
 
+        
+
+        self.napbutton = customtkinter.CTkButton(self, 
+                                                 text="Nap Instellen", 
+                                                 command= self.send_nap, 
+                                                 width=110, 
+                                                 height=40,
+                                                 fg_color=color,
+                                                 hover_color=color,
+                                                 border_width=0, 
+                                                 corner_radius=8, 
+                                                 font=self.fontbold)
+        
+        self.napbutton.pack(padx=40, pady=10)
+        
         self.napvalue=self.entry.get()
         self.Errorlabel = customtkinter.CTkLabel(self, 
                                                  width=120,
@@ -32,22 +51,10 @@ class NAPINPUT(customtkinter.CTkFrame):
                                                  height=25, 
                                                  corner_radius=8, 
                                                  anchor="center", 
-                                                 text= "nap invoeren!", 
-                                                 font=('Arial', 18), )
+                                                 text= "", 
+                                                 font=self.fontmedium)
         
-        self.Errorlabel.grid(row=2, column=0, padx=10, pady=10)
-        
-
-        self.napbutton = customtkinter.CTkButton(self, 
-                                                 text="Nap versturen", 
-                                                 command= self.send_nap, 
-                                                 width=120, 
-                                                 height=20, 
-                                                 border_width=0, 
-                                                 corner_radius=8, 
-                                                 font=('Arial', 18) )
-        
-        self.napbutton.grid(row=3, column=0, padx=10, pady=10)
+        self.Errorlabel.pack(padx=0, pady=20)
 
 
     def send_nap(self):
