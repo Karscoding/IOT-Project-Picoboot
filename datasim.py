@@ -2,7 +2,7 @@ import pygame
 from time import sleep
 import datetime
 from databasevuller import app,Temperatuur,Afstand
-
+from translate import translate
 bootx=250
 
 '''Images'''
@@ -46,54 +46,7 @@ pygame.font.init()
 my_font = pygame.font.SysFont('Arial', 40)
 
 
-def convert_days_to_dutch(string):
-    days = {
-        'Monday': 'Maandag',
-        'Tuesday': 'Dinsdag',
-        'Wednesday': 'Woensdag',
-        'Thursday': 'Donderdag',
-        'Friday': 'Vrijdag',
-        'Saturday': 'Zaterdag',
-        'Sunday': 'Zondag'
-    }
 
-    for day, dutch_day in days.items():
-        if day in string:
-            string = string.replace(day, dutch_day)
-
-    return string
-
-def convert_months_to_dutch(string):
-    months = {
-        'January': 'Januari',
-        'February': 'Februari',
-        'March': 'Maart',
-        'April': 'April',
-        'May': 'Mei',
-        'June': 'Juni',
-        'July': 'Juli',
-        'August': 'Augustus',
-        'September': 'September',
-        'October': 'Oktober',
-        'November': 'November',
-        'December': 'December'
-    }
-
-    for month, dutch_month in months.items():
-        if month in string:
-            string = string.replace(month, dutch_month)
-
-    return string
-
-def switchdate(string):
-    splitalles=string.split(',')
-    dag=splitalles[0]
-    helft=splitalles[1].split(' ')
-    maand=helft[1]
-    datum=helft[2]
-    jaar=helft[3]
-    tijd=helft[4]
-    return str(f"{dag} {datum} {maand} {jaar} {tijd}")
 
 
 templist=[]
@@ -106,7 +59,7 @@ def add_schuif(schuif,i):
 
 with app.app_context():
     for x in Temperatuur.query.all():
-        datum=switchdate(convert_months_to_dutch(convert_days_to_dutch(x.tijd)))
+        datum=translate(x.tijd)
         templist.append((datum,x.temperatuur))
     for x in Afstand.query.all():
         distlist.append((x.afstand,x.nap))

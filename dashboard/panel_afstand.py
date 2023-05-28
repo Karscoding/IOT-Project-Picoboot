@@ -8,15 +8,16 @@ class Afstand(customtkinter.CTkFrame):
         self.fontbold = customtkinter.CTkFont(**fontbold)
         self.fontmedium = customtkinter.CTkFont(**fontmedium)
 
-        # self.label = customtkinter.CTkLabel(self, 
-        #                                     width=120, 
-        #                                     height=25, 
-        #                                     fg_color=("light blue", "blue"), 
-        #                                     corner_radius=8,anchor="center", 
-        #                                     text="Afstand tot bodem",
-        #                                     font=('Arial', 18))
+        self.label = customtkinter.CTkLabel(self, 
+                                            width=200, 
+                                            height=45, 
+                                            fg_color=("light blue", color),
+                                            anchor="center", 
+                                            text="Diepte",
+                                            corner_radius=8,
+                                            font=self.fontbold)
         
-        # self.label.pack(padx=80,pady=10)
+        self.label.pack(padx=220,pady=10)
         
 
         self.label = customtkinter.CTkLabel(self, 
@@ -27,7 +28,7 @@ class Afstand(customtkinter.CTkFrame):
                                             text="Afstand: nog niet gemeten",
                                             font=self.fontbold)
         
-        self.label.pack(padx=210,pady=200)
+        self.label.pack(padx=0,pady=200)
         
         self.icon=customtkinter.CTkImage(Image.open("images/DepthSymbol.png"), size=(40,40))
         self.iconwindow=customtkinter.CTkLabel(master=self,image=self.icon, text="")

@@ -88,7 +88,7 @@ class MainLights(customtkinter.CTkFrame):
                                                            **self.radiobutton,
                                                            value="X")
         
-        self.radio_button_3.pack(padx=10, pady=20)
+        self.radio_button_3.pack(padx=10, pady=39)
         
         
         self.radio_button_3 = customtkinter.CTkRadioButton(self, 
@@ -96,7 +96,7 @@ class MainLights(customtkinter.CTkFrame):
                                                            **self.radiobutton,
                                                            value="U")
         
-        self.radio_button_3.pack(padx=10, pady=20)
+        self.radio_button_3.pack(padx=10, pady=39)
         
     def call_to_write(self):
         """Sends value to opdracht.txt"""

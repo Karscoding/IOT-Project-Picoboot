@@ -23,28 +23,36 @@ class StatusFrame(customtkinter.CTkFrame):
         
         
         self.label = customtkinter.CTkLabel(self,
+                                            width=300,
+                                            height=50,
                                             **self.statuslabel,
                                             text="Aggregraat")
         
-        self.label.pack(padx=150, pady=20)
+        self.label.pack(padx=0, pady=15)
         
         
         self.label = customtkinter.CTkLabel(self,
+                                            width=300,
+                                            height=50,
                                             **self.statuslabel, 
                                             text="Compressor")
         
-        self.label.pack(padx=150, pady=20)
+        self.label.pack(padx=0, pady=15)
         
         
         self.label = customtkinter.CTkLabel(self,
+                                            width=300,
+                                            height=50,
                                             **self.statuslabel,
                                             text="Verlichting")
         
-        self.label.pack(padx=150, pady=20)
+        self.label.pack(padx=0, pady=15)
         
         
         self.label = customtkinter.CTkLabel(self,
+                                            width=300,
+                                            height=50,
                                             **self.statuslabel, 
                                             text="Schuif")
         
-        self.label.pack(padx=150, pady=20)
+        self.label.pack(padx=0, pady=15)

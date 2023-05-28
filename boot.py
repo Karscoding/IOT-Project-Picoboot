@@ -2,7 +2,7 @@ import sys
 import config
 import network
 from time import sleep
-from machine import Pin, ADC
+from machine import Pin
 
 connection = network.WLAN(network.STA_IF)
 
