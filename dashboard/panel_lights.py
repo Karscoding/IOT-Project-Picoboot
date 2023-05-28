@@ -36,7 +36,7 @@ class PLights(customtkinter.CTkFrame):
                             "command":self.call_to_write}
 
         self.radio_button_1 = customtkinter.CTkRadioButton(self, 
-                                                           text="Bakboord",
+                                                           text="   Bakboord   ",
                                                            **self.radiobutton,
                                                            value="L")
         
@@ -44,7 +44,7 @@ class PLights(customtkinter.CTkFrame):
         
         
         self.radio_button_2 = customtkinter.CTkRadioButton(self, 
-                                                           text="Stuurboord",
+                                                           text="  Stuurboord ",
                                                            **self.radiobutton,
                                                            value="R")
         
@@ -52,7 +52,7 @@ class PLights(customtkinter.CTkFrame):
         
         
         self.radio_button_2 = customtkinter.CTkRadioButton(self, 
-                                                           text="Passeer UIT", 
+                                                           text=" Passeer UIT ", 
                                                            **self.radiobutton,
                                                            value="P")
         
@@ -92,7 +92,7 @@ class MainLights(customtkinter.CTkFrame):
         
         
         self.radio_button_3 = customtkinter.CTkRadioButton(self, 
-                                                           text="Verlichting UIT",
+                                                           text=" Verlichting UIT",
                                                            **self.radiobutton,
                                                            value="U")
         

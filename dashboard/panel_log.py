@@ -20,7 +20,8 @@ class HistoryLog(customtkinter.CTkFrame):
         
         
         self.logbox = customtkinter.CTkLabel(self,
-                                             font=self.fontmedium,)
+                                             font=self.fontmedium,
+                                             text="Server staat niet aan!")
         
         self.logbox.pack(padx=20, pady=0)
 

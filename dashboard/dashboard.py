@@ -66,7 +66,7 @@ class App(customtkinter.CTk):
         self.log = HistoryLog(master=self, header_name="History Log")
 
         now = datetime.datetime.now()
-        tijd=(now.strftime("%A, %B %d %Y %H:%M:%S"))
+        tijd=(now.strftime("%B %d %Y %H:%M:%S"))
         tijd=translate(tijd)
         def Start():
             userInput = self.loginfield.get()
@@ -78,7 +78,6 @@ class App(customtkinter.CTk):
                 try: 
                     lights = requests.post(lurl, json=f"{tijd}")
                     response=lights.json()
-                    print(response)
                     self.log.change(response)
                 except:
                     ""
