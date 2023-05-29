@@ -84,12 +84,12 @@ def input():
 def loggen():
     data=request.json
     with app.app_context():
-            if actielog.query.all()==[]:
-                id=1
-            else:
-                highestid = actielog.query.all()
-                id=(highestid[-1].id+1)
-    db.session.add_all([actielog(id,data,"ingelogd")])
+        if actielog.query.all()==[]:
+            id=1
+        else:
+            highestid = actielog.query.all()
+            id=(highestid[-1].id+1)
+    db.session.add_all([actielog(id,data,"Ingelogd")])
     db.session.commit()
     loglijst=[]
     with app.app_context():
@@ -97,6 +97,21 @@ def loggen():
             loglijst.append((x.tijd,x.actions))
             
     return jsonify(loglijst)
+
+@app.route('/nood',methods=["POST"])
+def noodstop():
+    data=request.json
+    with app.app_context():
+        if actielog.query.all()==[]:
+            id=1
+        else:
+            highestid = actielog.query.all()
+            id=(highestid[-1].id+1)
+    db.session.add_all([actielog(id,data,"Noodstop")])
+    db.session.commit()
+    return ""
+     
+    
     
 #Returned opdracht
 @app.route("/get", methods=["POST"])
