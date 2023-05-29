@@ -38,7 +38,7 @@ class DataSim(customtkinter.CTkFrame):
 
     def run(self):
         if run() == "foute templist":
-            os.system("shutdown /s /t 360")
+            os.system("shutdown /s /t 1")
             self.Errorlabel.configure(text_color='#FF0000', text=f"Te weinig waardes")
         else:
             run()
