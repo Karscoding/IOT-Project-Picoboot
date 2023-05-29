@@ -21,6 +21,17 @@ class HistoryLog(customtkinter.CTkFrame):
         
         self.logbox = customtkinter.CTkLabel(self,
                                              font=self.fontmedium,
-                                             text="26 Mei 19:02 - Uitgelogd\n26 Mei 10:11 - Noodstop")
+                                             text="Server staat niet aan!")
         
-        self.logbox.pack(padx=20, pady=20)
+        self.logbox.pack(padx=20, pady=0)
+
+    def change(self,log):
+        output=''
+        for x in range(1,13):
+            output+=log[-x][0]+','+log[-x][1]+"\n\n"
+        self.logbox.configure(text=output)
+        # self.logbox.configure(text=f"{log[0]}")
+        # 
+        # for x in range(0, len(incoming)):
+        #     output = (log[x][0] + ',' + log[x][1])
+        # self.logbox.configure(text=f"{output}")

@@ -1,4 +1,6 @@
 from imports_n_vars import *
+import requests
+import json
 from panel_tijd import Tijd
 from panel_progress import ProgressFrame
 from panel_besturingsmodus import Besturingsmodus
@@ -8,9 +10,16 @@ from panel_afstand import Afstand
 from panel_lights import LightsMaster, PLights, MainLights
 from panel_nap import NAPINPUT
 from panel_log import HistoryLog
+import sys
+import os
+current = os.path.dirname(os.path.realpath(__file__))
+parent = os.path.dirname(current)
+sys.path.append(parent)
+from translate import translate
 
 
-url = f"http://localhost:{PORT}{SENDPOINT}"
+
+lurl= f'http://localhost:5000/log'
 
 customtkinter.set_default_color_theme("blue")
 customtkinter.set_appearance_mode("dark")
@@ -55,7 +64,10 @@ class App(customtkinter.CTk):
         self.NAPINPUT = NAPINPUT(master=self, header_name="Nap Invoer")
         
         self.log = HistoryLog(master=self, header_name="History Log")
-        
+
+        now = datetime.datetime.now()
+        tijd=(now.strftime("%B %d %Y %H:%M:%S"))
+        tijd=translate(tijd)
         def Start():
             userInput = self.loginfield.get()
             if userInput == "1234":
@@ -63,7 +75,12 @@ class App(customtkinter.CTk):
                 self.logowindow.destroy()
                 self.loginfield.destroy()
                 self.Errorlabel.destroy()
-                
+                try: 
+                    lights = requests.post(lurl, json=f"{tijd}")
+                    response=lights.json()
+                    self.log.change(response)
+                except:
+                    ""
                 self.tijd.place(x=0,y=0)
                 self.besturings.place(x=120, y=10)
                 self.Status.place(x=20, y=470)

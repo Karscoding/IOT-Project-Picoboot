@@ -41,6 +41,18 @@ class Temperatuur(db.Model):
         self.tijd = tijd
         self.temperatuur = temperatuur
 
+class actielog(db.Model):
+    __tablename__ = 'log'
+    id=db.Column(db.Integer,primary_key=True)
+    tijd = db.Column(db.Text)
+    actions = db.Column(db.Text)
+
+
+    def __init__(self,id,tijd,actions):
+        self.id=id
+        self.tijd = tijd
+        self.actions = actions
+
 #runnen
 if __name__=='__main__':
     with app.app_context():
