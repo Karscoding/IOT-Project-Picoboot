@@ -34,13 +34,13 @@ def translate(string):
 
 
 
-    # splitalles=string.split(',')
-    # dag=splitalles[0]
-    # helft=splitalles[1].split(' ')
-    helft=string.split(' ')
-    maand=helft[0]
-    datum=helft[1]
-    jaar=helft[2]
-    tijd=helft[3]
-    # return str(f"{dag} {datum} {maand} {jaar} {tijd}")
-    return str(f"{datum} {maand} {jaar} {tijd}")
+    splitalles=string.split(',')
+    #dag=splitalles[0]
+    helft=splitalles[1].split(' ')
+    maand=helft[1]
+    datum=helft[2]
+    jaar=helft[3]
+    tijd=str(helft[4].split(':')[0])+ ":" + str(helft[4].split(':')[1])
+    return f"{datum} {maand} {jaar} {tijd}"
+
+print(translate("Sunday, May 28 2023 11:58:07"))
