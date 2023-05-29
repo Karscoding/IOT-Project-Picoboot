@@ -1,9 +1,19 @@
 import pygame
 from time import sleep
-import datetime
 from databasevuller import app,Temperatuur,Afstand
 from translate import translate
 bootx=250
+
+templist=[]
+distlist=[]
+
+with app.app_context():
+    for x in Temperatuur.query.all():
+        datum=translate(x.tijd)
+        templist.append((datum,x.temperatuur))
+    for x in Afstand.query.all():
+        distlist.append((x.afstand,x.nap))
+
 
 '''Images'''
 image= pygame.image.load('./Images/noordpolderzijl.jpg')
@@ -21,8 +31,6 @@ def background(image):
 def add_boat(boat):
     size=pygame.transform.scale(boat,(600,300))
     win.blit(size,(bootx,waterlevel-200))
-
-
 def add_motor(motor):
     size=pygame.transform.scale(motor,(100,100))
     win.blit(size,(bootx+100,waterlevel))
@@ -45,26 +53,10 @@ pygame.display.set_caption("Data Simulator")
 pygame.font.init()
 my_font = pygame.font.SysFont('Arial', 40)
 
-
-
-
-
-templist=[]
-distlist=[]
-
 def add_schuif(schuif,i):
     size=pygame.transform.scale(schuif,(100,200))
     zandhoogte=750-((distlist[i][0]-2)*50)
     win.blit(size,(bootx+550,zandhoogte-190))
-
-with app.app_context():
-    for x in Temperatuur.query.all():
-        datum=translate(x.tijd)
-        templist.append((datum,x.temperatuur))
-    for x in Afstand.query.all():
-        distlist.append((x.afstand,x.nap))
-
-run=True
 
 def genzand(offset):
     if offset==0:
