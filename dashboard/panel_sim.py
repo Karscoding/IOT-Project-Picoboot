@@ -3,6 +3,7 @@ current = os.path.dirname(os.path.realpath(__file__))
 parent = os.path.dirname(current)
 sys.path.append(parent)
 from datasim import run
+
 class DataSim(customtkinter.CTkFrame):
     def __init__(self, *args, master, header_name="Nap input", **kwargs):
         super().__init__(master, *args, **kwargs)
@@ -14,7 +15,7 @@ class DataSim(customtkinter.CTkFrame):
         self.napbutton = customtkinter.CTkButton(self, 
                                                  text="Simulatie starten", 
                                                  command= self.run, 
-                                                 width=110, 
+                                                 width=50, 
                                                  height=40,
                                                  fg_color=color,
                                                  hover_color=color,
@@ -22,10 +23,9 @@ class DataSim(customtkinter.CTkFrame):
                                                  corner_radius=8, 
                                                  font=self.fontbold)
         
-        self.napbutton.pack(padx=40, pady=10)
+        self.napbutton.pack(padx=0, pady=10)
         
         self.Errorlabel = customtkinter.CTkLabel(self, 
-                                                 width=120,
                                                  text_color='#FFFFFF' ,
                                                  height=25, 
                                                  corner_radius=8, 
