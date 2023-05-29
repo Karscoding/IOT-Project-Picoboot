@@ -82,7 +82,7 @@ def run():
         def myround(x, base=5):
             return base * round(x/base)
 
-        for i in range(len(templist)):
+        for i in range(len(templist)-15):
             temp= templist[i]
             afst= distlist[i]
             waterlevel= myround(600 - (afst[1]*38),1)   
@@ -103,8 +103,8 @@ def run():
             
             for event in pygame.event.get():
                 if event.type == pygame.QUIT or event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
-                    exit()
-        exit()
+                    pygame.display.quit()
+        pygame.display.quit()
 
 if __name__=="__main__":
     run()
