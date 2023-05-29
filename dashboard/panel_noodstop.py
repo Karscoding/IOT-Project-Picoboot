@@ -1,5 +1,6 @@
 from imports_n_vars import * 
 
+nurl= f'http://localhost:5000/nood'
 
 class NoodStop(customtkinter.CTkFrame):
     def __init__(self, *args, master ,header_name="Noodstop", **kwargs):
@@ -10,6 +11,9 @@ class NoodStop(customtkinter.CTkFrame):
         self.fontmedium = customtkinter.CTkFont(**fontmedium)
 
         def ramp():
+            tijd = translate()
+            noodstop = requests.post(nurl, json=f"{tijd}")
+            responses=noodstop.json
             return messagebox.showinfo('Noodstop','Noodstop ingedrukt, herstart het systeem!\nAls er verdere assistentie nodig is bel dan "number"')
         
         

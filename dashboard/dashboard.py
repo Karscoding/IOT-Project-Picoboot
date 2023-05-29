@@ -1,6 +1,4 @@
 from imports_n_vars import *
-import requests
-import json
 from panel_tijd import Tijd
 from panel_progress import ProgressFrame
 from panel_besturingsmodus import Besturingsmodus
@@ -12,17 +10,11 @@ from panel_lights import LightsMaster, PLights, MainLights
 from panel_nap import NAPINPUT
 from panel_log import HistoryLog
 from panel_sim import DataSim
-import sys
-import os
-current = os.path.dirname(os.path.realpath(__file__))
-parent = os.path.dirname(current)
-sys.path.append(parent)
-from translate import translate
+
 
 
 
 lurl= f'http://localhost:5000/log'
-nurl= f'http://localhost:5000/nood'
 
 customtkinter.set_default_color_theme("blue")
 customtkinter.set_appearance_mode("dark")

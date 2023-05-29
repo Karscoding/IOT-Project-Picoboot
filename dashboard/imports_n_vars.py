@@ -7,6 +7,12 @@ import sys
 import datetime
 from function_filewrite import WritetoFile
 from threading import Thread
+import requests
+import json
+current = os.path.dirname(os.path.realpath(__file__))
+parent = os.path.dirname(current)
+sys.path.append(parent)
+from translate import translate
 
 #Color Variable
 color="#00A0AC"
