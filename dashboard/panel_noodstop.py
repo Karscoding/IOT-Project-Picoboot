@@ -29,7 +29,6 @@ class NoodStop(customtkinter.CTkFrame):
                                             anchor="center", 
                                             text="Stop",
                                             fg_color=("red"),
-                                            bg_color=("black"),
                                             hover_color=("dark red"),
                                             corner_radius=20,
                                             command=ramp,

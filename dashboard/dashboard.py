@@ -79,12 +79,7 @@ class App(customtkinter.CTk):
                 self.logowindow.destroy()
                 self.loginfield.destroy()
                 self.Errorlabel.destroy()
-                try: 
-                    lights = requests.post(lurl, json=f"{tijd}")
-                    response=lights.json()
-                    self.log.change(response)
-                except:
-                    ""
+                
                 self.tijd.place(x=0,y=0)
                 self.besturings.place(x=120, y=10)
                 self.Status.place(x=20, y=470)
@@ -102,7 +97,16 @@ class App(customtkinter.CTk):
                 self.afstand.distanceRead()
             else:
                 self.Errorlabel.configure(text="PIN is Fout")
+            Thread(target=LogRequest).start()
             
+        def LogRequest():
+            try: 
+                lights = requests.post(lurl, json=f"{tijd}")
+                response=lights.json()
+                self.log.change(response)
+            except:
+                ""    
+        
         self.login_button=customtkinter.CTkButton(master=self,
                                                   text="Login",
                                                   command=Start, 
