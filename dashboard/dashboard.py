@@ -7,6 +7,7 @@ from panel_besturingsmodus import Besturingsmodus
 from panel_status import StatusFrame
 from panel_temp import Temp
 from panel_afstand import Afstand
+from panel_noodstop import NoodStop
 from panel_lights import LightsMaster, PLights, MainLights
 from panel_nap import NAPINPUT
 from panel_log import HistoryLog
@@ -63,6 +64,8 @@ class App(customtkinter.CTk):
         
 
         self.NAPINPUT = NAPINPUT(master=self, header_name="Nap Invoer")
+
+        self.noodstop = NoodStop(master=self, header_name="Noodstop")
         
         self.log = HistoryLog(master=self, header_name="History Log")
 
@@ -87,6 +90,7 @@ class App(customtkinter.CTk):
                 self.Status.place(x=20, y=470)
                 self.temp.place(x=1400, y=0)
                 self.afstand.place(x=625, y=100)
+                self.noodstop.place(x=625, y=650)
                 self.light_master.place(x=20, y=100)
                 self.plight.pack(padx=20, pady=20, side=customtkinter.LEFT)
                 self.lights_control.pack(padx=20, pady=20, side=customtkinter.RIGHT)
