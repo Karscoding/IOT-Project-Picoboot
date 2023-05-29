@@ -29,8 +29,10 @@ class Afstand(customtkinter.CTkFrame):
                                             font=self.fontbold)
         
         self.label.pack(padx=0,pady=200)
-        
-        self.icon=customtkinter.CTkImage(Image.open("images/DepthSymbol.png"), size=(40,40))
+        if os.getcwd().split("\\")[-1]=='Picoboot':
+            self.icon=customtkinter.CTkImage(Image.open("dashboard/images/DepthSymbol.png"), size=(110,110))
+        else:
+            self.icon=customtkinter.CTkImage(Image.open("images/DepthSymbol.png"), size=(40,40))
         self.iconwindow=customtkinter.CTkLabel(master=self,image=self.icon, text="")
         self.iconwindow.place(x=100,y=220)
         

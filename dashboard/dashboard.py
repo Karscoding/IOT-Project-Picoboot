@@ -129,8 +129,11 @@ class App(customtkinter.CTk):
         
         self.Errorlabel.place(x=730, y=540)
         
-
-        self.logo=customtkinter.CTkImage(Image.open("images/logo.png"), size=(110,110))
+        print(os.getcwd().split("\\")[-1])
+        if os.getcwd().split("\\")[-1]=='Picoboot':
+            self.logo=customtkinter.CTkImage(Image.open("dashboard/images/logo.png"), size=(110,110))
+        else:
+            self.logo=customtkinter.CTkImage(Image.open("images/logo.png"), size=(110,110))
         self.logowindow=customtkinter.CTkLabel(master=self,image=self.logo, text="")
         self.logowindow.place(x=755,y=200)
             
@@ -138,5 +141,8 @@ class App(customtkinter.CTk):
 
 if __name__ == "__main__":
     app=App()
-    app.iconbitmap("images/logo.ico")
+    if os.getcwd().split("\\")[-1]=='Picoboot':
+        app.iconbitmap("dashboard/images/logo.ico")
+    else:
+        app.iconbitmap("images/logo.ico")
     app.mainloop()

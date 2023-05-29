@@ -3,12 +3,9 @@ from time import sleep
 from databasevuller import app,Temperatuur,Afstand
 import os
 
-
 def run():
     templist=[]
     distlist=[]
-    path = os.path.dirname(os.path.realpath(__file__))
-
     with app.app_context():
         for x in Temperatuur.query.all():
             datum=x.tijd
@@ -19,7 +16,7 @@ def run():
     if len(templist) < 1:
         return 'foute templist'
     else:
-        if path == "current = os.path.dirname(os.path.realpath(__file__))":
+        if os.getcwd().split("\\")[-1]=='Picoboot':
             '''Images'''
             image= pygame.image.load('./Images/noordpolderzijl.jpg')
             zand=pygame.image.load('./Images/zand.png')
@@ -46,7 +43,7 @@ def run():
             size=pygame.transform.scale(motor,(100,100))
             win.blit(size,(bootx+100,waterlevel))
         def add_zand(zand,x,y):
-            size=pygame.transform.scale(zand,(100,250))
+            size=pygame.transform.scale(zand,(100,1000))
             win.blit(size,(x,y))
         def polder(image):
             size=pygame.transform.scale(image,(1920,1080))

@@ -29,8 +29,10 @@ class Temp(customtkinter.CTkFrame):
                                             font=self.fontbold)
         
         self.label.pack(padx=70,pady=25)
-        
-        self.icon=customtkinter.CTkImage(Image.open("images/EngineTemp.png"), size=(40,40))
+        if os.getcwd().split("\\")[-1]=='Picoboot':
+            self.icon=customtkinter.CTkImage(Image.open("dashboard/images/EngineTemp.png"), size=(110,110))
+        else:
+            self.icon=customtkinter.CTkImage(Image.open("images/EngineTemp.png"), size=(40,40))
         self.iconwindow=customtkinter.CTkLabel(master=self,image=self.icon, text="")
         self.iconwindow.place(x=20,y=20)
         

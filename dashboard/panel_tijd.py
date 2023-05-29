@@ -14,7 +14,11 @@ class Tijd(customtkinter.CTkFrame):
         
         self.tijdlabel.pack(ipadx=600, ipady=25)
         
-        self.logo=customtkinter.CTkImage(Image.open("images/logo.png"), size=(80,80))
+        if os.getcwd().split("\\")[-1]=='Picoboot':
+            self.logo=customtkinter.CTkImage(Image.open("dashboard/images/logo.png"), size=(80,80))
+        else:
+            print(os.getcwd())
+            self.logo=customtkinter.CTkImage(Image.open("images/logo.png"), size=(80,80))
         self.logowindow=customtkinter.CTkLabel(master=self,image=self.logo, text="")
         self.logowindow.place(x=0,y=0)
         
