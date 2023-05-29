@@ -1,17 +1,7 @@
-def translate(string):
-    # days = {
-    #     'Monday': 'Maandag',
-    #     'Tuesday': 'Dinsdag',
-    #     'Wednesday': 'Woensdag',
-    #     'Thursday': 'Donderdag',
-    #     'Friday': 'Vrijdag',
-    #     'Saturday': 'Zaterdag',
-    #     'Sunday': 'Zondag'
-    # }
-
-    # for day, dutch_day in days.items():
-    #     if day in string:
-    #         string = string.replace(day, dutch_day)
+import datetime
+def translate():
+    now = datetime.datetime.now()
+    string=(now.strftime("%A %B %d %Y %H:%M:%S"))
 
     months = {
         'January': 'Januari',
@@ -34,13 +24,9 @@ def translate(string):
 
 
 
-    splitalles=string.split(',')
-    #dag=splitalles[0]
-    helft=splitalles[1].split(' ')
-    maand=helft[1]
-    datum=helft[2]
-    jaar=helft[3]
-    tijd=str(helft[4].split(':')[0])+ ":" + str(helft[4].split(':')[1])
+    splitalles=string.split(' ')
+    maand=splitalles[1]
+    datum=splitalles[2]
+    jaar=splitalles[3]
+    tijd=str(splitalles[4].split(':')[0])+ ":" + str(splitalles[4].split(':')[1])
     return f"{datum} {maand} {jaar} {tijd}"
-
-print(translate("Sunday, May 28 2023 11:58:07"))

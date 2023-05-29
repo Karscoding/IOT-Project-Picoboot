@@ -22,9 +22,8 @@ def temperature():
     f.write(str(printedData))
     f.close()
 
-    now = datetime.datetime.now()
-    tijd=(now.strftime("%A, %B %d %Y %H:%M:%S"))
-    tijd=translate(tijd)
+
+    tijd=translate()
     with app.app_context():
             if Temperatuur.query.all()==[]:
                 id=1

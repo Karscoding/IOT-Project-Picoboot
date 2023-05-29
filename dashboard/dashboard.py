@@ -10,6 +10,7 @@ from panel_afstand import Afstand
 from panel_lights import LightsMaster, PLights, MainLights
 from panel_nap import NAPINPUT
 from panel_log import HistoryLog
+from panel_sim import DataSim
 import sys
 import os
 current = os.path.dirname(os.path.realpath(__file__))
@@ -65,9 +66,9 @@ class App(customtkinter.CTk):
         
         self.log = HistoryLog(master=self, header_name="History Log")
 
-        now = datetime.datetime.now()
-        tijd=(now.strftime("%B %d %Y %H:%M:%S"))
-        tijd=translate(tijd)
+        self.datasim = DataSim(master=self,header_name="Datasim")
+
+        tijd=translate()
         def Start():
             userInput = self.loginfield.get()
             if userInput == "1234":
@@ -91,6 +92,7 @@ class App(customtkinter.CTk):
                 self.lights_control.pack(padx=20, pady=20, side=customtkinter.RIGHT)
                 self.NAPINPUT.place(x=1300, y=100)
                 self.log.place(x=1300, y=340)
+                self.datasim.place(x=1300,y=500)
                 
                 self.temp.tempRead()
                 self.afstand.distanceRead()
