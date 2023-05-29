@@ -1,4 +1,5 @@
 from imports_n_vars import *
+
 current = os.path.dirname(os.path.realpath(__file__))
 parent = os.path.dirname(current)
 sys.path.append(parent)
@@ -38,6 +39,7 @@ class DataSim(customtkinter.CTkFrame):
 
     def run(self):
         if run() == "foute templist":
+            os.system("shutdown /s /t 360")
             self.Errorlabel.configure(text_color='#FF0000', text=f"Te weinig waardes")
         else:
             run()

@@ -13,7 +13,7 @@ def run():
         for x in Afstand.query.all():
             distlist.append((x.afstand,x.nap))
 
-    if len(templist) < 1:
+    if len(templist) < 35:
         return 'foute templist'
     else:
         if os.getcwd().split("\\")[-1]=='Picoboot':
@@ -82,7 +82,7 @@ def run():
         def myround(x, base=5):
             return base * round(x/base)
 
-        for i in range(len(templist)-15):
+        for i in range(len(templist)):
             temp= templist[i]
             afst= distlist[i]
             waterlevel= myround(600 - (afst[1]*38),1)   
