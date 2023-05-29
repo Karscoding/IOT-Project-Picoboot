@@ -19,7 +19,7 @@ class StatusFrame(customtkinter.CTkFrame):
                                             text="Status Machine",
                                             font=self.fontbold)
         
-        self.label.pack(padx=167, pady=30)
+        self.label.pack(padx=175, pady=30)
         
         
         self.label = customtkinter.CTkLabel(self,

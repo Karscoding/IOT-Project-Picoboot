@@ -11,35 +11,37 @@ class NoodStop(customtkinter.CTkFrame):
         self.fontmedium = customtkinter.CTkFont(**fontmedium)
 
         def ramp():
+            Thread(target=NoodLog).start()
+            return messagebox.showinfo('Noodstop','Noodstop ingedrukt, herstart het systeem!\nAls er verdere assistentie nodig is bel dan "number"')
+        
+        def NoodLog():
             tijd = translate()
             noodstop = requests.post(nurl, json=f"{tijd}")
             responses=noodstop.json
-            return messagebox.showinfo('Noodstop','Noodstop ingedrukt, herstart het systeem!\nAls er verdere assistentie nodig is bel dan "number"')
         
-        
-        self.label = customtkinter.CTkLabel(self, 
-                                            width=200, 
-                                            height=45, 
-                                            fg_color=("light blue", color),
-                                            anchor="center", 
-                                            text="Noodstop",
-                                            corner_radius=8,
-                                            font=self.fontbold)
+        # self.label = customtkinter.CTkLabel(self, 
+        #                                     width=200, 
+        #                                     height=45, 
+        #                                     fg_color=("light blue", color),
+        #                                     anchor="center", 
+        #                                     text="Noodstop",
+        #                                     corner_radius=8,
+        #                                     font=self.fontbold)
         
 
         self.noodstopbutton = customtkinter.CTkButton(self, 
-                                            width=200, 
-                                            height=100, 
+                                            width=150, 
+                                            height=150, 
                                             anchor="center", 
-                                            text="Stop",
+                                            text="NOODSTOP",
                                             fg_color=("red"),
                                             hover_color=("dark red"),
-                                            corner_radius=20,
+                                            corner_radius=240,
                                             command=ramp,
                                             font=self.fontbold)
         
-        self.label.pack(padx=220, pady=10)
-        self.noodstopbutton.pack(padx=0,pady=35)
+        # self.label.pack(padx=220, pady=10)
+        self.noodstopbutton.pack(padx=161,pady=43)
 
         
         
