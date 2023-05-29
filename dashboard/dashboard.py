@@ -130,7 +130,6 @@ class App(customtkinter.CTk):
         
         self.Errorlabel.place(x=730, y=540)
         
-        print(os.getcwd().split("\\")[-1])
         if os.getcwd().split("\\")[-1]=='Picoboot':
             self.logo=customtkinter.CTkImage(Image.open("dashboard/images/logo.png"), size=(110,110))
         else:

@@ -51,7 +51,7 @@ def run():
 
         bootx=250
         nap=0
-        waterlevel=537
+        waterlevel=600
         pygame.init()
         info = pygame.display.Info()
         SIZE = info.current_w, info.current_h
@@ -63,7 +63,7 @@ def run():
 
         def add_schuif(schuif,i):
             size=pygame.transform.scale(schuif,(100,200))
-            zandhoogte=750-((distlist[i][0]-2)*50)
+            zandhoogte=750+((distlist[i][0]-2)*50)
             win.blit(size,(bootx+550,zandhoogte-190))
 
         def genzand(offset):
@@ -71,13 +71,13 @@ def run():
                 for i in range(8):
                     add_zand(zand,100*i,750)
                 for i in range(len(distlist)):
-                    add_zand(zand,800+(100*i),750-((distlist[i][0]-2)*50))
+                    add_zand(zand,800+(100*i),750+((distlist[i][0]-2)*50))
             else:
                 for i in range(8):
-                    add_zand(zand,(100*i)-offset*100,700)
+                    add_zand(zand,(100*i)-offset*100,750)
                 for i in range(len(distlist)):
-                    add_zand(zand,(800+(100*i)-offset*100),750-((distlist[i][0]-2)*50))
-                    add_zand(zand,((100*len(distlist))+(100*i)-offset*100),750)
+                    add_zand(zand,(800+(100*i)-offset*100),750+((distlist[i][0]-2)*50))
+                    add_zand(zand,(800+(100*len(distlist))+(100*i))-offset*100,750)
 
         def myround(x, base=5):
             return base * round(x/base)
@@ -85,7 +85,7 @@ def run():
         for i in range(len(templist)):
             temp= templist[i]
             afst= distlist[i]
-            waterlevel= myround(537 - (afst[1]*38),1)   
+            waterlevel= myround(600 - (afst[1]*38),1)   
 
             background(image)
             genzand(i)
@@ -94,7 +94,7 @@ def run():
             add_schuif(schuif,i)
             add_motor(motor)
 
-            temperatuur = my_font.render(f"Tijd: {temp[0]}, Temperatuur: {temp[1]}, Afstand: {afst[0]}, NAP: {afst[1]}" , False, (0, 0, 0))
+            temperatuur = my_font.render(f"Tijd: {temp[0]}, Temperatuur: {temp[1]}, Afstand: {afst[0]}, NAP: {afst[1]} Ronde {i+1} van de {len(templist)}" , False, (0, 0, 0))
             win.blit(temperatuur, (0,0))
             
             pygame.display.update()
@@ -104,6 +104,7 @@ def run():
             for event in pygame.event.get():
                 if event.type == pygame.QUIT or event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
                     exit()
+        exit()
 
 if __name__=="__main__":
     run()
