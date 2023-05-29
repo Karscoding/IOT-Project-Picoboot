@@ -80,16 +80,7 @@ class App(customtkinter.CTk):
                 self.logowindow.destroy()
                 self.loginfield.destroy()
                 self.Errorlabel.destroy()
-<<<<<<< Updated upstream
                 
-=======
-                try: 
-                    inloggen= requests.post(lurl, json=f"{tijd}")
-                    response=inloggen.json()
-                    self.log.change(response)
-                except:
-                    ""
->>>>>>> Stashed changes
                 self.tijd.place(x=0,y=0)
                 self.besturings.place(x=120, y=10)
                 self.Status.place(x=20, y=470)
