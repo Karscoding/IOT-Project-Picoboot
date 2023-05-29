@@ -23,7 +23,7 @@ class DataSim(customtkinter.CTkFrame):
                                                  corner_radius=8, 
                                                  font=self.fontbold)
         
-        self.napbutton.pack(padx=0, pady=10)
+        self.napbutton.pack(padx=0, pady=0)
         
         self.Errorlabel = customtkinter.CTkLabel(self, 
                                                  text_color='#FFFFFF' ,
@@ -33,7 +33,7 @@ class DataSim(customtkinter.CTkFrame):
                                                  text= "", 
                                                  font=self.fontmedium)
         
-        self.Errorlabel.pack(padx=0, pady=20)
+        self.Errorlabel.pack(padx=0, pady=0)
 
 
     def run(self):

@@ -92,7 +92,7 @@ class App(customtkinter.CTk):
                 self.lights_control.pack(padx=20, pady=20, side=customtkinter.RIGHT)
                 self.NAPINPUT.place(x=1300, y=100)
                 self.log.place(x=1300, y=340)
-                self.datasim.place(x=1300,y=500)
+                self.datasim.place(x=1100,y=15)
                 
                 self.temp.tempRead()
                 self.afstand.distanceRead()
