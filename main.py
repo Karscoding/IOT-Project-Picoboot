@@ -25,6 +25,7 @@ restleds=Pin(25,Pin.OUT)
 while connection.isconnected():
     try:
         led.off()
+
         #Read Distance
         #distance = sharp_sensor.value()
         #print("Distance:", distance)
@@ -38,15 +39,9 @@ while connection.isconnected():
 
         lights = requests.post(gurl, json=None)
         temperatuur = requests.post(url, json=temp)
-        #afstand= requests.post(aurl, json=1)
         led.off()
 
-    
-    
-    # flash blue LED indicating temperature was sent
 
-    #antwoord=temperatuur.json()
-    #print(f'het gekregen antwoord is {antwoord}')
 
     #Stuurt een request naar /Input met als string "Requests"
     #Deze returned een opdracht
@@ -67,6 +62,15 @@ while connection.isconnected():
             restleds.on()
         elif opdracht[0] == 'U':
             restleds.off()
+        elif opdracht[0]== 'N':
+            for x in range(3):
+                restleds.on()
+                secled.on()
+                greenled.on()
+                sleep(1)
+                restleds.off()
+                secled.off()
+                greenled.off()
         
     # sleep a little until next temperature reading
         sleep(3)

@@ -112,7 +112,6 @@ def noodstop():
     return ""
      
     
-    
 #Returned opdracht
 @app.route("/get", methods=["POST"])
 def get():

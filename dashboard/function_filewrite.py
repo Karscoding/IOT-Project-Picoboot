@@ -29,6 +29,6 @@ def WritetoFile(value):
             newstring = current.replace(current[1], value, 1)
             f.write(newstring)
             
-        elif value == 'X' or value == 'U':
+        elif value == 'X' or value == 'U' or value == 'N':
             newstring = current.replace(current[0], value, 1)
             f.write(newstring)

@@ -1,5 +1,5 @@
 from imports_n_vars import * 
-
+from function_filewrite import WritetoFile
 nurl= f'http://localhost:5000/nood'
 
 class NoodStop(customtkinter.CTkFrame):
@@ -12,12 +12,15 @@ class NoodStop(customtkinter.CTkFrame):
 
         def ramp():
             Thread(target=NoodLog).start()
+            WritetoFile("N")
             return messagebox.showinfo('Noodstop','Noodstop ingedrukt, herstart het systeem!\nAls er verdere assistentie nodig is bel dan "number"')
         
         def NoodLog():
             tijd = translate()
-            noodstop = requests.post(nurl, json=f"{tijd}")
-            responses=noodstop.json
+            try:
+                requests.post(nurl, json=f"{tijd}")
+            except:
+                ""
         
         # self.label = customtkinter.CTkLabel(self, 
         #                                     width=200, 
@@ -42,6 +45,5 @@ class NoodStop(customtkinter.CTkFrame):
         
         # self.label.pack(padx=220, pady=10)
         self.noodstopbutton.pack(padx=161,pady=43)
-
         
         
