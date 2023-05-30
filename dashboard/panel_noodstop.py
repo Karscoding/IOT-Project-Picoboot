@@ -13,7 +13,7 @@ class NoodStop(customtkinter.CTkFrame):
         def ramp():
             Thread(target=NoodLog).start()
             WritetoFile("N")
-            return messagebox.showinfo('Noodstop','Noodstop ingedrukt, herstart het systeem!\nAls er verdere assistentie nodig is bel dan "number"')
+            return messagebox.showinfo('Noodstop','Noodstop ingedrukt, herstart het systeem!\nAls er verdere assistentie nodig is bel dan "+31 6 27620981"')
         
         def NoodLog():
             tijd = translate()
