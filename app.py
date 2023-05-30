@@ -1,7 +1,9 @@
 from flask import request, jsonify
 from databasevuller import Temperatuur,Afstand,db,app,actielog
+from jsonhandler import Writer, Reader
 import datetime
 import random
+import json
 from translate import translate
 current=3
 
@@ -11,18 +13,16 @@ def generatediepte(current):
     if (current+verschil) >2 and (current+verschil)<4:
         return (current+verschil)
     else:
-        return generatediepte(current) 
-
+        return generatediepte(current)
+    
 @app.route("/temperature", methods=["POST"])
 def temperature():
-    data = request.json
-
-    f = open('./Texts/temp.txt', 'w')
-    printedData = round(float(data), 2)
-    f.write(str(printedData))
-    f.close()
-
-
+    data = round(float(request.json), 2)
+    print(data)
+        
+    #Function, see Jsonhandler.py
+    Writer("Temp", data)
+                
     tijd=translate()
     with app.app_context():
             if Temperatuur.query.all()==[]:
@@ -30,7 +30,7 @@ def temperature():
             else:
                 highestid = Temperatuur.query.all()
                 id=(highestid[-1].id+1)
-    db.session.add_all([Temperatuur(id,tijd, printedData)])
+    db.session.add_all([Temperatuur(id,tijd, data)])
     db.session.commit()
 
     diepte=generatediepte(current)
@@ -51,35 +51,15 @@ def temperature():
     db.session.commit()
 
     if diepte + nap + slib < maxdiepte:
-        f = open('./Texts/afstand.txt', 'w')
-        f.write(f"Schuif omlaag\nDiepte: {schuifhoogte}")
-        f.close()
-        return ""
+        Writer("InstructionSchuif", "Omlaag")
+        
     else:
-        f = open('./Texts/afstand.txt', 'w')
-        f.write(f"Schuif omhoog\n Diepte: {schuifhoogte}")
-        f.close()
-        return ""
+        Writer("InstructionSchuif", "Omhoog")
+    
+    Writer("Diepte", schuifhoogte)
+    return ""
 
-    
-#Krijgt input van placeholder.py en schrijft het in opdracht.txt
-@app.route("/input", methods=["POST"])
-def input():
-    data=request.json
-    
-    if data=='Bakboord':
-        f = open('./Texts/opdracht.txt', 'w')
-        f.write("Bakboord")
-        f.close()
-        return ""
-    elif data=='Stuurboord':
-        f = open('./Texts/opdracht.txt', 'w')
-        f.write("Stuurboord")
-        f.close()
-        return ""
-    else:
-        print("Nothing")
-        return ""
+
 @app.route('/log',methods=["POST"])
 def loggen():
     data=request.json
@@ -115,9 +95,10 @@ def noodstop():
 #Returned opdracht
 @app.route("/get", methods=["POST"])
 def get():
-    f = open('./Texts/opdracht.txt', 'r')
-    opdracht = f.read()
-    return jsonify(opdracht)
+    data = {"InstructionAll": Reader("InstructionAll"),
+            "InstructionPass": Reader("InstructionPass")}
+    
+    return data
     
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)

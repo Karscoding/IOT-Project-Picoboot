@@ -48,21 +48,21 @@ while connection.isconnected():
 
         opdracht=lights.json()
 
-        if opdracht[1] == 'R':
+        if opdracht["InstructionPass"] == 'Rechts':
             greenled.on()
             secled.off()
-        elif opdracht[1] == 'L':
+        elif opdracht["InstructionPass"] == 'Links':
             secled.on()
             greenled.off()
-        elif opdracht[1] == 'P':
+        elif opdracht["InstructionPass"] == 'Uit':
             secled.off()
             greenled.off()
 
-        if opdracht[0] == 'X':
+        if opdracht["InstructionAll"] == 'Aan':
             restleds.on()
-        elif opdracht[0] == 'U':
+        elif opdracht["InstructionAll"] == 'Uit':
             restleds.off()
-        elif opdracht[0]== 'N':
+        elif opdracht["InstructionAll"]== 'NOOD':
             for x in range(20):
                 restleds.on()
                 secled.on()

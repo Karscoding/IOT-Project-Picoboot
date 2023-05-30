@@ -46,12 +46,7 @@ class Afstand(customtkinter.CTkFrame):
     
     
     def distanceRead(self):
-        path = os.path.join(sys.path[0], '../Texts/afstand.txt')
-        
-        with open(path, 'r') as f:
-            distance = f.read().strip()
-            
-        self.label.configure(text=f"{distance}")
+        self.label.configure(text=f"Diepte : {Reader('Diepte')}, Schuif {Reader('InstructionSchuif')}")
         
         # schedule the next update after 5 seconds
         self.after(5000, self.distanceRead)

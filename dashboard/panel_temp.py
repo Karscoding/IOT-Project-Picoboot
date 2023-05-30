@@ -25,15 +25,6 @@ class Temp(customtkinter.CTkFrame):
         self.iconwindow=customtkinter.CTkLabel(master=self,image=self.icon, text="")
         self.iconwindow.place(x=20,y=20)
 
-    def tempRead(self):
-        path = os.path.join(sys.path[0], '../Texts/temp.txt')
-        with open(path, 'r') as f:
-            temp = float(f.read().strip())
-        if temp > 50:
-            self.label.configure(text_color='#FF0000', text=f"{temp}°C")     
-        elif temp <= 20:
-            self.label.configure(text_color='#333FFF', text=f"{temp}°C")
-        else:
-            self.label.configure(text_color='#FFFFFF', text=f"{temp}°C")
-        # schedule the next update after 5 seconds
-        self.after(3000, self.tempRead)
+    def TempRead(self):
+        self.label.configure(text=Reader("Temp"))
+        self.after(1000, self.TempRead)

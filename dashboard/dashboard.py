@@ -86,7 +86,7 @@ class App(customtkinter.CTk):
                 self.log.place(x=1300, y=340)
                 self.datasim.place(x=1140,y=16)
                 
-                self.temp.tempRead()
+                self.temp.TempRead()
                 self.afstand.distanceRead()
             else:
                 self.Errorlabel.configure(text="PIN is Fout")

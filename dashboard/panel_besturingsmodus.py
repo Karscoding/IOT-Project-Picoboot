@@ -15,6 +15,7 @@ class Besturingsmodus(customtkinter.CTkFrame):
                                                            text="Handmatig", 
                                                            value="Handmatig", 
                                                            variable=self.radio_button_var, 
+                                                           command=self.call_to_write,
                                                            font=self.fontmedium)
         
         self.radio_button_1.pack(padx=10, pady=20, side=customtkinter.LEFT)
@@ -24,6 +25,13 @@ class Besturingsmodus(customtkinter.CTkFrame):
                                                            text="Automatisch", 
                                                            value="Automatisch", 
                                                            variable=self.radio_button_var, 
+                                                           command=self.call_to_write,
                                                            font=self.fontmedium)
         
         self.radio_button_2.pack(padx=10, pady=20, side=customtkinter.RIGHT)
+        
+    def call_to_write(self):
+        """Sends value to opdracht.txt"""
+        mode = self.radio_button_var.get()
+        Writer("ControlMode", mode)
+        self.after(1000, self.call_to_write)

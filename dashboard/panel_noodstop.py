@@ -1,5 +1,4 @@
 from imports_n_vars import * 
-from function_filewrite import WritetoFile
 nurl= f'http://localhost:5000/nood'
 
 class NoodStop(customtkinter.CTkFrame):
@@ -12,7 +11,7 @@ class NoodStop(customtkinter.CTkFrame):
 
         def ramp():
             Thread(target=NoodLog).start()
-            WritetoFile("N")
+            Writer("InstructionAll", "NOOD")
             return messagebox.showinfo('Noodstop','Noodstop ingedrukt, herstart het systeem!\nAls er verdere assistentie nodig is bel dan "+31 6 27620981"')
         
         def NoodLog():

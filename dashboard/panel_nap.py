@@ -51,8 +51,6 @@ class NAPINPUT(customtkinter.CTkFrame):
         nap=self.entry.get()
         if float(nap) >= -1 and float(nap) <=1:
             self.Errorlabel.configure(text_color='#FFFFFF', text=f"NAP is : {nap}")
-            with open(path, 'w') as f:
-                f.write(nap)
-                f.close() 
+            Writer("NAP", nap)
         else:
             self.Errorlabel.configure(text_color='#FF0000', text=f"NAP waarde error")
