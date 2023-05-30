@@ -8,17 +8,6 @@ class Temp(customtkinter.CTkFrame):
         self.fontbold = customtkinter.CTkFont(**fontbold)
         self.fontmedium = customtkinter.CTkFont(**fontmedium)
 
-        # self.label = customtkinter.CTkLabel(self, 
-        #                                     width=120, 
-        #                                     height=25, 
-        #                                     fg_color=("dark blue", color),
-        #                                     corner_radius=8,anchor="center", 
-        #                                     text="Temperatuur Motorkamer", 
-        #                                     font=self.fontbold)
-        
-        # self.label.pack(padx=20,pady=10)
-
-
         self.label = customtkinter.CTkLabel(self, 
                                             width=120, 
                                             height=25, 
@@ -35,15 +24,6 @@ class Temp(customtkinter.CTkFrame):
             self.icon=customtkinter.CTkImage(Image.open("images/EngineTemp.png"), size=(40,40))
         self.iconwindow=customtkinter.CTkLabel(master=self,image=self.icon, text="")
         self.iconwindow.place(x=20,y=20)
-        
-        
-        # self.button = customtkinter.CTkButton(self, 
-        #                                       text='Start met lezen', 
-        #                                       command=self.tempRead, 
-        #                                       font=('Arial', 18))
-        
-        # self.button.pack(padx=0,pady=20)
-        
 
     def tempRead(self):
         path = os.path.join(sys.path[0], '../Texts/temp.txt')

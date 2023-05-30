@@ -22,15 +22,6 @@ class NoodStop(customtkinter.CTkFrame):
             except:
                 ""
         
-        # self.label = customtkinter.CTkLabel(self, 
-        #                                     width=200, 
-        #                                     height=45, 
-        #                                     fg_color=("light blue", color),
-        #                                     anchor="center", 
-        #                                     text="Noodstop",
-        #                                     corner_radius=8,
-        #                                     font=self.fontbold)
-        
 
         self.noodstopbutton = customtkinter.CTkButton(self, 
                                             width=150, 

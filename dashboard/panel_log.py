@@ -30,8 +30,3 @@ class HistoryLog(customtkinter.CTkFrame):
         for x in range(1,13):
             output+=log[-x][0]+','+log[-x][1]+"\n\n"
         self.logbox.configure(text=output)
-        # self.logbox.configure(text=f"{log[0]}")
-        # 
-        # for x in range(0, len(incoming)):
-        #     output = (log[x][0] + ',' + log[x][1])
-        # self.logbox.configure(text=f"{output}")
