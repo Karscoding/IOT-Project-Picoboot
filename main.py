@@ -63,14 +63,13 @@ while connection.isconnected():
         elif opdracht[0] == 'U':
             restleds.off()
         elif opdracht[0]== 'N':
-            for x in range(3):
-                restleds.on()
-                secled.on()
-                greenled.on()
-                sleep(1)
-                restleds.off()
-                secled.off()
-                greenled.off()
+            restleds.on()
+            secled.on()
+            greenled.on()
+            sleep(1)
+            restleds.off()
+            secled.off()
+            greenled.off()
         
     # sleep a little until next temperature reading
         sleep(3)
