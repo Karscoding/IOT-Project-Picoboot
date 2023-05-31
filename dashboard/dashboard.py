@@ -12,8 +12,6 @@ from panel_log import HistoryLog
 from panel_sim import DataSim
 import os
 
-
-
 lurl= f'http://localhost:5000/log'
 
 customtkinter.set_default_color_theme("blue")
@@ -23,6 +21,9 @@ customtkinter.set_appearance_mode("dark")
 class App(customtkinter.CTk):
     def __init__(self):
         super().__init__()
+        # self.geometry('1920x1090')
+        # self.attributes("-fullscreen",True)
+        # self.state("normal")
         self.geometry('1600x900')
         self.resizable(width=0, height=0)
         self.title("Baggerboot Control Panel")
