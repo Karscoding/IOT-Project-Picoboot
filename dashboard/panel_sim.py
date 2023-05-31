@@ -20,7 +20,7 @@ class DataSim(customtkinter.CTkFrame):
             placeholder_text="Dag Maand",
             font=self.fontbold)
                 
-        self.entry.pack(padx=0, pady=0)
+        self.entry.pack(padx=0, pady=0, side=customtkinter.LEFT)
         
         self.napbutton = customtkinter.CTkButton(self, 
                                                  text="Simulatie", 
@@ -33,7 +33,7 @@ class DataSim(customtkinter.CTkFrame):
                                                  corner_radius=8, 
                                                  font=self.fontbold)
         
-        self.napbutton.pack(padx=0, pady=0)
+        self.napbutton.pack(padx=0, pady=0,side=customtkinter.RIGHT)
 
         self.Errorlabel = customtkinter.CTkLabel(self, 
                                                  text_color='#FFFFFF',
@@ -42,7 +42,7 @@ class DataSim(customtkinter.CTkFrame):
                                                  text= "", 
                                                  font=self.fontmedium)
         
-        self.Errorlabel.pack(padx=0, pady=0)    
+        self.Errorlabel.pack(padx=0, pady=0, side=customtkinter.RIGHT) 
 
 
     def run(self):

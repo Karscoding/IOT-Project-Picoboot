@@ -80,7 +80,7 @@ class App(customtkinter.CTk):
                 self.Errorlabel.destroy()
                 
                 self.tijd.place(x=0,y=0)
-                self.besturings.place(x=120, y=10)
+                self.besturings.place(x=100, y=10)
                 self.Status.place(x=20, y=470)
                 self.temp.place(x=1400, y=0)
                 self.afstand.place(x=625, y=100)
@@ -90,7 +90,7 @@ class App(customtkinter.CTk):
                 self.lights_control.pack(padx=20, pady=20, side=customtkinter.RIGHT)
                 self.NAPINPUT.place(x=1300, y=100)
                 self.log.place(x=1300, y=340)
-                self.datasim.place(x=1200,y=16)
+                self.datasim.place(x=900,y=16)
                 
                 self.temp.TempRead()
                 self.afstand.distanceRead()

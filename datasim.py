@@ -10,7 +10,6 @@ def run(dag=0):
     with app.app_context():
         for x in Temperatuur.query.all():
             datum=x.tijd
-            print(f"{datum.split(' ')[0]} {datum.split(' ')[1]}")
             if dag==0:
                 templist.append((datum,x.temperatuur))
             elif dag in f"{datum.split(' ')[0]} {datum.split(' ')[1]}":

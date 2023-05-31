@@ -25,7 +25,6 @@ class Tijd(customtkinter.CTkFrame):
         self.time()
     
     def time(self):
-        now = datetime.datetime.now()
-        tijd = (now.strftime("%A, %B %d %Y %H:%M:%S"))
+        tijd = translate()
         self.tijdlabel.configure(text=f"{tijd}")
         self.after(1000, self.time)
