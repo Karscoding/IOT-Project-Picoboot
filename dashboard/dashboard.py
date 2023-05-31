@@ -73,7 +73,7 @@ class App(customtkinter.CTk):
                 self.Errorlabel.configure(text="Te veel pogingen")
                 self.login_button.configure(command=None)
             
-            elif userInput == "1234":
+            elif userInput == "1":
                 self.login_button.destroy()
                 self.logowindow.destroy()
                 self.loginfield.destroy()
@@ -90,7 +90,7 @@ class App(customtkinter.CTk):
                 self.lights_control.pack(padx=20, pady=20, side=customtkinter.RIGHT)
                 self.NAPINPUT.place(x=1300, y=100)
                 self.log.place(x=1300, y=340)
-                self.datasim.place(x=1140,y=16)
+                self.datasim.place(x=1200,y=16)
                 
                 self.temp.TempRead()
                 self.afstand.distanceRead()

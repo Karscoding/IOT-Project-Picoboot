@@ -13,6 +13,15 @@ class DataSim(customtkinter.CTkFrame):
         self.fontbold = customtkinter.CTkFont(**fontbold)
         self.fontmedium = customtkinter.CTkFont(**fontmedium)
 
+        self.entry = customtkinter.CTkEntry(self, 
+            width=200, 
+            height=50, 
+            corner_radius=10,
+            placeholder_text="Dag Maand",
+            font=self.fontbold)
+                
+        self.entry.pack(padx=0, pady=0)
+        
         self.napbutton = customtkinter.CTkButton(self, 
                                                  text="Simulatie", 
                                                  command= self.run, 
@@ -25,7 +34,7 @@ class DataSim(customtkinter.CTkFrame):
                                                  font=self.fontbold)
         
         self.napbutton.pack(padx=0, pady=0)
-        
+
         self.Errorlabel = customtkinter.CTkLabel(self, 
                                                  text_color='#FFFFFF',
                                                  corner_radius=8, 
@@ -33,11 +42,11 @@ class DataSim(customtkinter.CTkFrame):
                                                  text= "", 
                                                  font=self.fontmedium)
         
-        self.Errorlabel.pack(padx=0, pady=0)
+        self.Errorlabel.pack(padx=0, pady=0)    
 
 
     def run(self):
-        if run() == "foute templist":
+        if run(self.entry.get()) == "foute templist":
             self.Errorlabel.configure(text_color='#FF0000', text=f"Te weinig waardes")
         else:
-            run()
+            run(self.entry.get())
