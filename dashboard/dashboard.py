@@ -27,6 +27,8 @@ class App(customtkinter.CTk):
         self.resizable(width=0, height=0)
         self.title("Baggerboot Control Panel")
         
+        self.login_attempts = 0
+        
         self.fontbold = customtkinter.CTkFont(**fonthuge)
         self.fontmedium = customtkinter.CTkFont(**fontbold)
         
@@ -66,7 +68,12 @@ class App(customtkinter.CTk):
         tijd=translate()
         def Start():
             userInput = self.loginfield.get()
-            if userInput == "1234":
+            
+            if self.login_attempts >= 5:
+                self.Errorlabel.configure(text="Te veel pogingen")
+                self.login_button.configure(command=None)
+            
+            elif userInput == "1234":
                 self.login_button.destroy()
                 self.logowindow.destroy()
                 self.loginfield.destroy()
@@ -87,9 +94,11 @@ class App(customtkinter.CTk):
                 
                 self.temp.TempRead()
                 self.afstand.distanceRead()
+                Thread(target=LogRequest).start()
+            
             else:
+                self.login_attempts += 1
                 self.Errorlabel.configure(text="PIN is Fout")
-            Thread(target=LogRequest).start()
             
         def LogRequest():
             try: 
