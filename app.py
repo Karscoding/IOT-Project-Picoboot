@@ -95,8 +95,8 @@ def noodstop():
 @app.route("/get", methods=["POST"])
 def get():
     data = {"InstructionAll": Reader("InstructionAll"),
-            "InstructionPass": Reader("InstructionPass")}
-    
+            "InstructionPass": Reader("InstructionPass"),
+            "NOOD": Reader("NOOD")}
     return data
     
 if __name__ == "__main__":

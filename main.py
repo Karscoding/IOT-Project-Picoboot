@@ -48,21 +48,7 @@ while connection.isconnected():
 
         opdracht=lights.json()
 
-        if opdracht["InstructionPass"] == 'Rechts':
-            greenled.on()
-            secled.off()
-        elif opdracht["InstructionPass"] == 'Links':
-            secled.on()
-            greenled.off()
-        elif opdracht["InstructionPass"] == 'Uit':
-            secled.off()
-            greenled.off()
-
-        if opdracht["InstructionAll"] == 'Aan':
-            restleds.on()
-        elif opdracht["InstructionAll"] == 'Uit':
-            restleds.off()
-        elif opdracht["InstructionAll"]== 'NOOD':
+        if opdracht["NOOD"] == True:
             for x in range(20):
                 restleds.on()
                 secled.on()
@@ -72,6 +58,22 @@ while connection.isconnected():
                 secled.off()
                 greenled.off()
                 sleep(0.1)
+        else:
+            if opdracht["InstructionPass"] == 'Rechts':
+                greenled.on()
+                secled.off()
+            elif opdracht["InstructionPass"] == 'Links':
+                secled.on()
+                greenled.off()
+            elif opdracht["InstructionPass"] == 'Uit':
+                secled.off()
+                greenled.off()
+
+            if opdracht["InstructionAll"] == 'Aan':
+                restleds.on()
+            elif opdracht["InstructionAll"] == 'Uit':
+                restleds.off()
+
     # sleep a little until next temperature reading
         sleep(3)
     except:
