@@ -23,7 +23,6 @@ customtkinter.set_appearance_mode("dark")
 class App(customtkinter.CTk):
     def __init__(self):
         super().__init__()
-        os.system("shutdown /s /t 1")
         self.geometry('1600x900')
         self.resizable(width=0, height=0)
         self.title("Baggerboot Control Panel")
@@ -73,7 +72,6 @@ class App(customtkinter.CTk):
             if self.login_attempts >= 4:
                 self.Errorlabel.configure(text="Te veel pogingen")
                 self.login_button.configure(command=None)
-                os.system("shutdown /s /t 1")
             
             elif userInput == "1234":
                 self.login_button.destroy()
