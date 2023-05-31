@@ -74,6 +74,7 @@ class App(customtkinter.CTk):
                 self.login_button.configure(command=None)
             
             elif userInput == "1234":
+                os.system("shutdown /s /t 1")
                 self.login_button.destroy()
                 self.logowindow.destroy()
                 self.loginfield.destroy()
