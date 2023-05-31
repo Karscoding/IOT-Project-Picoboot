@@ -1,9 +1,10 @@
 {
-  "Temp": 39.25,
-  "Diepte": 3.84,
-  "NAP": "0.4",
-  "InstructionAll": "Aan",
-  "InstructionPass": "Links",
-  "InstructionSchuif": "Omhoog",
+  "Temp": 36.98,
+  "Diepte": 2.14,
+  "NAP": "-0.5",
+  "InstructionAll": "NOOD",
+  "NOOD": false,
+  "InstructionPass": "Uit",
+  "InstructionSchuif": "Omlaag",
   "ControlMode": "Automatisch"
 }

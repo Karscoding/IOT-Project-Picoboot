@@ -18,7 +18,6 @@ def generatediepte(current):
 @app.route("/temperature", methods=["POST"])
 def temperature():
     data = round(float(request.json), 2)
-    print(data)
         
     #Function, see Jsonhandler.py
     Writer("Temp", data)
@@ -50,7 +49,7 @@ def temperature():
     db.session.add_all([Afstand(id,tijd, diepte,nap)])
     db.session.commit()
 
-    if diepte + nap + slib < maxdiepte:
+    if diepte + float(nap) + slib < maxdiepte:
         Writer("InstructionSchuif", "Omlaag")
         
     else:
