@@ -34,7 +34,7 @@ def temperature():
     db.session.commit()
 
     diepte=generatediepte(current)
-    nap = float(open('./Texts/nap.txt', 'r').read())
+    nap = Reader("NAP")
     
     slib=0.04
     schuifhoogte= diepte +slib

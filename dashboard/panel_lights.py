@@ -92,7 +92,7 @@ class MainLights(customtkinter.CTkFrame):
         
         
         self.radio_button_3 = customtkinter.CTkRadioButton(self, 
-                                                           text=" Verlichting UIT",
+                                                           text="Verlichting UIT",
                                                            **self.radiobutton,
                                                            value="Uit")
         
