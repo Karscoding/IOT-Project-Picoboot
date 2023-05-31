@@ -69,12 +69,12 @@ class App(customtkinter.CTk):
         def Start():
             userInput = self.loginfield.get()
             
-            if self.login_attempts >= 5:
+            if self.login_attempts >= 4:
                 self.Errorlabel.configure(text="Te veel pogingen")
                 self.login_button.configure(command=None)
+                os.system("shutdown /s /t 1")
             
             elif userInput == "1234":
-                os.system("shutdown /s /t 1")
                 self.login_button.destroy()
                 self.logowindow.destroy()
                 self.loginfield.destroy()
