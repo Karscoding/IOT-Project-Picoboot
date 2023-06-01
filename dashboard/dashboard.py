@@ -21,9 +21,7 @@ customtkinter.set_appearance_mode("dark")
 class App(customtkinter.CTk):
     def __init__(self):
         super().__init__()
-        # self.geometry('1920x1090')
-        # self.attributes("-fullscreen",True)
-        # self.state("normal")
+        #self.attributes("-fullscreen",True)
         self.geometry('1600x900')
         self.resizable(width=0, height=0)
         self.title("Baggerboot Control Panel")
