@@ -34,6 +34,7 @@ def temperature():
 
     diepte=generatediepte(current)
     nap = Reader("NAP")
+    nood = Reader("NOOD")
     
     slib=0.04
     schuifhoogte= diepte +slib
@@ -49,7 +50,10 @@ def temperature():
     db.session.add_all([Afstand(id,tijd, diepte,nap)])
     db.session.commit()
 
-    if diepte + float(nap) + slib < maxdiepte:
+    if nood:
+        Writer("InstructionSchuif", "Omhoog")
+
+    elif diepte + float(nap) + slib < maxdiepte:
         Writer("InstructionSchuif", "Omlaag")
         
     else:
