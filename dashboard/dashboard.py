@@ -10,9 +10,7 @@ from panel_lights import LightsMaster, PLights, MainLights
 from panel_nap import NAPINPUT
 from panel_log import HistoryLog
 from panel_sim import DataSim
-
-
-
+import os
 
 lurl= f'http://localhost:5000/log'
 
@@ -23,10 +21,12 @@ customtkinter.set_appearance_mode("dark")
 class App(customtkinter.CTk):
     def __init__(self):
         super().__init__()
-
+        #self.attributes("-fullscreen",True)
         self.geometry('1600x900')
         self.resizable(width=0, height=0)
         self.title("Baggerboot Control Panel")
+        
+        self.login_attempts = 0
         
         self.fontbold = customtkinter.CTkFont(**fonthuge)
         self.fontmedium = customtkinter.CTkFont(**fontbold)
@@ -67,14 +67,19 @@ class App(customtkinter.CTk):
         tijd=translate()
         def Start():
             userInput = self.loginfield.get()
-            if userInput == "1234":
+            
+            if self.login_attempts >= 4:
+                self.Errorlabel.configure(text="Te veel pogingen")
+                self.login_button.configure(command=None)
+            
+            elif userInput == "1":
                 self.login_button.destroy()
                 self.logowindow.destroy()
                 self.loginfield.destroy()
                 self.Errorlabel.destroy()
                 
                 self.tijd.place(x=0,y=0)
-                self.besturings.place(x=120, y=10)
+                self.besturings.place(x=100, y=10)
                 self.Status.place(x=20, y=470)
                 self.temp.place(x=1400, y=0)
                 self.afstand.place(x=625, y=100)
@@ -84,13 +89,15 @@ class App(customtkinter.CTk):
                 self.lights_control.pack(padx=20, pady=20, side=customtkinter.RIGHT)
                 self.NAPINPUT.place(x=1300, y=100)
                 self.log.place(x=1300, y=340)
-                self.datasim.place(x=1140,y=16)
+                self.datasim.place(x=900,y=16)
                 
-                self.temp.tempRead()
+                self.temp.TempRead()
                 self.afstand.distanceRead()
+                Thread(target=LogRequest).start()
+            
             else:
+                self.login_attempts += 1
                 self.Errorlabel.configure(text="PIN is Fout")
-            Thread(target=LogRequest).start()
             
         def LogRequest():
             try: 

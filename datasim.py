@@ -3,18 +3,21 @@ from time import sleep
 from databasevuller import app,Temperatuur,Afstand
 import os
 
-def run():
+def run(dag=0):
     templist=[]
     distlist=[]
+
     with app.app_context():
         for x in Temperatuur.query.all():
             datum=x.tijd
-            # if "29" in datum.split(' ')[0]:
-            templist.append((datum,x.temperatuur))
+            if dag==0:
+                templist.append((datum,x.temperatuur))
+            elif dag in f"{datum.split(' ')[0]} {datum.split(' ')[1]}":
+              templist.append((datum,x.temperatuur))  
         for x in Afstand.query.all():
             distlist.append((x.afstand,x.nap))
 
-    if len(templist) < 10:
+    if len(templist) < 1:
         return 'foute templist'
     else:
         if os.getcwd().split("\\")[-1]=='Picoboot':

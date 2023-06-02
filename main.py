@@ -33,7 +33,6 @@ while connection.isconnected():
         #Read Temperature
         v_out = adc.read_u16() * prop
         temp = (v_out - 500) / 10
-        print(temp)
         
         led.on()
 
@@ -48,21 +47,8 @@ while connection.isconnected():
 
         opdracht=lights.json()
 
-        if opdracht[1] == 'R':
-            greenled.on()
-            secled.off()
-        elif opdracht[1] == 'L':
-            secled.on()
-            greenled.off()
-        elif opdracht[1] == 'P':
-            secled.off()
-            greenled.off()
-
-        if opdracht[0] == 'X':
-            restleds.on()
-        elif opdracht[0] == 'U':
-            restleds.off()
-        elif opdracht[0]== 'N':
+        if opdracht["NOOD"] == True:
+            print("nood")
             for x in range(20):
                 restleds.on()
                 secled.on()
@@ -72,6 +58,27 @@ while connection.isconnected():
                 secled.off()
                 greenled.off()
                 sleep(0.1)
+        else:
+            if opdracht["InstructionPass"] == 'Rechts':
+                print("rechts")
+                greenled.on()
+                secled.off()
+            elif opdracht["InstructionPass"] =='Links':
+                print('links')
+                secled.on()
+                greenled.off()
+            elif opdracht["InstructionPass"] == 'Uit':
+                print("uit")
+                secled.off()
+                greenled.off()
+
+            if opdracht["InstructionAll"] == 'Aan':
+                print("allaan")
+                restleds.on()
+            elif opdracht["InstructionAll"] == 'Uit':
+                print('alluit')
+                restleds.off()
+
     # sleep a little until next temperature reading
         sleep(3)
     except:
