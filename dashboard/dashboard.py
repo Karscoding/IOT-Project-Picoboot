@@ -21,7 +21,13 @@ customtkinter.set_appearance_mode("dark")
 class App(customtkinter.CTk):
     def __init__(self):
         super().__init__()
-        #self.attributes("-fullscreen",True)
+        
+        # Voor Fullscreen Un-Comment onderstaande tussen de streepjes
+        # - - - - - - - - - 
+        # self.attributes("-fullscreen",True)
+        # - - - - - - - - -
+        # End
+        
         self.geometry('1600x900')
         self.resizable(width=0, height=0)
         self.title("Baggerboot Control Panel")
@@ -33,8 +39,11 @@ class App(customtkinter.CTk):
         
         self.tijd=Tijd(master=self,header_name="Tijd")
         
-
+        # Progress bar frame, op dit moment obselete.
+        #
         # self.my_frame = ProgressFrame(master=self, header_name="Warmlopen starten:")
+        #
+        # End
         
         
         self.besturings = Besturingsmodus(master=self, header_name="Besturingsmodus")
@@ -50,34 +59,51 @@ class App(customtkinter.CTk):
         
         
         self.light_master = LightsMaster(master=self, header_name="Lampen Besturing")
-        
         self.plight = PLights(master=self.light_master)
-        
         self.lights_control = MainLights(master=self.light_master)
         
 
         self.NAPINPUT = NAPINPUT(master=self, header_name="Nap Invoer")
 
+
         self.noodstop = NoodStop(master=self, header_name="Noodstop")
+        
         
         self.log = HistoryLog(master=self, header_name="History Log")
 
+
         self.datasim = DataSim(master=self,header_name="Datasim")
 
+
         tijd=translate()
+        
+        
         def Start():
+            """
+            Functie wordt opgeroepen bij het klikken van inlog knop.
+            Deze functie zal alle inlog dingen weghalen en alles van de dashboard plaatsen.
+            
+            ! Als je een nieuw paneel toevoegt zet hem hier in ! 
+            
+            """
             userInput = self.loginfield.get()
             
             if self.login_attempts >= 4:
                 self.Errorlabel.configure(text="Te veel pogingen")
                 self.login_button.configure(command=None)
             
-            elif userInput == "1":
+            elif userInput == "1234":
+                # Huidige widgets weghalen.
+                # Als je een widget hebt toegevoegd aan de inlog pagina.
+                # Zet hem hier tussen.
                 self.login_button.destroy()
                 self.logowindow.destroy()
                 self.loginfield.destroy()
                 self.Errorlabel.destroy()
                 
+                # Main widgets plaatsen.
+                # Als je een widget hebt toegevoegd aan de main pagina.
+                # Zet hem hier tussen
                 self.tijd.place(x=0,y=0)
                 self.besturings.place(x=100, y=10)
                 self.Status.place(x=20, y=470)
@@ -91,6 +117,7 @@ class App(customtkinter.CTk):
                 self.log.place(x=1300, y=340)
                 self.datasim.place(x=900,y=16)
                 
+                # Functies die geloopt worden oproepen.
                 self.temp.TempRead()
                 self.afstand.distanceRead()
                 Thread(target=LogRequest).start()
@@ -100,6 +127,10 @@ class App(customtkinter.CTk):
                 self.Errorlabel.configure(text="PIN is Fout")
             
         def LogRequest():
+            """
+            Plaatst een post request naar de app.py Flask Server.
+            Hierin worden dingen gelogged.
+            """
             try: 
                 lights = requests.post(lurl, json=f"{tijd}")
                 response=lights.json()
@@ -117,6 +148,7 @@ class App(customtkinter.CTk):
         
         self.login_button.place(x=615,y=600)
         
+        
         self.loginfield = customtkinter.CTkEntry(master=self, 
                                                  placeholder_text='PIN', 
                                                  show='*',
@@ -125,6 +157,7 @@ class App(customtkinter.CTk):
                                                  font=self.fontmedium)
         
         self.loginfield.place(x=700,y=450)
+        
         
         self.Errorlabel = customtkinter.CTkLabel(self, 
                                                  width=120,
@@ -136,6 +169,7 @@ class App(customtkinter.CTk):
                                                  font=self.fontmedium)
         
         self.Errorlabel.place(x=730, y=540)
+        
         
         if os.getcwd().split("\\")[-1]=='Picoboot':
             self.logo=customtkinter.CTkImage(Image.open("dashboard/images/logo.png"), size=(110,110))

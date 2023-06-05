@@ -38,7 +38,6 @@ class NoodStop(customtkinter.CTkFrame):
                                             command=ramp,
                                             font=self.fontbold)
         
-        # self.label.pack(padx=220, pady=10)
         self.noodstopbutton.pack(padx=161,pady=43)
         
         
