@@ -1,3 +1,5 @@
+#Bestand voor op de ESP32
+
 import sys
 import config
 import network

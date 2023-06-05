@@ -35,14 +35,6 @@ class Afstand(customtkinter.CTkFrame):
             self.icon=customtkinter.CTkImage(Image.open("images/DepthSymbol.png"), size=(40,40))
         self.iconwindow=customtkinter.CTkLabel(master=self,image=self.icon, text="")
         self.iconwindow.place(x=100,y=220)
-        
-
-        # self.button = customtkinter.CTkButton(self, 
-        #                                       text='Start met lezen', 
-        #                                       command=self.distanceRead,
-        #                                       font=('Arial', 18))
-        
-        # self.button.pack(padx=0,pady=20)
     
     
     def distanceRead(self):
