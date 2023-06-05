@@ -3,10 +3,15 @@ from machine import Pin, ADC
 from time import sleep
 import config
 import urequests as requests
+import socket
 
-url = f"http://{config.SERVER}:{config.PORT}{config.ENDPOINT}"
-aurl= f'http://{config.SERVER}:{config.PORT}{config.AENDPOINT}'
-gurl= f'http://{config.SERVER}:{config.PORT}{config.GETPOINT}'
+laptop_hostname = config.WIFI_SSID  # Replace with your laptop's hostname
+laptop_ip = socket.getaddrinfo(laptop_hostname, 5000)[0][-1][0]
+print("Laptop IP:", laptop_ip)
+
+url = f"http://{laptop_ip}:{config.PORT}{config.ENDPOINT}"
+aurl= f'http://{laptop_ip}:{config.PORT}{config.AENDPOINT}'
+gurl= f'http://{laptop_ip}:{config.PORT}{config.GETPOINT}'
 
 sharp_sensor = Pin(26, Pin.IN)
 
@@ -20,6 +25,13 @@ led = Pin(2, Pin.OUT)
 secled= Pin(32, Pin.OUT)
 greenled=Pin(14,Pin.OUT)
 restleds=Pin(25,Pin.OUT)
+
+
+# Use mDNS to discover the IP address of the laptop
+
+
+
+
 
 
 while connection.isconnected():
@@ -82,4 +94,6 @@ while connection.isconnected():
     # sleep a little until next temperature reading
         sleep(3)
     except:
-        print('fail')
+        ''
+        #print('fail')
+
