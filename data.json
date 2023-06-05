@@ -1,0 +1,10 @@
+{
+  "Temp": 28.95,
+  "Diepte": 2.24,
+  "NAP": "-0.5",
+  "InstructionAll": "Uit",
+  "NOOD": false,
+  "InstructionPass": "Uit",
+  "InstructionSchuif": "Omlaag",
+  "ControlMode": "Automatisch"
+}
