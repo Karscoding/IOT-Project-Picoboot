@@ -1,3 +1,16 @@
+# - Import bestand -
+#
+# Dit bestand is een algemeen punt waar alle bestanden in deze folder dezelfde dingen kunnen importen.
+# Als we in elk bestand dezelfde imports zouden plaatsen zou je circulair imports krijgen.
+# Vandaar dit bestand.
+# 
+# Je zou waarschijnlijk geen veranderingen hoeven te doen aan dit bestand wanneer je iets wilt toevoegen.
+# Maar als je iets wilt importen of een variable hebt en deze in meerder bestanden in deze folder gaat gebruiken.
+# Maak het dan hier in aan.
+#
+# - Picoboot Team 2023 - 
+#
+
 import customtkinter 
 from tkinter import messagebox
 from time import sleep

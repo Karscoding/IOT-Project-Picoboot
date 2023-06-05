@@ -1,3 +1,12 @@
+# - Flask App - 
+#
+# Dit bestand is de Flask server die open zal moeten zijn op de achtergrond tijdens het gebruiken van de dashboard.
+# Wanneer dit bestand geopend is zal de ESP32 kunnen communiceren met alles.
+#
+# - Picoboot Team 2023 - 
+#
+
+
 from flask import request, jsonify
 from databasevuller import Temperatuur,Afstand,db,app,actielog
 from jsonhandler import Writer, Reader

@@ -1,3 +1,5 @@
+#Bestand voor op de ESP32
+
 from boot import connection
 from machine import Pin, ADC
 from time import sleep

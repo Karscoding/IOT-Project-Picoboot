@@ -1,3 +1,19 @@
+# - Picoboot Dashboard -
+#
+# Dit bestand is waar de dashboard in zit.
+# Als dit bestand wordt geopend krijg je het dashboard te zien.
+# Dit bestand pakt alle andere .py bestanden in deze folder en brengt ze samen.
+# 
+# Om een nieuwe widget aan te maken is het het beste om het in een nieuw bestand te doen.
+# Noem dit bestand panel_<naam>.py.
+# Daarna kun je die hier importen en toevoegen zoals de comments verderop zullen aangeven.
+# Hou het netjes :)
+# 
+# - Picoboot Team 2023 -
+#
+
+
+# Imports
 from imports_n_vars import *
 from panel_tijd import Tijd
 from panel_progress import ProgressFrame
@@ -12,7 +28,7 @@ from panel_log import HistoryLog
 from panel_sim import DataSim
 import os
 
-lurl= f'http://localhost:5000/log'
+url = f'http://localhost:5000/log'
 
 customtkinter.set_default_color_theme("blue")
 customtkinter.set_appearance_mode("dark")
@@ -132,7 +148,7 @@ class App(customtkinter.CTk):
             Hierin worden dingen gelogged.
             """
             try: 
-                lights = requests.post(lurl, json=f"{tijd}")
+                lights = requests.post(url , json=f"{tijd}")
                 response=lights.json()
                 self.log.change(response)
             except:

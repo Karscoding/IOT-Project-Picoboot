@@ -1,3 +1,12 @@
+# - Database Handler - 
+#
+# Dit bestand vult / creeërt de database of ook wel Gegevens.sqlite
+# 
+# Wanneer je een nieuwe tabel of kolom wilt toevoegen aan de database zal je dat hier in moeten doen.
+#
+# - Picoboot Team 2023 - 
+#
+
 import os
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
