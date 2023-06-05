@@ -29,13 +29,6 @@ greenled=Pin(14,Pin.OUT)
 restleds=Pin(25,Pin.OUT)
 
 
-# Use mDNS to discover the IP address of the laptop
-
-
-
-
-
-
 while connection.isconnected():
     try:
         led.off()
