@@ -6,7 +6,7 @@ import os
 def run(dag=0):
     templist=[]
     distlist=[]
-
+    
     with app.app_context():
         for x in Temperatuur.query.all():
             datum=x.tijd

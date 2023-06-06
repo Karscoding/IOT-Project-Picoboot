@@ -42,11 +42,10 @@ class DataSim(customtkinter.CTkFrame):
                                                  text= "", 
                                                  font=self.fontmedium)
         
-        self.Errorlabel.pack(padx=0, pady=0, side=customtkinter.RIGHT) 
-
+        self.Errorlabel.pack(padx=0, pady=0) 
 
     def run(self):
         if run(self.entry.get()) == "foute templist":
-            self.Errorlabel.configure(text_color='#FF0000', text=f"Te weinig waardes")
+            self.Errorlabel.configure(text_color='#FF0000', text=f"Te weinig waardes op deze datum")
         else:
             run(self.entry.get())
