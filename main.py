@@ -11,6 +11,9 @@ laptop_hostname = config.WIFI_SSID  # Replace with your laptop's hostname
 laptop_ip = socket.getaddrinfo(laptop_hostname, 5000)[0][-1][0]
 print("Laptop IP:", laptop_ip)
 
+socketinfo = socket.getaddrinfo(laptop_hostname, 5000)
+print("socket gegevens:", socketinfo)
+
 url = f"http://{laptop_ip}:{config.PORT}{config.ENDPOINT}"
 aurl= f'http://{laptop_ip}:{config.PORT}{config.AENDPOINT}'
 gurl= f'http://{laptop_ip}:{config.PORT}{config.GETPOINT}'
