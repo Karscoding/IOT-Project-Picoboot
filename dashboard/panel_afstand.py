@@ -39,7 +39,7 @@ class afst(customtkinter.CTkFrame):
         xas=getdata()[0]
         yas=getdata()[1]
         print(getdata())
-        ax =self.fig.add_subplot(111).plot(
+        self.fig.add_subplot(111).plot(
             xas, #X as + dots
             yas, #Y as + werkende string
             'go-', label='line 1', linewidth=2)
