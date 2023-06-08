@@ -20,7 +20,7 @@ from panel_progress import ProgressFrame
 from panel_besturingsmodus import Besturingsmodus
 from panel_status import StatusFrame
 from panel_temp import Temp
-from panel_afstand import Afstand
+from panel_afstand import afst
 from panel_noodstop import NoodStop
 from panel_lights import LightsMaster, PLights, MainLights
 from panel_nap import NAPINPUT
@@ -71,7 +71,7 @@ class App(customtkinter.CTk):
         self.temp=Temp(master=self,header_name="temp")
         
 
-        self.afstand = Afstand(master=self, header_name='afstand')
+        self.afstand = afst(master=self, header_name='afstand')
         
         
         self.light_master = LightsMaster(master=self, header_name="Lampen Besturing")

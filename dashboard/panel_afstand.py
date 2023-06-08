@@ -1,6 +1,31 @@
 from imports_n_vars import *
 
-class Afstand(customtkinter.CTkFrame):
+def getdata(dag=0):
+    templist=[]
+    distlist=[]
+    correctedlist=[]
+    vdatum=0
+    i=0
+    with app.app_context():
+        for x in Afstand.query.all():
+           distlist.append(x.afstand)
+        for x in Temperatuur.query.all():
+            datum=x.tijd
+            if dag==0:
+                if (f"{datum.split()[0]} {datum.split()[1]}") != vdatum or vdatum==0:
+                    templist.append(f"{datum.split()[0]} {datum.split()[1]}")
+                    correctedlist.append(distlist[i])
+                    vdatum=(f"{datum.split()[0]} {datum.split()[1]}")
+                    i+=1
+                else:
+                    i+=1
+            elif dag in f"{datum.split(' ')[0]} {datum.split(' ')[1]}":
+              templist.append(datum)  
+    return templist,correctedlist
+
+
+
+class afst(customtkinter.CTkFrame):
     def __init__(self, *args, master ,header_name="Afstand", **kwargs):
         super().__init__(master,*args, **kwargs)
         self.header_name = header_name
@@ -10,10 +35,13 @@ class Afstand(customtkinter.CTkFrame):
         
         '''Grafiek'''
         self.fig = Figure(figsize=(5,4), dpi=100)
-
-        self.fig.add_subplot(111).plot(
-            [1, 2, 5], #X as + dots
-            [1, "hallo", 10], #Y as + werkende string
+        
+        xas=getdata()[0]
+        yas=getdata()[1]
+        print(getdata())
+        ax =self.fig.add_subplot(111).plot(
+            xas, #X as + dots
+            yas, #Y as + werkende string
             'go-', label='line 1', linewidth=2)
         
 
@@ -22,8 +50,7 @@ class Afstand(customtkinter.CTkFrame):
         self.canvas.draw()
         self.canvas.get_tk_widget().pack(padx=20, pady=10)
 
-
-        """        '''Label'''
+        '''Label'''
         self.label = customtkinter.CTkLabel(self, 
                                             width=200, 
                                             height=45, 
@@ -52,11 +79,12 @@ class Afstand(customtkinter.CTkFrame):
         else:
             self.icon=customtkinter.CTkImage(Image.open("images/DepthSymbol.png"), size=(40,40))
         self.iconwindow=customtkinter.CTkLabel(master=self,image=self.icon, text="")
-        self.iconwindow.place(x=100,y=220)"""
+        self.iconwindow.place(x=100,y=220)
     
     
     def distanceRead(self):
         self.label.configure(text=f"Diepte : {Reader('Diepte')}, Schuif {Reader('InstructionSchuif')}")
-        
+
         # schedule the next update after 5 seconds
         self.after(5000, self.distanceRead)
+    
