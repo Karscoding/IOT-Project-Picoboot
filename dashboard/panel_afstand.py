@@ -7,6 +7,14 @@ class Afstand(customtkinter.CTkFrame):
         
         self.fontbold = customtkinter.CTkFont(**fontbold)
         self.fontmedium = customtkinter.CTkFont(**fontmedium)
+        
+        self.fig = Figure(figsize=(5,4), dpi=100)
+        self.t = np.arange(0,3,0.1)
+        self.fig.add_subplot(111).plot(self.t, 2 * np.sin(2 * np.pi * self.t))
+        
+        self.canvas = FigureCanvasTkAgg(self.fig, master=self)
+        self.canvas.draw()
+        self.canvas.get_tk_widget().pack(padx=20, pady=10)
 
         self.label = customtkinter.CTkLabel(self, 
                                             width=200, 

@@ -90,7 +90,6 @@ class App(customtkinter.CTk):
 
         self.datasim = DataSim(master=self,header_name="Datasim")
 
-
         tijd=translate()
         
         
