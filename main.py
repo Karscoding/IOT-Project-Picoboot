@@ -7,12 +7,7 @@ import config
 import urequests as requests
 import socket
 
-laptop_hostname = config.WIFI_SSID  # Replace with your laptop's hostname
-#laptop_ip = socket.getaddrinfo(laptop_hostname, 5000)[0][-1][0]
-#print("Laptop IP:", laptop_ip)
 laptop_ip="10.51.0.30"
-#socketinfo = socket.getaddrinfo(laptop_hostname, 5000)
-#print("socket gegevens:", socketinfo)
 
 url = f"http://{laptop_ip}:{config.PORT}{config.ENDPOINT}"
 aurl= f'http://{laptop_ip}:{config.PORT}{config.AENDPOINT}'
@@ -23,8 +18,6 @@ sharp_sensor = Pin(26, Pin.IN)
 tmp34 = Pin(34, Pin.IN)
 adc = ADC(tmp34)
 prop = 1100 / 65535
-
-
 
 led = Pin(2, Pin.OUT)
 secled= Pin(32, Pin.OUT)
@@ -87,5 +80,4 @@ while connection.isconnected():
         sleep(3)
     except:
         ''
-        #print('fail')
 
