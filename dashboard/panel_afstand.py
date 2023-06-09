@@ -12,7 +12,7 @@ def getdata(dag=0):
         for x in Temperatuur.query.all():
             datum=x.tijd
             if dag==0:
-                if (f"{datum.split()[0]} {datum.split()[1]}") != vdatum or vdatum==0:
+                if (f"{datum.split()[0]} {datum.split()[1]}") != vdatum or vdatum==0: #check of datum niet zelfde is als deze datum
                     templist.append(f"{datum.split()[0]} {datum.split()[1]}")
                     correctedlist.append(distlist[i])
                     vdatum=(f"{datum.split()[0]} {datum.split()[1]}")
@@ -35,13 +35,12 @@ class afst(customtkinter.CTkFrame):
         
         '''Grafiek'''
         self.fig = Figure(figsize=(5,4), dpi=100)
-        
         xas=getdata()[0]
         yas=getdata()[1]
         print(getdata())
         self.fig.add_subplot(111).plot(
-            xas, #X as + dots
-            yas, #Y as + werkende string
+            xas, 
+            yas, 
             'go-', label='line 1', linewidth=2)
         
 
