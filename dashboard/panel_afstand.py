@@ -47,19 +47,25 @@ class afst(customtkinter.CTkFrame):
         '''Maak Ruimte voor grafiek'''
         self.canvas = FigureCanvasTkAgg(self.fig, master=self)
         self.canvas.draw()
-        self.canvas.get_tk_widget().pack(padx=20, pady=10)
 
-        '''Label'''
-        self.label = customtkinter.CTkLabel(self, 
-                                            width=200, 
-                                            height=45, 
-                                            fg_color=("light blue", color),
-                                            anchor="center", 
-                                            text="Diepte",
-                                            corner_radius=8,
-                                            font=self.fontbold)
+        # '''Label'''
+        # self.label = customtkinter.CTkLabel(self, 
+        #                                     width=200, 
+        #                                     height=45, 
+        #                                     fg_color=("light blue", color),
+        #                                     anchor="center", 
+        #                                     text="Diepte",
+        #                                     corner_radius=8,
+        #                                     font=self.fontbold)
         
-        self.label.pack(padx=220,pady=10)
+        # self.label.pack(padx=220,pady=10)
+        
+        self.disable = customtkinter.CTkButton(self,
+                                               text="Switch",
+                                               font=self.fontbold,
+                                               command=self.Swap)
+        
+        self.disable.pack(padx=20, pady=20)
         
         '''Afstand zelf'''
         self.label = customtkinter.CTkLabel(self, 
@@ -70,15 +76,25 @@ class afst(customtkinter.CTkFrame):
                                             text="Afstand: nog niet gemeten",
                                             font=self.fontbold)
         
-        self.label.pack(padx=0,pady=200)
+        self.label.pack(padx=110,pady=200)
 
-        '''Sticker'''
-        if os.getcwd().split("\\")[-1]=='Picoboot':
-            self.icon=customtkinter.CTkImage(Image.open("dashboard/images/DepthSymbol.png"), size=(110,110))
+    def Swap(self):
+        swapped = 1
+        if swapped == 1:
+            self.canvas.get_tk_widget().pack(padx=70, pady=25)
+            self.label.destroy()
         else:
-            self.icon=customtkinter.CTkImage(Image.open("images/DepthSymbol.png"), size=(40,40))
-        self.iconwindow=customtkinter.CTkLabel(master=self,image=self.icon, text="")
-        self.iconwindow.place(x=100,y=220)
+            self.canvas.get_tk_widget().destroy()
+            self.label.pack(padx=110, pady=200)
+        swapped *= -1
+        
+        # '''Sticker'''
+        # if os.getcwd().split("\\")[-1]=='Picoboot':
+        #     self.icon=customtkinter.CTkImage(Image.open("dashboard/images/DepthSymbol.png"), size=(110,110))
+        # else:
+        #     self.icon=customtkinter.CTkImage(Image.open("images/DepthSymbol.png"), size=(40,40))
+        # self.iconwindow=customtkinter.CTkLabel(master=self,image=self.icon, text="")
+        # self.iconwindow.place(x=100,y=220)
     
     
     def distanceRead(self):
