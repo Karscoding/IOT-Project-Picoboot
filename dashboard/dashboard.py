@@ -107,7 +107,7 @@ class App(customtkinter.CTk):
                 self.Errorlabel.configure(text="Te veel pogingen")
                 self.login_button.configure(command=None)
             
-            elif userInput == "1234" and self.login_attempts <= 4:
+            elif userInput == "1234":
                 # Huidige widgets weghalen.
                 # Als je een widget hebt toegevoegd aan de inlog pagina.
                 # Zet hem hier tussen.
