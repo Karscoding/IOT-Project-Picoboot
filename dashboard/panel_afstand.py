@@ -32,12 +32,13 @@ class afst(customtkinter.CTkFrame):
         
         self.fontbold = customtkinter.CTkFont(**fontbold)
         self.fontmedium = customtkinter.CTkFont(**fontmedium)
-        
+
+        self.swapped=1
         '''Grafiek'''
         self.fig = Figure(figsize=(5,4), dpi=100)
         xas=getdata()[0]
         yas=getdata()[1]
-        print(getdata())
+        #print(getdata())
         self.fig.add_subplot(111).plot(
             xas, 
             yas, 
@@ -47,18 +48,6 @@ class afst(customtkinter.CTkFrame):
         '''Maak Ruimte voor grafiek'''
         self.canvas = FigureCanvasTkAgg(self.fig, master=self)
         self.canvas.draw()
-
-        # '''Label'''
-        # self.label = customtkinter.CTkLabel(self, 
-        #                                     width=200, 
-        #                                     height=45, 
-        #                                     fg_color=("light blue", color),
-        #                                     anchor="center", 
-        #                                     text="Diepte",
-        #                                     corner_radius=8,
-        #                                     font=self.fontbold)
-        
-        # self.label.pack(padx=220,pady=10)
         
         self.disable = customtkinter.CTkButton(self,
                                                text="Switch",
@@ -79,15 +68,40 @@ class afst(customtkinter.CTkFrame):
         self.label.pack(padx=110,pady=200)
 
     def Swap(self):
-        swapped = 1
-        if swapped == 1:
-            self.canvas.get_tk_widget().pack(padx=70, pady=25)
+        if self.swapped == 1:
             self.label.destroy()
+            self.swapped=0
+
+            self.fig = Figure(figsize=(5,4), dpi=100)
+            xas=getdata()[0]
+            yas=getdata()[1]
+            self.fig.add_subplot(111).plot(
+                xas, 
+                yas, 
+                'go-', label='line 1', linewidth=2)
+            
+
+            '''Maak Ruimte voor grafiek'''
+            self.canvas = FigureCanvasTkAgg(self.fig, master=self)
+            self.canvas.draw()
+            self.canvas.get_tk_widget().pack(padx=70, pady=25)
         else:
             self.canvas.get_tk_widget().destroy()
-            self.label.pack(padx=110, pady=200)
-        swapped *= -1
+            
+            self.label = customtkinter.CTkLabel(self, 
+                                                width=120, 
+                                                height=25, 
+                                                corner_radius=8,
+                                                anchor="center", 
+                                                text="Afstand: nog niet gemeten",
+                                                font=self.fontbold)
         
+            self.label.pack(padx=110,pady=200)
+            
+            self.swapped=1
+
+
+
         # '''Sticker'''
         # if os.getcwd().split("\\")[-1]=='Picoboot':
         #     self.icon=customtkinter.CTkImage(Image.open("dashboard/images/DepthSymbol.png"), size=(110,110))
@@ -98,8 +112,9 @@ class afst(customtkinter.CTkFrame):
     
     
     def distanceRead(self):
-        self.label.configure(text=f"Diepte : {Reader('Diepte')}, Schuif {Reader('InstructionSchuif')}")
+        if  self.swapped==1:
+            self.label.configure(text=f"Diepte : {Reader('Diepte')}, Schuif {Reader('InstructionSchuif')}")
 
-        # schedule the next update after 5 seconds
-        self.after(5000, self.distanceRead)
+            # schedule the next update after 5 seconds
+            self.after(5000, self.distanceRead)
     
