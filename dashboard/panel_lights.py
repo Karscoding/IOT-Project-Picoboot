@@ -9,8 +9,7 @@ class LightsMaster(customtkinter.CTkFrame):
         self.font = customtkinter.CTkFont(**fontbold)
 
         
-        self.label = customtkinter.CTkLabel(self, 
-                                            fg_color=("light blue", color), 
+        self.label = customtkinter.CTkLabel(self,
                                             corner_radius=8,
                                             anchor="center", 
                                             text="Passeerlichten / Hoofdverlichting", 

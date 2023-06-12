@@ -75,9 +75,9 @@ class App(customtkinter.CTk):
         self.afstand = afst(master=self, header_name='afstand')
         
         
-        self.light_master = LightsMaster(master=self, header_name="Lampen Besturing")
-        self.plight = PLights(master=self.light_master)
-        self.lights_control = MainLights(master=self.light_master)
+        # self.light_master = LightsMaster(master=self, header_name="Lampen Besturing")
+        # self.plight = PLights(master=self.light_master)
+        # self.lights_control = MainLights(master=self.light_master)
         
 
         self.NAPINPUT = NAPINPUT(master=self, header_name="Nap Invoer")
@@ -91,11 +91,11 @@ class App(customtkinter.CTk):
 
         self.datasim = DataSim(master=self,header_name="Datasim")
         
-        self.lights_page = LightsPage(master=self,header_name="Lampen")
+        self.lights_page = LightsPage(master=self,header_name="Lampen Besturing")
         
         self.lightspage_button = customtkinter.CTkButton(master=self,
                                                          text="Lights",
-                                                         command=self.lights_page.Show)
+                                                         command=self.lights_page.Call)
 
         tijd=translate()
         
@@ -163,8 +163,7 @@ class App(customtkinter.CTk):
         
         self.login_button=customtkinter.CTkButton(master=self,
                                                   text="Login",
-                                                  command=Start, 
-                                                  fg_color=color, 
+                                                  command=Start,
                                                   width=400, 
                                                   height=100,
                                                   font=self.fontbold)
