@@ -93,8 +93,6 @@ class afst(customtkinter.CTkFrame):
             self.swapped=1
             label(self)
 
-
-
         # '''Sticker'''
         # if os.getcwd().split("\\")[-1]=='Picoboot':
         #     self.icon=customtkinter.CTkImage(Image.open("dashboard/images/DepthSymbol.png"), size=(110,110))
