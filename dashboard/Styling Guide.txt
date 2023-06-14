@@ -1,6 +1,0 @@
-.py Styling Guide Dashboard.
-
-In dit bestand worden conventies genoemd die wij verwachten wanneer je werkt aan de code.
-Denk hierbij aan aantal lege regels, variable naming, spaties etc.
-
-- Functies -
