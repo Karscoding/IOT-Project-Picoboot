@@ -23,24 +23,24 @@ class DataSim(customtkinter.CTkFrame):
         self.entry.pack(padx=0, pady=0, side=customtkinter.LEFT)
         
         self.napbutton = customtkinter.CTkButton(self, 
-                                                 text="Simulatie", 
-                                                 command= self.run, 
-                                                 width=50, 
-                                                 height=30,
-                                                 fg_color=color,
-                                                 hover_color=color,
-                                                 border_width=0, 
-                                                 corner_radius=8, 
-                                                 font=self.fontbold)
+            text="Simulatie", 
+            command= self.run, 
+            width=50, 
+            height=30,
+            fg_color=color,
+            hover_color=color,
+            border_width=0, 
+            corner_radius=8, 
+            font=self.fontbold)
         
         self.napbutton.pack(padx=0, pady=0,side=customtkinter.RIGHT)
 
         self.Errorlabel = customtkinter.CTkLabel(self, 
-                                                 text_color='#FFFFFF',
-                                                 corner_radius=8, 
-                                                 anchor="center", 
-                                                 text= "", 
-                                                 font=self.fontmedium)
+            text_color='#FFFFFF',
+            corner_radius=8, 
+            anchor="center", 
+            text= "", 
+            font=self.fontmedium)
         
         self.Errorlabel.pack(padx=0, pady=0) 
 
@@ -49,3 +49,7 @@ class DataSim(customtkinter.CTkFrame):
             self.Errorlabel.configure(text_color='#FF0000', text=f"Te weinig waardes op deze datum")
         else:
             run(self.entry.get())
+            
+
+    
+# Smash Eva Warris

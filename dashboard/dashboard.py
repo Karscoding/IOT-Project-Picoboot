@@ -44,56 +44,132 @@ class App(customtkinter.CTk):
         # - - - - - - - - -
         # End
         
-        self.geometry('1600x900')
-        self.resizable(width=0, height=0)
-        self.title("Baggerboot Control Panel")
-        
-        self.login_attempts = 0
         
         self.fontbold = customtkinter.CTkFont(**fonthuge)
         self.fontmedium = customtkinter.CTkFont(**fontbold)
         
-        self.tijd=Tijd(master=self,header_name="Tijd")
-        
-        # Progress bar frame, op dit moment obselete.
-        #
-        # self.my_frame = ProgressFrame(master=self, header_name="Warmlopen starten:")
-        #
-        # End
-        
-        
-        self.besturings = Besturingsmodus(master=self, header_name="Besturingsmodus")
-        
-        
-        self.Status = StatusFrame(master=self, header_name="Status machine")
-        
-        
-        self.temp=Temp(master=self,header_name="temp")
-        
+        def PageChange(self, pageTo):
+            """
+            ! Veranderd de Pagina in beeld. !
+            Dit doet hij door middel van self.current_page en pageTo.
+            Eerst kijkt hij met current_page op welke page hij op dit moment zit.
+            Dan destroy()'d hij alle elements van die pagina zodat het beeld blank is.
+            Daarna kijkt hij naar pageTo en plaatst hij elementen van deze genoemde pagina.
+            
+            
+            ! pageTo = integer !
+            (1 t/m 3) else Error
+            
+            
+            ! Page Numbers : !
+            VerlichtingsPagina - 1
+            Operationeel       - 2
+            Machine            - 3
+            """
+            
+            if self.current_page == 0:
+                self.login_button.destroy()
+                self.logowindow.destroy()
+                self.loginfield.destroy()
+                self.Errorlabel.destroy()
+            
+            elif self.current_page == 1:
+                self.light_master.destroy()
+                self.plight.destroy()
+                self.lights_control.destroy()
+                
+            elif self.current_page == 2:
+                self.besturings.destroy()
+                self.temp.destroy()
+                self.afstand.destroy()
+                self.noodstop.destroy()
+                self.log.destroy()
+                self.datasim.destroy()
+                
+            elif self.current_page == 3:
+                self.Status.destroy()
+                
+            if pageTo == 1:
+                self.light_master = LightsMaster(master=self, header_name="Lampen Besturing")
+                self.plight = PLights(master=self.light_master)
+                self.lights_control = MainLights(master=self.light_master)
+                
+                self.light_master.place(x=400, y=100)
+                self.plight.pack(padx=20, pady=20, side=customtkinter.LEFT)
+                self.lights_control.pack(padx=20, pady=20, side=customtkinter.RIGHT)
+                
+                self.current_page = 1
+                
+            elif pageTo == 2:
+                self.besturings = Besturingsmodus(master=self, header_name="Besturingsmodus")
+                self.temp= Temp(master=self,header_name="temp")
+                self.afstand = afst(master=self, header_name='afstand')
+                self.NAPINPUT = NAPINPUT(master=self, header_name="Nap Invoer")
+                self.noodstop = NoodStop(master=self, header_name="Noodstop")
+                self.log = HistoryLog(master=self, header_name="History Log")
+                self.datasim = DataSim(master=self,header_name="Datasim")
+                
+                self.besturings.place(x=100, y=10)
+                self.temp.place(x=1400, y=0)
+                self.afstand.place(x=625, y=100)
+                self.noodstop.place(x=625, y=650)
+                self.log.place(x=1300, y=340)
+                self.datasim.place(x=900,y=16)
+                
+                self.current_page = 2
+            
+            elif pageTo == 3:
+                self.Status = StatusFrame(master=self, header_name="Status machine")
 
-        self.afstand = afst(master=self, header_name='afstand')
+                self.Status.place(x=500, y=470)
+                
+                self.current_page = 3
+            
+            else:
+                raise ValueError(f"Foute pagina nummer gegeven")
+        
+        self.geometry('1600x900')
+        self.resizable(width=0, height=0)
+        self.title("Baggerboot Control Panel")
         
         
-        self.light_master = LightsMaster(master=self, header_name="Lampen Besturing")
-        self.plight = PLights(master=self.light_master)
-        self.lights_control = MainLights(master=self.light_master)
-        
-
-        self.NAPINPUT = NAPINPUT(master=self, header_name="Nap Invoer")
-
-
-        self.noodstop = NoodStop(master=self, header_name="Noodstop")
+        self.login_attempts = 0
         
         
-        self.log = HistoryLog(master=self, header_name="History Log")
+        self.current_page = 0
+        
+        
+        self.tijd= Tijd(master=self,header_name="Tijd")
 
+        self.tijd.place(x=0,y=0)
+        
+        
+        self.lights_tab = customtkinter.CTkButton(master=self,
+                                                  width=100,
+                                                  height=100,
+                                                  text="V",
+                                                  font=self.fontbold,
+                                                  command= lambda: PageChange(self, 1))
+        
+        self.operations_tab = customtkinter.CTkButton(master=self,
+                                                  width=100,
+                                                  height=100,
+                                                  text="O",
+                                                  font=self.fontbold,
+                                                  command= lambda: PageChange(self, 2))
+        
+        self.machine_tab = customtkinter.CTkButton(master=self,
+                                                  width=100,
+                                                  height=100,
+                                                  text="M",
+                                                  font=self.fontbold,
+                                                  command= lambda: PageChange(self, 3))
 
-        self.datasim = DataSim(master=self,header_name="Datasim")
 
         tijd=translate()
         
         
-        def Start():
+        def Login():
             """
             Functie wordt opgeroepen bij het klikken van inlog knop.
             Deze functie zal alle inlog dingen weghalen en alles van de dashboard plaatsen.
@@ -108,33 +184,10 @@ class App(customtkinter.CTk):
                 self.login_button.configure(command=None)
             
             elif userInput == "1234":
-                # Huidige widgets weghalen.
-                # Als je een widget hebt toegevoegd aan de inlog pagina.
-                # Zet hem hier tussen.
-                self.login_button.destroy()
-                self.logowindow.destroy()
-                self.loginfield.destroy()
-                self.Errorlabel.destroy()
-                
-                # Main widgets plaatsen.
-                # Als je een widget hebt toegevoegd aan de main pagina.
-                # Zet hem hier tussen
-                self.tijd.place(x=0,y=0)
-                self.besturings.place(x=100, y=10)
-                self.Status.place(x=20, y=470)
-                self.temp.place(x=1400, y=0)
-                self.afstand.place(x=625, y=100)
-                self.noodstop.place(x=625, y=650)
-                self.light_master.place(x=20, y=100)
-                self.plight.pack(padx=20, pady=20, side=customtkinter.LEFT)
-                self.lights_control.pack(padx=20, pady=20, side=customtkinter.RIGHT)
-                self.NAPINPUT.place(x=1300, y=100)
-                self.log.place(x=1300, y=340)
-                self.datasim.place(x=900,y=16)
-                
-                # Functies die geloopt worden oproepen.
-                self.temp.TempRead()
-                self.afstand.distanceRead()
+                self.lights_tab.place(x=20, y=300)
+                self.operations_tab.place(x=20, y=500)
+                self.machine_tab.place(x=20, y=700)
+                PageChange(self, 2)
                 Thread(target=LogRequest).start()
             
             else:
@@ -155,8 +208,7 @@ class App(customtkinter.CTk):
         
         self.login_button=customtkinter.CTkButton(master=self,
                                                   text="Login",
-                                                  command=Start, 
-                                                  fg_color=color, 
+                                                  command=Login,
                                                   width=400, 
                                                   height=100,
                                                   font=self.fontbold)
