@@ -8,7 +8,7 @@
 
 
 from flask import request, jsonify
-from databasevuller import Temperatuur,Afstand,db,app,actielog
+from CreateDB import Temperatuur,Afstand,db,app,actielog
 from jsonhandler import Writer, Reader
 import datetime
 import random

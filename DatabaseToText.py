@@ -1,4 +1,4 @@
-from databasevuller import app, Temperatuur, Afstand,actielog
+from CreateDB import app, Temperatuur, Afstand,actielog
 from translate import translate
 
 def getdata():
@@ -29,7 +29,7 @@ def getdata():
         '''Acties''' 
         acties=[]
         if actielog.query.all()==[]:
-            acties="geen afstand opnames"
+            acties="geen log opnames"
         else:
             for x in (actielog.query.all()):
                 acties.append((x.tijd,x.actions))
@@ -37,6 +37,8 @@ def getdata():
 
 def makeup(list):
     '''Formatteerd alle gegevens'''
+    if type(list)==str:
+        return list
     try:
         string=""
         for x in list:

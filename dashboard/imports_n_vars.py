@@ -31,7 +31,7 @@ parent = os.path.dirname(current)
 sys.path.append(parent)
 from translate import translate
 from jsonhandler import Writer, Reader
-from databasevuller import app, Temperatuur, Afstand
+from CreateDB import app, Temperatuur, Afstand
 
 #Color Variable
 color="#00A0AC"

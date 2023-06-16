@@ -1,6 +1,6 @@
 import pygame
 from time import sleep
-from databasevuller import app,Temperatuur,Afstand
+from CreateDB import app,Temperatuur,Afstand
 import os
 
 def run(dag=0):
