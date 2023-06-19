@@ -54,8 +54,9 @@ def run(dag=0):
             win.blit(size,(0,waterlevel))
 
         bootx=250
-        nap=0
         waterlevel=600
+
+
         pygame.init()
         info = pygame.display.Info()
         SIZE = info.current_w, info.current_h
@@ -83,28 +84,40 @@ def run(dag=0):
                     add_zand(zand,(800+(100*i)-offset*100),750+((distlist[i][0]-2)*50))
                     add_zand(zand,(800+(100*len(distlist))+(100*i))-offset*100,750)
 
-        def myround(x, base=5):
-            return base * round(x/base)
-
-        for i in range(len(templist)):
-            temp= templist[i]
-            afst= distlist[i]
-            waterlevel= myround(600 - (afst[1]*38),1)   
-
+        def makeroom():
+            '''Objecten aanmaken'''
             background(image)
             genzand(i)
             polder(water)
             add_boat(boat)
             add_schuif(schuif,i)
             add_motor(motor)
-
             temperatuur = my_font.render(f"Tijd: {temp[0]}, Temperatuur: {temp[1]}, Afstand: {afst[0]}, NAP: {afst[1]} Ronde {i+1} van de {len(templist)}" , False, (0, 0, 0))
             win.blit(temperatuur, (0,0))
+
+        for i in range(len(templist)):
+            #huidige temperatuur en afstand krijgen
+            temp= templist[i]
+            afst= distlist[i]
+
+            #Water berekenen
+            newwaterlevel= round(600 -afst[1]*40)
+            verschil=newwaterlevel-waterlevel
+            stap=verschil/10
+            if round(newwaterlevel)==round(waterlevel):
+                makeroom()
+                pygame.display.update()
+                sleep(1)
+            else:
+                while round(newwaterlevel)!=round(waterlevel):
+                    waterlevel=round(waterlevel+stap,1)
+                    makeroom()
+                    pygame.display.update()
+
+                #seconde wachten
+                sleep(1)
             
-            pygame.display.update()
-            
-            sleep(1)
-            
+            #afsluiten
             for event in pygame.event.get():
                 if event.type == pygame.QUIT or event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
                     pygame.display.quit()
