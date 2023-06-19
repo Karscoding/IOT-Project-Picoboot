@@ -6,7 +6,7 @@ class LightsMaster(customtkinter.CTkFrame):
         # add widgets onto the frame...
         self.header_name = header_name
         
-        self.font = customtkinter.CTkFont(**fontbold)
+        self.font = customtkinter.CTkFont(**fonthuge)
 
         
         self.label = customtkinter.CTkLabel(self,
@@ -23,7 +23,7 @@ class PLights(customtkinter.CTkFrame):
         # add widgets onto the frame...
         self.header_name = header_name
         
-        self.font = customtkinter.CTkFont(**fontbold)
+        self.font = customtkinter.CTkFont(**fonthuge)
 
 
         self.radio_button_var = customtkinter.StringVar(value="")
@@ -39,7 +39,7 @@ class PLights(customtkinter.CTkFrame):
                                                            **self.radiobutton,
                                                            value="Links")
         
-        self.radio_button_1.pack(padx=10, pady=20)
+        self.radio_button_1.pack(padx=40, pady=30)
         
         
         self.radio_button_2 = customtkinter.CTkRadioButton(self, 
@@ -47,7 +47,7 @@ class PLights(customtkinter.CTkFrame):
                                                            **self.radiobutton,
                                                            value="Rechts")
         
-        self.radio_button_2.pack(padx=10, pady=20)
+        self.radio_button_2.pack(padx=40, pady=30)
         
         
         self.radio_button_2 = customtkinter.CTkRadioButton(self, 
@@ -55,7 +55,7 @@ class PLights(customtkinter.CTkFrame):
                                                            **self.radiobutton,
                                                            value="Uit")
         
-        self.radio_button_2.pack(padx=10, pady=20)
+        self.radio_button_2.pack(padx=40, pady=30)
         
 
     def call_to_write(self):
@@ -71,7 +71,7 @@ class MainLights(customtkinter.CTkFrame):
         # add widgets onto the frame...
         self.header_name = header_name
         
-        self.font = customtkinter.CTkFont(**fontbold)
+        self.font = customtkinter.CTkFont(**fonthuge)
 
 
         self.radio_button_var = customtkinter.StringVar(value="")
@@ -87,7 +87,7 @@ class MainLights(customtkinter.CTkFrame):
                                                            **self.radiobutton,
                                                            value="Aan")
         
-        self.radio_button_3.pack(padx=10, pady=39)
+        self.radio_button_3.pack(padx=40, pady=39)
         
         
         self.radio_button_3 = customtkinter.CTkRadioButton(self, 
@@ -95,7 +95,7 @@ class MainLights(customtkinter.CTkFrame):
                                                            **self.radiobutton,
                                                            value="Uit")
         
-        self.radio_button_3.pack(padx=10, pady=39)
+        self.radio_button_3.pack(padx=40, pady=39)
         
     def call_to_write(self):
         """Sends value to opdracht.txt"""

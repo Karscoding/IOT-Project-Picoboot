@@ -94,9 +94,9 @@ class App(customtkinter.CTk):
                 self.plight = PLights(master=self.light_master)
                 self.lights_control = MainLights(master=self.light_master)
                 
-                self.light_master.place(x=400, y=100)
-                self.plight.pack(padx=20, pady=20, side=customtkinter.LEFT)
-                self.lights_control.pack(padx=20, pady=20, side=customtkinter.RIGHT)
+                self.light_master.place(x=260, y=190)
+                self.plight.pack(padx=75, pady=75, side=customtkinter.LEFT)
+                self.lights_control.pack(padx=75, pady=75, side=customtkinter.RIGHT)
                 
                 self.current_page = 1
                 
@@ -111,10 +111,10 @@ class App(customtkinter.CTk):
                 
                 self.besturings.place(x=100, y=10)
                 self.temp.place(x=1400, y=0)
-                self.afstand.place(x=625, y=100)
-                self.noodstop.place(x=625, y=650)
+                self.afstand.place(x=200, y=100)
+                self.noodstop.place(x=500, y=650)
                 self.log.place(x=1300, y=340)
-                self.datasim.place(x=900,y=16)
+                self.datasim.place(x=1000,y=16)
                 
                 self.current_page = 2
             
@@ -144,21 +144,23 @@ class App(customtkinter.CTk):
         self.tijd.place(x=0,y=0)
         
         
-        self.lights_tab = customtkinter.CTkButton(master=self,
+        self.tab_bar = customtkinter.CTkFrame(master=self)
+        
+        self.lights_tab = customtkinter.CTkButton(master=self.tab_bar,
                                                   width=100,
                                                   height=100,
                                                   text="V",
                                                   font=self.fontbold,
                                                   command= lambda: PageChange(self, 1))
         
-        self.operations_tab = customtkinter.CTkButton(master=self,
+        self.operations_tab = customtkinter.CTkButton(master=self.tab_bar,
                                                   width=100,
                                                   height=100,
                                                   text="O",
                                                   font=self.fontbold,
                                                   command= lambda: PageChange(self, 2))
         
-        self.machine_tab = customtkinter.CTkButton(master=self,
+        self.machine_tab = customtkinter.CTkButton(master=self.tab_bar,
                                                   width=100,
                                                   height=100,
                                                   text="M",
@@ -184,9 +186,10 @@ class App(customtkinter.CTk):
                 self.login_button.configure(command=None)
             
             elif userInput == "1234":
-                self.lights_tab.place(x=20, y=300)
-                self.operations_tab.place(x=20, y=500)
-                self.machine_tab.place(x=20, y=700)
+                self.tab_bar.place(x=0, y=113)
+                self.lights_tab.pack(padx=20, pady=80)
+                self.operations_tab.pack(padx=20, pady=80)
+                self.machine_tab.pack(padx=20, pady=80)
                 PageChange(self, 2)
                 Thread(target=LogRequest).start()
             

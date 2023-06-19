@@ -16,7 +16,7 @@ class Besturingsmodus(customtkinter.CTkFrame):
                                                            value="Handmatig", 
                                                            variable=self.radio_button_var, 
                                                            command=self.call_to_write,
-                                                           font=self.fontmedium)
+                                                           font=self.fontbold)
         
         self.radio_button_1.pack(padx=10, pady=20, side=customtkinter.LEFT)
         
@@ -26,7 +26,7 @@ class Besturingsmodus(customtkinter.CTkFrame):
                                                            value="Automatisch", 
                                                            variable=self.radio_button_var, 
                                                            command=self.call_to_write,
-                                                           font=self.fontmedium)
+                                                           font=self.fontbold)
         
         self.radio_button_2.pack(padx=10, pady=20, side=customtkinter.RIGHT)
         

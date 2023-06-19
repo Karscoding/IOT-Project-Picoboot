@@ -23,6 +23,33 @@ def getdata(dag=0):
               templist.append(datum)  
     return templist,correctedlist
 
+def grafiek(self):
+    '''Grafiek'''
+    self.fig = Figure(figsize=(5,4), dpi=100)
+    xas=getdata()[0]
+    yas=getdata()[1]
+    #print(getdata())
+    self.fig.add_subplot(111).plot(
+        xas, 
+        yas, 
+        'go-', label='line 1', linewidth=2)
+    
+
+    '''Maak Ruimte voor grafiek'''
+    self.canvas = FigureCanvasTkAgg(self.fig, master=self)
+    self.canvas.draw()
+    self.canvas.get_tk_widget().pack(padx=70, pady=25)
+
+def label(self):                
+    self.label = customtkinter.CTkLabel(self, 
+                                        width=120, 
+                                        height=25, 
+                                        corner_radius=8,
+                                        anchor="center", 
+                                        text="Afstand: nog niet gemeten",
+                                        font=self.fonthuge)
+    self.label.pack(padx=110,pady=200)
+            
 
 
 class afst(customtkinter.CTkFrame):
@@ -30,8 +57,8 @@ class afst(customtkinter.CTkFrame):
         super().__init__(master,*args, **kwargs)
         self.header_name = header_name
         
+        self.fonthuge = customtkinter.CTkFont(**fonthuge)
         self.fontbold = customtkinter.CTkFont(**fontbold)
-        self.fontmedium = customtkinter.CTkFont(**fontmedium)
 
         self.swapped=1
         '''Grafiek'''
@@ -51,7 +78,7 @@ class afst(customtkinter.CTkFrame):
         
         self.disable = customtkinter.CTkButton(self,
                                                text="Switch",
-                                               font=self.fontbold,
+                                               font=self.fonthuge,
                                                command=self.Swap)
         
         self.disable.pack(padx=20, pady=20)
