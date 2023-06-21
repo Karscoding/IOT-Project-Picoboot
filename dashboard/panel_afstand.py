@@ -91,7 +91,7 @@ class afst(customtkinter.CTkFrame):
                                             anchor="center", 
                                             text="Afstand: nog niet gemeten",
                                             font=self.fontbold)
-        
+        self.distanceRead()
         self.label.pack(padx=110,pady=200)
 
     def Swap(self):
@@ -122,7 +122,6 @@ class afst(customtkinter.CTkFrame):
                                                 anchor="center", 
                                                 text="Afstand: nog niet gemeten",
                                                 font=self.fontbold)
-        
             self.label.pack(padx=110,pady=200)
             
             self.swapped=1
@@ -139,9 +138,7 @@ class afst(customtkinter.CTkFrame):
     
     
     def distanceRead(self):
-        if  self.swapped==1:
-            self.label.configure(text=f"Diepte : {Reader('Diepte')}, Schuif {Reader('InstructionSchuif')}")
-
-            # schedule the next update after 5 seconds
-            self.after(5000, self.distanceRead)
+        self.label.configure(text=f"Diepte : {Reader('Diepte')}, Schuif {Reader('InstructionSchuif')}")
+        # schedule the next update after 5 seconds
+        self.after(5000, self.distanceRead)
     
