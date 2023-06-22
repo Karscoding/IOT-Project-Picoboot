@@ -5,20 +5,25 @@ class Tijd(customtkinter.CTkFrame):
         super().__init__(master, *args, **kwargs)
         self.header_name= header_name
         
-        self.font = customtkinter.CTkFont(**fontbold)
+        self.font = customtkinter.CTkFont(size=40)
         
         self.tijdlabel = customtkinter.CTkLabel(self,
-                                            anchor="center", 
+                                            anchor="center",
                                             text="",
                                             font=self.font)
         
-        self.tijdlabel.pack(ipadx=600, ipady=25)
+        self.tijdlabel.place(x=640, y=25)
+        
+        self.filling = customtkinter.CTkLabel(self,
+                                              text="")
+        
+        self.filling.pack(padx=1000, pady=40)
         
         if os.getcwd().split("\\")[-1]=='Picoboot':
-            self.logo=customtkinter.CTkImage(Image.open("dashboard/images/logo.png"), size=(80,80))
+            self.logo=customtkinter.CTkImage(Image.open("dashboard/images/logo.png"), size=(110,110))
         else:
             print(os.getcwd())
-            self.logo=customtkinter.CTkImage(Image.open("images/logo.png"), size=(80,80))
+            self.logo=customtkinter.CTkImage(Image.open("images/logo.png"), size=(110,110))
         self.logowindow=customtkinter.CTkLabel(master=self,image=self.logo, text="")
         self.logowindow.place(x=0,y=0)
         

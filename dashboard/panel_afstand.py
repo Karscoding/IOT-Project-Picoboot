@@ -47,7 +47,7 @@ def label(self):
                                         corner_radius=8,
                                         anchor="center", 
                                         text="Afstand: nog niet gemeten",
-                                        font=self.fontbold)
+                                        font=self.fonthuge)
     self.label.pack(padx=110,pady=200)
             
 
@@ -57,8 +57,8 @@ class afst(customtkinter.CTkFrame):
         super().__init__(master,*args, **kwargs)
         self.header_name = header_name
         
+        self.fonthuge = customtkinter.CTkFont(**fonthuge)
         self.fontbold = customtkinter.CTkFont(**fontbold)
-        self.fontmedium = customtkinter.CTkFont(**fontmedium)
 
         self.swapped=1
         
@@ -66,10 +66,10 @@ class afst(customtkinter.CTkFrame):
         
         self.disable = customtkinter.CTkButton(self,
                                                text="Switch",
-                                               font=self.fontbold,
+                                               font=self.fonthuge,
                                                command=self.Swap)
         
-        self.disable.pack(padx=20, pady=20)
+        self.disable.pack(padx=400, pady=5)
         
         '''Afstand zelf'''
         self.label = customtkinter.CTkLabel(self, 
@@ -79,7 +79,7 @@ class afst(customtkinter.CTkFrame):
                                             anchor="center", 
                                             text="Afstand: nog niet gemeten",
                                             font=self.fontbold)
-        
+        self.distanceRead()
         self.label.pack(padx=110,pady=200)
 
     def Swap(self):
@@ -88,8 +88,23 @@ class afst(customtkinter.CTkFrame):
             self.swapped=0
             grafiek(self)
             
+
+            '''Maak Ruimte voor grafiek'''
+            self.canvas = FigureCanvasTkAgg(self.fig, master=self)
+            self.canvas.draw()
+            self.canvas.get_tk_widget().pack(padx=70, pady=18)
         else:
             self.canvas.get_tk_widget().destroy()
+            
+            self.label = customtkinter.CTkLabel(self, 
+                                                width=120, 
+                                                height=25, 
+                                                corner_radius=8,
+                                                anchor="center", 
+                                                text="Afstand: nog niet gemeten",
+                                                font=self.fontbold)
+            self.label.pack(padx=110,pady=200)
+            
             self.swapped=1
             label(self)
 
@@ -103,9 +118,7 @@ class afst(customtkinter.CTkFrame):
     
     
     def distanceRead(self):
-        if  self.swapped==1:
-            self.label.configure(text=f"Diepte : {Reader('Diepte')}, Schuif {Reader('InstructionSchuif')}")
-
-            # schedule the next update after 5 seconds
-            self.after(5000, self.distanceRead)
+        self.label.configure(text=f"Diepte : {Reader('Diepte')}, Schuif {Reader('InstructionSchuif')}")
+        # schedule the next update after 5 seconds
+        self.after(5000, self.distanceRead)
     

@@ -26,13 +26,13 @@ from panel_lights import LightsMaster, PLights, MainLights
 from panel_nap import NAPINPUT
 from panel_log import HistoryLog
 from panel_sim import DataSim
+from panel_livesim import Livesim, diepte, Schuif,zand
 import os
 
 url = f'http://localhost:5000/log'
 
 customtkinter.set_default_color_theme("blue")
 customtkinter.set_appearance_mode("dark")
-
 
 class App(customtkinter.CTk):
     def __init__(self):
@@ -58,13 +58,14 @@ class App(customtkinter.CTk):
             
             
             ! pageTo = integer !
-            (1 t/m 3) else Error
+            (1 t/ 4 else Error
             
             
             ! Page Numbers : !
             VerlichtingsPagina - 1
             Operationeel       - 2
             Machine            - 3
+            LiveSim            - 4
             """
             
             if self.current_page == 0:
@@ -88,15 +89,22 @@ class App(customtkinter.CTk):
                 
             elif self.current_page == 3:
                 self.Status.destroy()
-                
+            
+            elif self.current_page ==4:
+                self.livesim.destroy()
+                self.zand.destroy()
+                self.schuif.destroy()
+                self.afstand.destroy()
+
+
             if pageTo == 1:
                 self.light_master = LightsMaster(master=self, header_name="Lampen Besturing")
                 self.plight = PLights(master=self.light_master)
                 self.lights_control = MainLights(master=self.light_master)
                 
-                self.light_master.place(x=400, y=100)
-                self.plight.pack(padx=20, pady=20, side=customtkinter.LEFT)
-                self.lights_control.pack(padx=20, pady=20, side=customtkinter.RIGHT)
+                self.light_master.place(x=260, y=190)
+                self.plight.pack(padx=75, pady=75, side=customtkinter.LEFT)
+                self.lights_control.pack(padx=75, pady=75, side=customtkinter.RIGHT)
                 
                 self.current_page = 1
                 
@@ -111,20 +119,69 @@ class App(customtkinter.CTk):
                 
                 self.besturings.place(x=100, y=10)
                 self.temp.place(x=1400, y=0)
-                self.afstand.place(x=625, y=100)
-                self.noodstop.place(x=625, y=650)
+                self.afstand.place(x=160, y=132)
+                self.noodstop.place(x=160, y=653)
                 self.log.place(x=1300, y=340)
-                self.datasim.place(x=900,y=16)
+                self.datasim.place(x=1000,y=16)
                 
                 self.current_page = 2
             
             elif pageTo == 3:
                 self.Status = StatusFrame(master=self, header_name="Status machine")
 
-                self.Status.place(x=500, y=470)
+                self.Status.place(x=160, y=132)
                 
                 self.current_page = 3
             
+            elif pageTo ==4:
+                diepteafstand=Reader("Diepte")
+                mainy=300-((diepteafstand-2)*75)
+
+                self.livesim=Livesim(master=self,header_name="LiveSim")
+                self.zand=zand(master=self,header_name="zand")
+                self.schuif=Schuif(master=self,header_name="schuif")
+                self.afstand=diepte(master=self,header_name="diepte",hoogte=750-mainy-200)
+
+                self.livesim.place(x=200,y=mainy)
+                self.zand.place(x=200,y=750)
+                self.schuif.place(x=1200,y=mainy+200)
+                self.afstand.place(y=mainy+200,x=800)
+
+                self.current_page=4
+                def update():
+                    if self.current_page!=4:
+                        return
+                    else:
+                        try:
+                            self.livesim.destroy()
+                            self.zand.destroy()
+                            self.schuif.destroy()
+                            self.afstand.destroy()
+
+                            diepteafstand=Reader("Diepte")
+                            mainy=300-((diepteafstand-2)*75)
+
+                            self.livesim=Livesim(master=self,header_name="LiveSim")
+                            self.zand=zand(master=self,header_name="zand")
+                            self.schuif=Schuif(master=self,header_name="schuif")
+                            self.afstand=diepte(master=self,header_name="diepte",hoogte=750-mainy-200)
+
+                            self.livesim.place(x=200,y=mainy)
+                            self.zand.place(x=200,y=750)
+
+                            if mainy> 250:
+                                self.schuif.place(x=1200,y=460)
+                            else:
+                                self.schuif.place(x=1200,y=mainy+200)
+                            self.afstand.place(y=mainy+200,x=800)
+
+                            self.current_page=4
+                            sleep(5)
+                            update()
+                        except:
+                            ""
+                Thread(target=update).start()
+
             else:
                 raise ValueError(f"Foute pagina nummer gegeven")
         
@@ -144,26 +201,36 @@ class App(customtkinter.CTk):
         self.tijd.place(x=0,y=0)
         
         
-        self.lights_tab = customtkinter.CTkButton(master=self,
+        self.tab_bar = customtkinter.CTkFrame(master=self)
+        
+        self.lights_tab = customtkinter.CTkButton(master=self.tab_bar,
                                                   width=100,
                                                   height=100,
                                                   text="V",
                                                   font=self.fontbold,
                                                   command= lambda: PageChange(self, 1))
         
-        self.operations_tab = customtkinter.CTkButton(master=self,
+        self.operations_tab = customtkinter.CTkButton(master=self.tab_bar,
                                                   width=100,
                                                   height=100,
                                                   text="O",
                                                   font=self.fontbold,
                                                   command= lambda: PageChange(self, 2))
         
-        self.machine_tab = customtkinter.CTkButton(master=self,
+        self.machine_tab = customtkinter.CTkButton(master=self.tab_bar,
                                                   width=100,
                                                   height=100,
                                                   text="M",
                                                   font=self.fontbold,
                                                   command= lambda: PageChange(self, 3))
+        
+        self.livesim_tab= customtkinter.CTkButton(master=self.tab_bar,
+                                                  width=100,
+                                                  height=100,
+                                                  text="LS",
+                                                  font=self.fontbold,
+                                                  command=lambda: PageChange(self,4)
+                                                  )
 
 
         tijd=translate()
@@ -184,9 +251,11 @@ class App(customtkinter.CTk):
                 self.login_button.configure(command=None)
             
             elif userInput == "1234":
-                self.lights_tab.place(x=20, y=300)
-                self.operations_tab.place(x=20, y=500)
-                self.machine_tab.place(x=20, y=700)
+                self.tab_bar.place(x=0, y=113)
+                self.lights_tab.pack(padx=20, pady=50)
+                self.operations_tab.pack(padx=20, pady=50)
+                self.machine_tab.pack(padx=20, pady=50)
+                self.livesim_tab.pack(padx=20,pady=50)
                 PageChange(self, 2)
                 Thread(target=LogRequest).start()
             
