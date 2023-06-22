@@ -119,8 +119,8 @@ class App(customtkinter.CTk):
                 
                 self.besturings.place(x=100, y=10)
                 self.temp.place(x=1400, y=0)
-                self.afstand.place(x=200, y=100)
-                self.noodstop.place(x=500, y=650)
+                self.afstand.place(x=160, y=132)
+                self.noodstop.place(x=160, y=653)
                 self.log.place(x=1300, y=340)
                 self.datasim.place(x=1000,y=16)
                 
@@ -129,7 +129,7 @@ class App(customtkinter.CTk):
             elif pageTo == 3:
                 self.Status = StatusFrame(master=self, header_name="Status machine")
 
-                self.Status.place(x=500, y=470)
+                self.Status.place(x=160, y=132)
                 
                 self.current_page = 3
             

@@ -6,18 +6,18 @@ class StatusFrame(customtkinter.CTkFrame):
         # add widgets onto the frame...
         self.header_name = header_name
         
-        self.fontbold = customtkinter.CTkFont(**fontbold)
+        self.fonthuge = customtkinter.CTkFont(**fonthuge)
         self.fontmedium = customtkinter.CTkFont(**fontmedium)
         
         self.statuslabel = {"corner_radius":8,
-                            "font":self.fontbold,
+                            "font":self.fonthuge,
                             "fg_color":("green", "#3e8747")}
         
         self.label = customtkinter.CTkLabel(self,
                                             fg_color=("orange", color), 
                                             corner_radius=8,
                                             text="Status Machine",
-                                            font=self.fontbold)
+                                            font=self.fonthuge)
         
         self.label.pack(padx=175, pady=30)
         
@@ -28,7 +28,7 @@ class StatusFrame(customtkinter.CTkFrame):
                                             **self.statuslabel,
                                             text="Aggregraat")
         
-        self.label.pack(padx=0, pady=15)
+        self.label.pack(padx=0, pady=50)
         
         
         self.label = customtkinter.CTkLabel(self,
@@ -37,7 +37,7 @@ class StatusFrame(customtkinter.CTkFrame):
                                             **self.statuslabel, 
                                             text="Compressor")
         
-        self.label.pack(padx=0, pady=15)
+        self.label.pack(padx=0, pady=50)
         
         
         self.label = customtkinter.CTkLabel(self,
@@ -46,7 +46,7 @@ class StatusFrame(customtkinter.CTkFrame):
                                             **self.statuslabel,
                                             text="Verlichting")
         
-        self.label.pack(padx=0, pady=15)
+        self.label.pack(padx=0, pady=50)
         
         
         self.label = customtkinter.CTkLabel(self,
@@ -55,4 +55,4 @@ class StatusFrame(customtkinter.CTkFrame):
                                             **self.statuslabel, 
                                             text="Schuif")
         
-        self.label.pack(padx=0, pady=15)
+        self.label.pack(padx=0, pady=50)

@@ -8,14 +8,15 @@ class Tijd(customtkinter.CTkFrame):
         self.font = customtkinter.CTkFont(size=40)
         
         self.tijdlabel = customtkinter.CTkLabel(self,
-                                            anchor="center", 
+                                            anchor="center",
                                             text="",
                                             font=self.font)
         
-        self.tijdlabel.place(x=600, y=25)
+        self.tijdlabel.place(x=640, y=25)
         
         self.filling = customtkinter.CTkLabel(self,
                                               text="")
+        
         self.filling.pack(padx=1000, pady=40)
         
         if os.getcwd().split("\\")[-1]=='Picoboot':

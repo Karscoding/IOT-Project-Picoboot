@@ -81,7 +81,7 @@ class afst(customtkinter.CTkFrame):
                                                font=self.fonthuge,
                                                command=self.Swap)
         
-        self.disable.pack(padx=20, pady=20)
+        self.disable.pack(padx=400, pady=5)
         
         '''Afstand zelf'''
         self.label = customtkinter.CTkLabel(self, 
@@ -111,7 +111,7 @@ class afst(customtkinter.CTkFrame):
             '''Maak Ruimte voor grafiek'''
             self.canvas = FigureCanvasTkAgg(self.fig, master=self)
             self.canvas.draw()
-            self.canvas.get_tk_widget().pack(padx=70, pady=25)
+            self.canvas.get_tk_widget().pack(padx=70, pady=18)
         else:
             self.canvas.get_tk_widget().destroy()
             

@@ -10,7 +10,7 @@ class NoodStop(customtkinter.CTkFrame):
         super().__init__(master,*args, **kwargs)
         self.header_name = header_name
 
-        self.fontbold = customtkinter.CTkFont(**fontbold)
+        self.fonthuge = customtkinter.CTkFont(**fonthuge)
         self.fontmedium = customtkinter.CTkFont(**fontmedium)
 
         def ramp():
@@ -28,16 +28,16 @@ class NoodStop(customtkinter.CTkFrame):
         
 
         self.noodstopbutton = customtkinter.CTkButton(self, 
-                                            width=150, 
-                                            height=150, 
+                                            width=300, 
+                                            height=175, 
                                             anchor="center", 
                                             text="NOODSTOP",
                                             fg_color=("red"),
                                             hover_color=("dark red"),
                                             corner_radius=240,
                                             command=ramp,
-                                            font=self.fontbold)
+                                            font=self.fonthuge)
         
-        self.noodstopbutton.pack(padx=161,pady=43)
+        self.noodstopbutton.pack(padx=490,pady=30)
         
         
