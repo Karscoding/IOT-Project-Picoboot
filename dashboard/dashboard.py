@@ -158,8 +158,6 @@ class App(customtkinter.CTk):
                             self.schuif.destroy()
                             self.afstand.destroy()
 
-
-                            sleep(0.2)
                             diepteafstand=Reader("Diepte")
                             mainy=300-((diepteafstand-2)*75)
                             
@@ -170,7 +168,10 @@ class App(customtkinter.CTk):
 
                             self.livesim.place(x=200,y=mainy)
                             self.zand.place(x=200,y=750)
-                            self.schuif.place(x=1200,y=mainy+200)
+                            if mainy+200> 450:
+                                self.schuif.place(x=1200,y=460)
+                            else:
+                                self.schuif.place(x=1200,y=mainy+200)
                             self.afstand.place(y=mainy+200,x=800)
 
                             self.current_page=4
