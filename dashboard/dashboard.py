@@ -168,7 +168,8 @@ class App(customtkinter.CTk):
 
                             self.livesim.place(x=200,y=mainy)
                             self.zand.place(x=200,y=750)
-                            if mainy+200> 450:
+
+                            if mainy> 250:
                                 self.schuif.place(x=1200,y=460)
                             else:
                                 self.schuif.place(x=1200,y=mainy+200)
