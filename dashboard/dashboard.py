@@ -15,6 +15,7 @@
 
 # Imports
 from imports_n_vars import *
+import hashlib
 from panel_tijd import Tijd
 from panel_progress import ProgressFrame
 from panel_besturingsmodus import Besturingsmodus
@@ -245,12 +246,13 @@ class App(customtkinter.CTk):
             
             """
             userInput = self.loginfield.get()
-            
+            var = userInput.encode('utf-8')
+            hashedInput = hashlib.sha1(var).hexdigest()
             if self.login_attempts >= 4:
                 self.Errorlabel.configure(text="Te veel pogingen")
                 self.login_button.configure(command=None)
             
-            elif userInput == "1234":
+            elif hashedInput == "7110eda4d09e062aa5e4a390b0a572ac0d2c0220":
                 self.tab_bar.place(x=0, y=113)
                 self.lights_tab.pack(padx=20, pady=50)
                 self.operations_tab.pack(padx=20, pady=50)
