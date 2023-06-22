@@ -160,7 +160,7 @@ class App(customtkinter.CTk):
 
                             diepteafstand=Reader("Diepte")
                             mainy=300-((diepteafstand-2)*75)
-                            
+
                             self.livesim=Livesim(master=self,header_name="LiveSim")
                             self.zand=zand(master=self,header_name="zand")
                             self.schuif=Schuif(master=self,header_name="schuif")
