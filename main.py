@@ -7,13 +7,13 @@ import config
 import urequests as requests
 import socket
 
-laptop_ip="10.51.0.30"
+laptop_ip="192.168.137.1"
 
 url = f"http://{laptop_ip}:{config.PORT}{config.ENDPOINT}"
 aurl= f'http://{laptop_ip}:{config.PORT}{config.AENDPOINT}'
 gurl= f'http://{laptop_ip}:{config.PORT}{config.GETPOINT}'
 
-sharp_sensor = Pin(26, Pin.IN)
+sharp_sensor = Pin(33, Pin.IN)
 
 tmp34 = Pin(34, Pin.IN)
 adc = ADC(tmp34)
@@ -79,5 +79,5 @@ while connection.isconnected():
     # sleep a little until next temperature reading
         sleep(3)
     except:
-        ''
+        sleep(3)
 
