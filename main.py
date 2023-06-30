@@ -24,7 +24,7 @@ secled= Pin(32, Pin.OUT)
 greenled=Pin(14,Pin.OUT)
 restleds=Pin(25,Pin.OUT)
 
-
+auth = ('teamH1', 'verified')
 while connection.isconnected():
     try:
         led.off()
@@ -39,8 +39,8 @@ while connection.isconnected():
         
         led.on()
 
-        lights = requests.post(gurl, json=None)
-        temperatuur = requests.post(url, json=temp)
+        lights = requests.post(gurl, json=None, auth=auth)
+        temperatuur = requests.post(url, json=temp, auth=auth)
         led.off()
 
 

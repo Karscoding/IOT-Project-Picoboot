@@ -4,6 +4,6 @@ import json
 import config
 
 url = f"http://localhost:5000/temperature"
-
+auth = ('teamH1', 'verified')
 temp = 39.250
-requests.post(url, json=temp)
+requests.post(url, json=temp, auth=auth)

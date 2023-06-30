@@ -15,7 +15,8 @@ import random
 import json
 from translate import translate
 current=3
-
+verwacht_teamnaam = 'teamH1'
+verwacht_wachtwoord = 'verified'
 def generatediepte(current):
     verschil=random.randrange(-10,10)
     verschil=verschil/10
@@ -26,7 +27,14 @@ def generatediepte(current):
     
 @app.route("/temperature", methods=["POST"])
 def temperature():
-    data = round(float(request.json), 2)
+    auth = request.authorization
+    if not auth or not auth.username or not auth.password:
+        return jsonify({'message': 'Ongeautoriseerde toegang'}), 401
+    if auth.username == verwacht_teamnaam and auth.password == verwacht_wachtwoord:
+        data = round(float(request.json), 2)
+        return jsonify({'message': 'Gegevens ontvangen en verwerkt'})
+    else:
+        return jsonify({'message': 'Ongeautoriseerde toegang'}), 401
         
     #Function, see Jsonhandler.py
     Writer("Temp", data)

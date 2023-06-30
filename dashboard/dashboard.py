@@ -63,6 +63,7 @@ class App(customtkinter.CTk):
             
             
             ! Page Numbers : !
+            Inlogpagina        - 0
             VerlichtingsPagina - 1
             Operationeel       - 2
             Machine            - 3
