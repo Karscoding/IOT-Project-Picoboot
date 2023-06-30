@@ -73,5 +73,5 @@ def writetotext(alledata):
     with open(f"{translate().split()[0]}{translate().split()[1]}.txt","a") as f:
         f.write(string)
 
-
-writetotext(getdata())
+if __name__ == "__main__":
+    writetotext(getdata())

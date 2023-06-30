@@ -28,6 +28,7 @@ from panel_nap import NAPINPUT
 from panel_log import HistoryLog
 from panel_sim import DataSim
 from panel_livesim import Livesim, diepte, Schuif,zand
+from panel_dbcontol import DBcontrol
 import os
 
 url = f'http://localhost:5000/log'
@@ -132,6 +133,9 @@ class App(customtkinter.CTk):
 
                 self.Status.place(x=160, y=132)
                 
+                self.DBcontrol = DBcontrol(master=self,header_name="DBcontrol")
+                self.DBcontrol.place(x=900,y=132)
+
                 self.current_page = 3
             
             elif pageTo ==4:

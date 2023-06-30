@@ -32,6 +32,8 @@ sys.path.append(parent)
 from translate import translate
 from jsonhandler import Writer, Reader
 from CreateDB import app, Temperatuur, Afstand
+from EmptyDB import delete
+from DatabaseToText import makeup,getdata,writetotext
 
 #Color Variable
 color="#00A0AC"
