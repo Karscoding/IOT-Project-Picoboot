@@ -87,24 +87,8 @@ class afst(customtkinter.CTkFrame):
             self.label.destroy()
             self.swapped=0
             grafiek(self)
-            
-
-            '''Maak Ruimte voor grafiek'''
-            self.canvas = FigureCanvasTkAgg(self.fig, master=self)
-            self.canvas.draw()
-            self.canvas.get_tk_widget().pack(padx=70, pady=18)
         else:
-            self.canvas.get_tk_widget().destroy()
-            
-            self.label = customtkinter.CTkLabel(self, 
-                                                width=120, 
-                                                height=25, 
-                                                corner_radius=8,
-                                                anchor="center", 
-                                                text="Afstand: nog niet gemeten",
-                                                font=self.fontbold)
-            self.label.pack(padx=110,pady=200)
-            
+            self.canvas.get_tk_widget().destroy()            
             self.swapped=1
             label(self)
 
