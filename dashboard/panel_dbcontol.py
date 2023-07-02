@@ -26,38 +26,38 @@ class DBcontrol(customtkinter.CTkFrame):
             writetotext(getdata())
             sleep(1)
             delete()
-            self.sure.destroy()
+            #self.sure.destroy()
             self.ja.destroy()
             self.nee.destroy()
 
 
         def nee():
-            self.sure.destroy()
+            #self.sure.destroy()
             self.ja.destroy()
             self.nee.destroy()
 
         def usure():
-            self.sure = customtkinter.CTkLabel(self,
-                                            fg_color="red", 
-                                            corner_radius=8,
-                                            text="Dit print een bestand uit met alle huidige gegevens. \nHierna word de database geleegd. Weet u het zeker?.",
-                                            font=self.fontmedium)
-        
-            self.sure.pack(padx=0, pady=0)
+            # self.sure = customtkinter.CTkLabel(self,
+            #                                 fg_color="red", 
+            #                                 corner_radius=8,
+            #                                 text="Dit print een bestand uit met alle huidige gegevens. \nHierna word de database geleegd. Weet u het zeker?.",
+            #                                 font=self.fontmedium)
+            # self.sure.pack(padx=0, pady=0)
 
             self.ja = customtkinter.CTkButton(self,
-                                               text="ja",
+                                               text="Ja",
                                                font=self.fontmedium,
                                                command=ja)
         
             self.ja.pack(padx=0, pady=50,)
 
             self.nee = customtkinter.CTkButton(self,
-                                               text="nee",
+                                               text="Nee",
                                                font=self.fontmedium,
                                                command=nee)
         
             self.nee.pack(padx=0, pady=50)
+            return messagebox.showinfo("Waarschuwing","Dit print een bestand uit met alle huidige gegevens. \nHierna word de database geleegd. Weet u het zeker? Klik dan op Ja.")
 
         self.titel = customtkinter.CTkLabel(self,
                                             fg_color=(color), 
