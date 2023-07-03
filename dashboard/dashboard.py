@@ -91,6 +91,8 @@ class App(customtkinter.CTk):
                 
             elif self.current_page == 3:
                 self.Status.destroy()
+
+                self.DBcontrol.destroy()
             
             elif self.current_page ==4:
                 self.livesim.destroy()
@@ -125,7 +127,8 @@ class App(customtkinter.CTk):
                 self.noodstop.place(x=160, y=653)
                 self.log.place(x=1300, y=340)
                 self.datasim.place(x=1000,y=16)
-                
+                Thread(target=LogRequest).start()
+
                 self.current_page = 2
             
             elif pageTo == 3:

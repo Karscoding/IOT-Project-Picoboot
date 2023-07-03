@@ -7,23 +7,26 @@ import config
 import urequests as requests
 import socket
 
-laptop_ip="192.168.137.1"
+laptop_ip="10.51.0.101"
 
 url = f"http://{laptop_ip}:{config.PORT}{config.ENDPOINT}"
 aurl= f'http://{laptop_ip}:{config.PORT}{config.AENDPOINT}'
 gurl= f'http://{laptop_ip}:{config.PORT}{config.GETPOINT}'
 
-sharp_sensor = Pin(33, Pin.IN)
 
-tmp34 = Pin(34, Pin.IN)
-adc = ADC(tmp34)
-prop = 1100 / 65535
+try:
+    sharp_sensor = Pin(33, Pin.IN)
 
-led = Pin(2, Pin.OUT)
-secled= Pin(32, Pin.OUT)
-greenled=Pin(14,Pin.OUT)
-restleds=Pin(25,Pin.OUT)
+    tmp34 = Pin(34, Pin.IN)
+    adc = ADC(tmp34)
+    prop = 1100 / 65535
 
+    led = Pin(2, Pin.OUT)
+    secled= Pin(32, Pin.OUT)
+    greenled=Pin(14,Pin.OUT)
+    restleds=Pin(25,Pin.OUT)
+except:
+    ""
 
 while connection.isconnected():
     try:
@@ -72,8 +75,10 @@ while connection.isconnected():
                 greenled.off()
 
             if opdracht["InstructionAll"] == 'Aan':
+                print("alle lampen aan")
                 restleds.on()
             elif opdracht["InstructionAll"] == 'Uit':
+                print("alle lampen uit")
                 restleds.off()
 
     # sleep a little until next temperature reading

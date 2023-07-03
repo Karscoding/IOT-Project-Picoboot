@@ -102,7 +102,8 @@ class afst(customtkinter.CTkFrame):
     
     
     def distanceRead(self):
-        self.label.configure(text=f"Diepte : {Reader('Diepte')}, Schuif {Reader('InstructionSchuif')}")
-        # schedule the next update after 5 seconds
-        self.after(5000, self.distanceRead)
+        if self.swapped==1:
+            self.label.configure(text=f"Diepte : {Reader('Diepte')}, Schuif {Reader('InstructionSchuif')}")
+            # schedule the next update after 5 seconds
+            self.after(5000, self.distanceRead)
     
