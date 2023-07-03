@@ -322,13 +322,19 @@ class App(customtkinter.CTk):
             self.logo=customtkinter.CTkImage(Image.open("images/logo.png"), size=(110,110))
         self.logowindow=customtkinter.CTkLabel(master=self,image=self.logo, text="")
         self.logowindow.place(x=755,y=200)
-            
-        
+
+def key():
+    print(f"Pressed a")
+
 
 if __name__ == "__main__":
     app=App()
+
     if os.getcwd().split("\\")[-1]=='Picoboot':
         app.iconbitmap("dashboard/images/logo.ico")
     else:
         app.iconbitmap("images/logo.ico")
+    
+    app.bind("<a>", lambda x: key())
+
     app.mainloop()

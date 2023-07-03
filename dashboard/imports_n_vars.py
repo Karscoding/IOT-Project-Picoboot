@@ -12,7 +12,7 @@
 #
 
 import customtkinter 
-from tkinter import messagebox
+from tkinter import messagebox, Label
 from time import sleep
 from PIL import Image, ImageTk
 import os
@@ -56,3 +56,4 @@ fontsmall={"family":"Roboto",
 #Server Config Variables
 SENDPOINT='/input'
 PORT= '5000'
+
