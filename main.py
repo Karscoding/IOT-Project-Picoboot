@@ -10,7 +10,7 @@ import socket
 laptop_ip="192.168.68.72"
 
 url = f"http://{laptop_ip}:{config.PORT}{config.ENDPOINT}"
-aurl= f'http://{laptop_ip}:{config.PORT}{config.AENDPOINT}'
+#aurl= f'http://{laptop_ip}:{config.PORT}{config.AENDPOINT}'
 gurl= f'http://{laptop_ip}:{config.PORT}{config.GETPOINT}'
 
 
@@ -28,6 +28,7 @@ try:
 except:
     ""
 
+auth = ('teamH1', 'verified')
 while connection.isconnected():
     try:
         led.off()
@@ -42,8 +43,8 @@ while connection.isconnected():
         
         led.on()
 
-        lights = requests.post(gurl, json=None)
-        temperatuur = requests.post(url, json=temp)
+        lights = requests.post(gurl, json=None, auth=auth)
+        temperatuur = requests.post(url, json=temp, auth=auth)
         led.off()
 
 
