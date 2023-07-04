@@ -38,7 +38,7 @@ def grafiek(self):
     '''Maak Ruimte voor grafiek'''
     self.canvas = FigureCanvasTkAgg(self.fig, master=self)
     self.canvas.draw()
-    self.canvas.get_tk_widget().pack(padx=70, pady=25)
+    self.canvas.get_tk_widget().pack(padx=70, pady=17)
 
 def label(self):                
     self.label = customtkinter.CTkLabel(self, 
@@ -47,7 +47,7 @@ def label(self):
                                         corner_radius=8,
                                         anchor="center", 
                                         text="Afstand: nog niet gemeten",
-                                        font=self.fonthuge)
+                                        font=self.fontbold)
     self.label.pack(padx=110,pady=200)
             
 
@@ -69,7 +69,7 @@ class afst(customtkinter.CTkFrame):
                                                font=self.fonthuge,
                                                command=self.Swap)
         
-        self.disable.pack(padx=400, pady=5)
+        self.disable.pack(padx=627, pady=5)
         
         '''Afstand zelf'''
         self.label = customtkinter.CTkLabel(self, 
