@@ -86,12 +86,11 @@ class App(customtkinter.CTk):
                 self.temp.destroy()
                 self.afstand.destroy()
                 self.noodstop.destroy()
-                self.log.destroy()
                 self.datasim.destroy()
                 
             elif self.current_page == 3:
                 self.Status.destroy()
-
+                self.log.destroy()
                 self.DBcontrol.destroy()
             
             elif self.current_page ==4:
@@ -118,14 +117,12 @@ class App(customtkinter.CTk):
                 self.afstand = afst(master=self, header_name='afstand')
                 self.NAPINPUT = NAPINPUT(master=self, header_name="Nap Invoer")
                 self.noodstop = NoodStop(master=self, header_name="Noodstop")
-                self.log = HistoryLog(master=self, header_name="History Log")
                 self.datasim = DataSim(master=self,header_name="Datasim")
                 
                 self.besturings.place(x=100, y=10)
                 self.temp.place(x=1400, y=0)
                 self.afstand.place(x=160, y=132)
                 self.noodstop.place(x=160, y=653)
-                self.log.place(x=1300, y=340)
                 self.datasim.place(x=1000,y=16)
                 Thread(target=LogRequest).start()
 
@@ -133,11 +130,12 @@ class App(customtkinter.CTk):
             
             elif pageTo == 3:
                 self.Status = StatusFrame(master=self, header_name="Status machine")
+                self.DBcontrol = DBcontrol(master=self,header_name="DBcontrol")
+                self.log = HistoryLog(master=self, header_name="History Log")
 
                 self.Status.place(x=160, y=132)
-                
-                self.DBcontrol = DBcontrol(master=self,header_name="DBcontrol")
                 self.DBcontrol.place(x=900,y=132)
+                self.log.place(x=900, y=425)
 
                 self.current_page = 3
             
@@ -211,32 +209,47 @@ class App(customtkinter.CTk):
         
         self.tab_bar = customtkinter.CTkFrame(master=self)
         
+        if os.getcwd().split("\\")[-1]=='Picoboot':
+            self.lights_logo=customtkinter.CTkImage(Image.open("dashboard/images/lights.png"), size=(92,92))
+            self.operations_logo=customtkinter.CTkImage(Image.open("dashboard/images/wheel.png"), size=(92,92))
+            self.machine_logo=customtkinter.CTkImage(Image.open("dashboard/images/gear.png"), size=(92,92))
+            self.livesim_logo=customtkinter.CTkImage(Image.open("dashboard/images/camera.png"), size=(92,92))
+        else:
+            self.lights_logo=customtkinter.CTkImage(Image.open("images/lights.png"), size=(92,92))
+            self.operations_logo=customtkinter.CTkImage(Image.open("images/wheel.png"), size=(92,92))
+            self.machine_logo=customtkinter.CTkImage(Image.open("images/gear.png"), size=(92,92))
+            self.livesim_logo=customtkinter.CTkImage(Image.open("images/camera.png"), size=(92,92))
+        
         self.lights_tab = customtkinter.CTkButton(master=self.tab_bar,
                                                   width=100,
                                                   height=100,
-                                                  text="V",
+                                                  text="",
                                                   font=self.fontbold,
+                                                  image=self.lights_logo,
                                                   command= lambda: PageChange(self, 1))
         
         self.operations_tab = customtkinter.CTkButton(master=self.tab_bar,
                                                   width=100,
                                                   height=100,
-                                                  text="O",
+                                                  text="",
                                                   font=self.fontbold,
+                                                  image=self.operations_logo,
                                                   command= lambda: PageChange(self, 2))
         
         self.machine_tab = customtkinter.CTkButton(master=self.tab_bar,
                                                   width=100,
                                                   height=100,
-                                                  text="M",
+                                                  text="",
                                                   font=self.fontbold,
+                                                  image=self.machine_logo,
                                                   command= lambda: PageChange(self, 3))
         
         self.livesim_tab= customtkinter.CTkButton(master=self.tab_bar,
                                                   width=100,
                                                   height=100,
-                                                  text="LS",
+                                                  text="",
                                                   font=self.fontbold,
+                                                  image=self.livesim_logo,
                                                   command=lambda: PageChange(self,4)
                                                   )
 
