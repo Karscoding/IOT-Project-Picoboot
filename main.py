@@ -28,7 +28,7 @@ try:
 except:
     ""
 
-auth = ('teamH1', 'verified')
+auth = "TeamH1"
 while connection.isconnected():
     try:
         led.off()
@@ -43,8 +43,9 @@ while connection.isconnected():
         
         led.on()
 
-        lights = requests.post(gurl, json=None, auth=auth)
-        temperatuur = requests.post(url, json=temp, auth=auth)
+        lights = requests.post(gurl, json=None)
+        temperatuur = requests.post(url, json=(temp,auth))
+
         led.off()
 
 
