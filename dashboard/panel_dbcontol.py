@@ -49,14 +49,14 @@ class DBcontrol(customtkinter.CTkFrame):
                                                font=self.fontmedium,
                                                command=ja)
         
-            self.ja.pack(padx=0, pady=50,)
+            self.ja.pack(padx=0, pady=15)
 
             self.nee = customtkinter.CTkButton(self,
                                                text="Nee",
                                                font=self.fontmedium,
                                                command=nee)
         
-            self.nee.pack(padx=0, pady=50)
+            self.nee.pack(padx=0, pady=15)
             return messagebox.showinfo("Waarschuwing","Dit print een bestand uit met alle huidige gegevens. \nHierna word de database geleegd. Weet u het zeker? Klik dan op Ja.")
 
         self.titel = customtkinter.CTkLabel(self,
@@ -73,14 +73,14 @@ class DBcontrol(customtkinter.CTkFrame):
                                                font=self.fontmedium,
                                                command=usure)
         
-        self.delete.pack(padx=0, pady=50)
+        self.delete.pack(padx=0, pady=20)
 
         self.print = customtkinter.CTkButton(self,
                                                text="Gegevens printen",
                                                font=self.fontmedium,
                                                command=printde)
         
-        self.print.pack(padx=0, pady=50)
+        self.print.pack(padx=0, pady=20)
         
 
         
