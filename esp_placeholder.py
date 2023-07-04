@@ -3,9 +3,10 @@ import requests
 import json
 import config
 
-url = f"http://192.168.68.72:5000/temperature"
+url = f"http://localhost:5000/temperature"
 gurl= f"http://localhost:5000/get"
-auth = ('teamH1')
+auth = ('TeamH1')
 temp = 39.250
 
 requests.post(url, json=(temp,auth))
+requests.post(gurl, json=auth)
