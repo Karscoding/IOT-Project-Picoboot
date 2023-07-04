@@ -47,6 +47,9 @@ fontbold={"family":"Roboto",
           "size":30,
           "weight":"bold"}
 
+fontbig={"family":"Roboto",
+         "size":28}
+
 fontmedium={"family":"Roboto",
           "size":24}
 

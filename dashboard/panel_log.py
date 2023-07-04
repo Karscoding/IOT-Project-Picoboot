@@ -6,7 +6,7 @@ class HistoryLog(customtkinter.CTkFrame):
         self.header_name=header_name
         
         self.fonthuge = customtkinter.CTkFont(**fonthuge)
-        self.fontbold = customtkinter.CTkFont(**fontbold)
+        self.fontbig = customtkinter.CTkFont(**fontbig)
         
         
         self.label = customtkinter.CTkLabel(self, 
@@ -16,17 +16,17 @@ class HistoryLog(customtkinter.CTkFrame):
                                             text="Log", 
                                             font=self.fonthuge)
 
-        self.label.pack(padx=263, pady=20)
+        self.label.pack(padx=180, pady=20)
         
         
         self.logbox = customtkinter.CTkLabel(self,
-                                             font=self.fontbold,
+                                             font=self.fontbig,
                                              text="Server staat niet aan!")
         
-        self.logbox.pack(padx=0, pady=0)
+        self.logbox.pack(padx=25, pady=0)
 
     def change(self,log):
         output=''
-        for x in range(1,10):
+        for x in range(1,19):
             output+=log[-x][0]+' :    '+log[-x][1]+"\n"
         self.logbox.configure(text=output)

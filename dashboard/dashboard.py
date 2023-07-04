@@ -135,8 +135,8 @@ class App(customtkinter.CTk):
                 self.log = HistoryLog(master=self, header_name="History Log")
 
                 self.Status.place(x=160, y=132)
-                self.DBcontrol.place(x=900,y=132)
-                self.log.place(x=900, y=425)
+                self.DBcontrol.place(x=675,y=132)
+                self.log.place(x=1117, y=132)
 
                 self.current_page = 3
             
