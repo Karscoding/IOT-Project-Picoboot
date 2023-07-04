@@ -37,26 +37,40 @@ class DBcontrol(customtkinter.CTkFrame):
             self.nee.destroy()
 
         def usure():
-            # self.sure = customtkinter.CTkLabel(self,
-            #                                 fg_color="red", 
-            #                                 corner_radius=8,
-            #                                 text="Dit print een bestand uit met alle huidige gegevens. \nHierna word de database geleegd. Weet u het zeker?.",
-            #                                 font=self.fontmedium)
-            # self.sure.pack(padx=0, pady=0)
+            # self.ja = customtkinter.CTkButton(self,
+            #                                    text="Ja",
+            #                                    font=self.fontmedium,
+            #                                    command=ja)
+            # self.ja.pack(padx=0, pady=15)
 
-            self.ja = customtkinter.CTkButton(self,
+            try:
+                self.ja.destroy()
+                self.ja = customtkinter.CTkButton(self,
                                                text="Ja",
                                                font=self.fontmedium,
                                                command=ja)
-        
-            self.ja.pack(padx=0, pady=15)
+                self.ja.pack(padx=0, pady=15)
+            except:
+                self.ja = customtkinter.CTkButton(self,
+                                               text="Ja",
+                                               font=self.fontmedium,
+                                               command=ja)
+                self.ja.pack(padx=0, pady=15)
 
-            self.nee = customtkinter.CTkButton(self,
+            try:
+                self.nee.destroy()
+                self.nee = customtkinter.CTkButton(self,
                                                text="Nee",
                                                font=self.fontmedium,
                                                command=nee)
-        
-            self.nee.pack(padx=0, pady=15)
+                self.nee.pack(padx=0, pady=15)
+            except:
+                self.nee = customtkinter.CTkButton(self,
+                                               text="Nee",
+                                               font=self.fontmedium,
+                                               command=nee)
+                self.nee.pack(padx=0, pady=15)
+            
             return messagebox.showinfo("Waarschuwing","Dit print een bestand uit met alle huidige gegevens. \nHierna word de database geleegd. Weet u het zeker? Klik dan op Ja.")
 
         self.titel = customtkinter.CTkLabel(self,

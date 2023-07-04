@@ -41,6 +41,7 @@ while connection.isconnected():
         v_out = adc.read_u16() * prop
         temp = (v_out - 500) / 10
         
+        temp=round(temp,2)
         led.on()
 
         lights = requests.post(gurl, json=None)
