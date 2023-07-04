@@ -7,7 +7,7 @@ import config
 import urequests as requests
 import socket
 
-laptop_ip="10.51.0.101"
+laptop_ip="192.168.68.72"
 
 url = f"http://{laptop_ip}:{config.PORT}{config.ENDPOINT}"
 aurl= f'http://{laptop_ip}:{config.PORT}{config.AENDPOINT}'
