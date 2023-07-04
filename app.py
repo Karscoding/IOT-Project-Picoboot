@@ -83,7 +83,15 @@ def temperature():
 
 @app.route('/log',methods=["POST"])
 def loggen():
-    data=request.json
+    auth = request.json[1]
+    data=request.json[0]
+
+    if (auth==verwacht_teamnaam):
+        print("goed")
+    elif auth == None:
+        print("geen")
+    elif auth != verwacht_teamnaam:
+        print("verkeerd")
     with app.app_context():
         if actielog.query.all()==[]:
             id=1
@@ -116,16 +124,13 @@ def noodstop():
 #Returned opdracht
 @app.route("/get", methods=["POST"])
 def get():
-    auth = request.authorization
-    if not auth or not auth.username or not auth.password:
-        print("Ongeautoriseerde toegang")
-        return"" 
-    if auth.username == verwacht_teamnaam and auth.password == verwacht_wachtwoord:
-        data = round(float(request.json), 2)
-        print('Gegevens ontvangen en verwerkt')
-    else:
-        print("fout")
-        return"" 
+    auth=request.json
+    if (auth==verwacht_teamnaam):
+        print("goed")
+    elif auth == None:
+        print("geen")
+    elif auth != verwacht_teamnaam:
+        print("verkeerd")
     data = {"InstructionAll": Reader("InstructionAll"),
             "InstructionPass": Reader("InstructionPass"),
             "NOOD": Reader("NOOD")}

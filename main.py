@@ -44,7 +44,7 @@ while connection.isconnected():
         temp=round(temp,2)
         led.on()
 
-        lights = requests.post(gurl, json=None)
+        lights = requests.post(gurl, json=auth)
         temperatuur = requests.post(url, json=(temp,auth))
 
         led.off()
