@@ -57,3 +57,8 @@ fontsmall={"family":"Roboto",
 SENDPOINT='/input'
 PORT= '5000'
 
+def highpressure():
+    return messagebox.showinfo("Waarschuwing","Druk op de schuif word te hoog, schuif omhoog")
+
+def enginetoohot():
+    return messagebox.showinfo("Waarschuwing","Motor is te warm, schuif omhoog en minder snehlheid")

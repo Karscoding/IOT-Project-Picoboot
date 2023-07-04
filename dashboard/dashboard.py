@@ -255,6 +255,7 @@ class App(customtkinter.CTk):
             userInput = self.loginfield.get()
             var = userInput.encode('utf-8')
             hashedInput = hashlib.sha1(var).hexdigest()
+
             if self.login_attempts >= 4:
                 self.Errorlabel.configure(text="Te veel pogingen")
                 self.login_button.configure(command=None)
@@ -323,8 +324,7 @@ class App(customtkinter.CTk):
         self.logowindow=customtkinter.CTkLabel(master=self,image=self.logo, text="")
         self.logowindow.place(x=755,y=200)
 
-def key():
-    print(f"Pressed a")
+
 
 
 if __name__ == "__main__":
@@ -335,6 +335,8 @@ if __name__ == "__main__":
     else:
         app.iconbitmap("images/logo.ico")
     
-    app.bind("<a>", lambda x: key())
+    app.bind("<g>", lambda x: enginetoohot())
+    app.bind("<h>", lambda x: highpressure())
+
 
     app.mainloop()

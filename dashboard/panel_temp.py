@@ -27,5 +27,8 @@ class Temp(customtkinter.CTkFrame):
         self.iconwindow.place(x=20,y=20)
 
     def TempRead(self):
-        self.label.configure(text=Reader("Temp"))
-        self.after(1000, self.TempRead)
+        try:
+            self.label.configure(text=Reader("Temp"))
+            self.after(1000, self.TempRead)
+        except:
+            self.after(1000,self.TempRead)

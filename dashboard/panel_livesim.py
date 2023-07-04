@@ -65,6 +65,9 @@ class diepte(customtkinter.CTkFrame):
         self.afstand.pack()
 
     def distanceRead(self):
-        self.afstand.configure(text=f"Diepte : {Reader('Diepte')}")
-        # schedule the next update after 5 seconds
-        self.after(5000, self.distanceRead)
+        try:
+            self.afstand.configure(text=f"Diepte : {Reader('Diepte')}")
+            # schedule the next update after 5 seconds
+            self.after(5000, self.distanceRead)
+        except:
+            self.after(5000,self.distanceRead)

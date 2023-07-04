@@ -30,6 +30,9 @@ class Tijd(customtkinter.CTkFrame):
         self.time()
     
     def time(self):
-        tijd = translate()
-        self.tijdlabel.configure(text=f"{tijd}")
-        self.after(1000, self.time)
+        try:
+            tijd = translate()
+            self.tijdlabel.configure(text=f"{tijd}")
+            self.after(1000, self.time)
+        except:
+            self.after(1000,self.time)
