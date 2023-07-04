@@ -10,7 +10,7 @@ import socket
 laptop_ip="10.51.0.30"
 
 url = f"http://{laptop_ip}:{config.PORT}{config.ENDPOINT}"
-aurl= f'http://{laptop_ip}:{config.PORT}{config.AENDPOINT}'
+#aurl= f'http://{laptop_ip}:{config.PORT}{config.AENDPOINT}'
 gurl= f'http://{laptop_ip}:{config.PORT}{config.GETPOINT}'
 
 sharp_sensor = Pin(26, Pin.IN)

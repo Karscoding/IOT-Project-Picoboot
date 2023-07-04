@@ -29,12 +29,15 @@ def generatediepte(current):
 def temperature():
     auth = request.authorization
     if not auth or not auth.username or not auth.password:
-        return jsonify({'message': 'Ongeautoriseerde toegang'}), 401
+        print("Ongeautoriseerde toegang")
+        return"" 
     if auth.username == verwacht_teamnaam and auth.password == verwacht_wachtwoord:
         data = round(float(request.json), 2)
-        return jsonify({'message': 'Gegevens ontvangen en verwerkt'})
+        print('Gegevens ontvangen en verwerkt')
     else:
-        return jsonify({'message': 'Ongeautoriseerde toegang'}), 401
+        print("fout")
+        return"" 
+
         
     #Function, see Jsonhandler.py
     Writer("Temp", data)
@@ -115,6 +118,16 @@ def noodstop():
 #Returned opdracht
 @app.route("/get", methods=["POST"])
 def get():
+    auth = request.authorization
+    if not auth or not auth.username or not auth.password:
+        print("Ongeautoriseerde toegang")
+        return"" 
+    if auth.username == verwacht_teamnaam and auth.password == verwacht_wachtwoord:
+        data = round(float(request.json), 2)
+        print('Gegevens ontvangen en verwerkt')
+    else:
+        print("fout")
+        return"" 
     data = {"InstructionAll": Reader("InstructionAll"),
             "InstructionPass": Reader("InstructionPass"),
             "NOOD": Reader("NOOD")}
