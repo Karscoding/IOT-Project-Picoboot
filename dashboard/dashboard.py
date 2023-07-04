@@ -256,7 +256,7 @@ class App(customtkinter.CTk):
 
 
         tijd=translate()
-        
+        auth="TeamH1"
         
         def Login():
             """
@@ -293,7 +293,8 @@ class App(customtkinter.CTk):
             Hierin worden dingen gelogged.
             """
             try: 
-                lights = requests.post(url , json=f"{tijd}")
+                tijdf=f"{tijd}"
+                lights = requests.post(url , json=(tijdf,auth))
                 response=lights.json()
                 self.log.change(response)
             except:

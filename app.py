@@ -83,7 +83,15 @@ def temperature():
 
 @app.route('/log',methods=["POST"])
 def loggen():
-    data=request.json
+    auth = request.json[1]
+    data=request.json[0]
+
+    if (auth==verwacht_teamnaam):
+        print("goed")
+    elif auth == None:
+        print("geen")
+    elif auth != verwacht_teamnaam:
+        print("verkeerd")
     with app.app_context():
         if actielog.query.all()==[]:
             id=1
