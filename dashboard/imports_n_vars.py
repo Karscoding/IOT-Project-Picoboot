@@ -12,6 +12,7 @@
 #
 
 import customtkinter 
+import random
 from tkinter import messagebox, Label
 from time import sleep
 from PIL import Image, ImageTk
