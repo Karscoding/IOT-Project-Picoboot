@@ -125,6 +125,7 @@ class App(customtkinter.CTk):
                 self.afstand.place(x=160, y=132)
                 self.noodstop.place(x=160, y=653)
                 self.datasim.place(x=1000,y=16)
+                
                 Thread(target=LogRequest).start()
 
                 self.current_page = 2
@@ -281,6 +282,7 @@ class App(customtkinter.CTk):
                 self.machine_tab.pack(padx=20, pady=50)
                 self.livesim_tab.pack(padx=20,pady=50)
                 PageChange(self, 2)
+
                 Thread(target=LogRequest).start()
             
             else:
@@ -350,8 +352,8 @@ if __name__ == "__main__":
     else:
         app.iconbitmap("images/logo.ico")
     
-    app.bind("<g>", lambda x: enginetoohot())
-    app.bind("<h>", lambda x: highpressure())
+    app.bind("<g>", lambda x: enginetoohot(app.afstand))
+    app.bind("<h>", lambda x: highpressure(app.afstand))
 
 
     app.mainloop()
