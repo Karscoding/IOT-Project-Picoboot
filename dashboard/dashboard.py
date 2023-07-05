@@ -136,7 +136,7 @@ class App(customtkinter.CTk):
                 self.Status.place(x=160, y=132)
                 self.DBcontrol.place(x=675,y=132)
                 self.log.place(x=1117, y=132)
-                Thread(target=LogRequest).start()
+                Thread(target=LogRequest(None)).start()
                 self.current_page = 3
             
             elif pageTo ==4:
@@ -255,7 +255,7 @@ class App(customtkinter.CTk):
 
 
         tijd=translate()
-        auth="Team1"
+        auth="TeamH1"
         
         def Login():
             """

@@ -89,6 +89,27 @@ def loggen():
 
     if (auth==verwacht_teamnaam):
         print("goed")
+        if reason == None:
+            loglijst=[]
+            with app.app_context():
+                for x in actielog.query.all():
+                    loglijst.append((x.tijd,x.actions))    
+            return jsonify(loglijst)
+        else:
+            with app.app_context():
+                if actielog.query.all()==[]:
+                    id=1
+                else:
+                    highestid = actielog.query.all()
+                    id=(highestid[-1].id+1)
+            db.session.add_all([actielog(id,data,reason)])
+            db.session.commit()
+            loglijst=[]
+            with app.app_context():
+                for x in actielog.query.all():
+                    loglijst.append((x.tijd,x.actions))
+            
+            return jsonify(loglijst)
     elif auth == None:
         print("geen")
         with app.app_context():
