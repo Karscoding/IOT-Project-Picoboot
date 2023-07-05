@@ -136,7 +136,7 @@ class App(customtkinter.CTk):
                 self.Status.place(x=160, y=132)
                 self.DBcontrol.place(x=675,y=132)
                 self.log.place(x=1117, y=132)
-                Thread(target=LogRequest(None)).start()
+                Thread(target=lambda: LogRequest(None)).start()
                 self.current_page = 3
             
             elif pageTo ==4:
@@ -282,13 +282,13 @@ class App(customtkinter.CTk):
                 PageChange(self, 2)
                 reason = "Ingelogd"
 
-                Thread(target=LogRequest(reason)).start()
+                Thread(target=lambda: LogRequest(reason)).start()
             
             else:
                 self.login_attempts += 1
                 self.Errorlabel.configure(text="PIN is Fout")
                 reason = "Foute login"
-                Thread(target=LogRequest(reason)).start()
+                Thread(target=lambda: LogRequest(reason)).start()
             
         def LogRequest(reason):
             """
