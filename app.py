@@ -29,18 +29,36 @@ def generatediepte(current):
 def temperature():
     auth = request.json[1]
     data=request.json[0]
+    tijd=translate()
 
     if (auth==verwacht_teamnaam):
         print("goed")
     elif auth == None:
         print("geen")
+        with app.app_context():
+            if actielog.query.all()==[]:
+                id=1
+            else:
+                highestid = actielog.query.all()
+                id=(highestid[-1].id+1)
+        db.session.add_all([actielog(id,tijd,"POST !auth")])
+        db.session.commit()
+        return ""
     elif auth != verwacht_teamnaam:
         print("verkeerd")
-        
+        with app.app_context():
+            if actielog.query.all()==[]:
+                id=1
+            else:
+                highestid = actielog.query.all()
+                id=(highestid[-1].id+1)
+        db.session.add_all([actielog(id,tijd,"POST verk auth")])
+        db.session.commit()
+        return""
+    
     #Function, see Jsonhandler.py
-    Writer("Temp", data)
-                
-    tijd=translate()
+    Writer("Temp", data)      
+    
     with app.app_context():
             if Temperatuur.query.all()==[]:
                 id=1
@@ -165,16 +183,34 @@ def noodstop():
 @app.route("/get", methods=["POST"])
 def get():
     auth=request.json
+    tijd=translate()
     if (auth==verwacht_teamnaam):
         print("goed")
-    elif auth == None:
-        print("geen")
-    elif auth != verwacht_teamnaam:
-        print("verkeerd")
-    data = {"InstructionAll": Reader("InstructionAll"),
+        data = {"InstructionAll": Reader("InstructionAll"),
             "InstructionPass": Reader("InstructionPass"),
             "NOOD": Reader("NOOD")}
-    return data
-    
+        return data
+    elif auth == None:
+        print("geen")
+        with app.app_context():
+            if actielog.query.all()==[]:
+                id=1
+            else:
+                highestid = actielog.query.all()
+                id=(highestid[-1].id+1)
+        db.session.add_all([actielog(id,tijd,"POST !auth")])
+        db.session.commit()
+        return ""
+    elif auth != verwacht_teamnaam:
+        print("verkeerd")
+        with app.app_context():
+            if actielog.query.all()==[]:
+                id=1
+            else:
+                highestid = actielog.query.all()
+                id=(highestid[-1].id+1)
+        db.session.add_all([actielog(id,tijd,"POST verk AUTH")])
+        db.session.commit()
+        return ""
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)
