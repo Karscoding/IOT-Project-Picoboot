@@ -257,7 +257,7 @@ class App(customtkinter.CTk):
 
 
         tijd=translate()
-        auth="TeamH1"
+        auth="Team1"
         
         def Login():
             """

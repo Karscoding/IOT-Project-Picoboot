@@ -91,8 +91,26 @@ def loggen():
         print("goed")
     elif auth == None:
         print("geen")
+        with app.app_context():
+            if actielog.query.all()==[]:
+                id=1
+            else:
+                highestid = actielog.query.all()
+                id=(highestid[-1].id+1)
+            db.session.add_all([actielog(id,data,"geen auth")])
+            db.session.commit()
+        return""
     elif auth != verwacht_teamnaam:
         print("verkeerd")
+        with app.app_context():
+            if actielog.query.all()==[]:
+                id=1
+            else:
+                highestid = actielog.query.all()
+                id=(highestid[-1].id+1)
+            db.session.add_all([actielog(id,data,"verkeerd auth")])
+            db.session.commit()
+        return""
     with app.app_context():
         if actielog.query.all()==[]:
             id=1
