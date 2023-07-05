@@ -85,6 +85,7 @@ def temperature():
 def loggen():
     auth = request.json[1]
     data=request.json[0]
+    reason=request.json[2]
 
     if (auth==verwacht_teamnaam):
         print("goed")
@@ -98,7 +99,7 @@ def loggen():
         else:
             highestid = actielog.query.all()
             id=(highestid[-1].id+1)
-    db.session.add_all([actielog(id,data,"Ingelogd")])
+    db.session.add_all([actielog(id,data,reason)])
     db.session.commit()
     loglijst=[]
     with app.app_context():

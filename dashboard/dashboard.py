@@ -282,22 +282,24 @@ class App(customtkinter.CTk):
                 self.machine_tab.pack(padx=20, pady=50)
                 self.livesim_tab.pack(padx=20,pady=50)
                 PageChange(self, 2)
+                reason = "Ingelogd"
 
-                Thread(target=LogRequest).start()
+                Thread(target=LogRequest(reason)).start()
             
             else:
                 self.login_attempts += 1
                 self.Errorlabel.configure(text="PIN is Fout")
+                reason = "Foute login"
+                Thread(target=LogRequest(reason)).start()
             
-        def LogRequest():
+        def LogRequest(reason):
             """
             Plaatst een post request naar de app.py Flask Server.
             Hierin worden dingen gelogged.
             """
             try: 
-                tijdf=f"{tijd}"
-                lights = requests.post(url , json=(tijdf,auth))
-                response=lights.json()
+                loganswer = requests.post(url , json=(f"{tijd}",auth,reason))
+                response=loganswer.json()
                 self.log.change(response)
             except:
                 ""    
