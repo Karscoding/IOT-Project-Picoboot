@@ -7,8 +7,17 @@ import config
 import urequests as requests
 import socket
 
-laptop_ip="192.168.68.72"
+def findip():
+    try:
+        requests.post("http://192.168.68.72:5000/get")
+        laptop_ip="192.168.68.72"
+        return laptop_ip
+    except:
+        requests.post("http://10.52.0.25:5000/get")
+        laptop_ip="10.52.0.25"
+        return laptop_ip
 
+laptop_ip=findip()
 url = f"http://{laptop_ip}:{config.PORT}{config.ENDPOINT}"
 #aurl= f'http://{laptop_ip}:{config.PORT}{config.AENDPOINT}'
 gurl= f'http://{laptop_ip}:{config.PORT}{config.GETPOINT}'
