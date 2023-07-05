@@ -125,8 +125,6 @@ class App(customtkinter.CTk):
                 self.afstand.place(x=160, y=132)
                 self.noodstop.place(x=160, y=653)
                 self.datasim.place(x=1000,y=16)
-                
-                Thread(target=LogRequest).start()
 
                 self.current_page = 2
             
@@ -138,7 +136,7 @@ class App(customtkinter.CTk):
                 self.Status.place(x=160, y=132)
                 self.DBcontrol.place(x=675,y=132)
                 self.log.place(x=1117, y=132)
-
+                Thread(target=LogRequest).start()
                 self.current_page = 3
             
             elif pageTo ==4:
