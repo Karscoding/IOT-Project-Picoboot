@@ -98,11 +98,20 @@ class App(customtkinter.CTk):
                 self.DBcontrol.destroy()
             
             elif self.current_page ==4:
-                self.livesim.destroy()
-                self.zand.destroy()
-                self.schuif.destroy()
-                self.afstand.destroy()
-                self.buttons.destroy()
+                Controlmode=Reader("ControlMode")
+                if Controlmode=='Handmatig':
+                    self.up_button.destroy()
+                    self.down_button.destroy()
+                    self.livesim.destroy()
+                    self.zand.destroy()
+                    self.schuif.destroy()
+                    self.afstand.destroy()
+                elif Controlmode=='Automatisch':
+                    self.livesim.destroy()
+                    self.zand.destroy()
+                    self.schuif.destroy()
+                    self.afstand.destroy()
+                
 
 
             if pageTo == 1:
@@ -129,7 +138,7 @@ class App(customtkinter.CTk):
                 self.afstand.place(x=160, y=132)
                 self.noodstop.place(x=160, y=653)
                 self.datasim.place(x=1000,y=16)
-                Thread(target=LogRequest).start()
+                Thread(target=lambda: LogRequest(None)).start()
 
                 self.current_page = 2
             
@@ -147,71 +156,135 @@ class App(customtkinter.CTk):
                 self.current_page = 3
             
             elif pageTo ==4:
+                #Dieptewaardes
                 diepteafstand=Reader("Diepte")
                 mainy=300-((diepteafstand-2)*75)
-
-                self.livesim=Livesim(master=self,header_name="LiveSim")
-                self.zand=zand(master=self,header_name="zand")
-                self.schuif=Schuif(master=self,header_name="schuif")
-                self.afstand=diepte(master=self,header_name="diepte",hoogte=750-mainy-200)
-                self.fontbig = customtkinter.CTkFont(**fontbig)
                 
-                # Voor functionaliteit verander command=None naar een functie
-                self.up_button = customtkinter.CTkButton(self,
-                                                        width=125,
-                                                        height=125,
-                                                        text="↑",
-                                                        font=self.fontbig,
-                                                        command=None)
-                self.down_button = customtkinter.CTkButton(self,
-                                                        width=125,
-                                                        height=125,
-                                                        text="↓",
-                                                        font=self.fontbig,
-                                                        command=None)
-
-                self.livesim.place(x=200,y=mainy)
-                self.zand.place(x=200,y=750)
-                self.schuif.place(x=1200,y=mainy+200)
-                self.afstand.place(y=mainy+200,x=800)
-                self.up_button.place(x=1450,y=300)
-                self.down_button.place(x=1450, y=500)
-
-                self.current_page=4
-                def update():
-                    if self.current_page!=4:
-                        return
-                    else:
+                #UI en Controlmode
+                self.fontbig = customtkinter.CTkFont(**fontbig)
+                Controlmode={Reader("ControlMode")}
+                
+                
+                if Controlmode=={'Handmatig'}:
+                    self.schuify=mainy
+                    def upbutton():
                         try:
-                            self.livesim.destroy()
-                            self.zand.destroy()
                             self.schuif.destroy()
-                            self.afstand.destroy()
-
-                            diepteafstand=Reader("Diepte")
-                            mainy=300-((diepteafstand-2)*75)
-
-                            self.livesim=Livesim(master=self,header_name="LiveSim")
-                            self.zand=zand(master=self,header_name="zand")
                             self.schuif=Schuif(master=self,header_name="schuif")
-                            self.afstand=diepte(master=self,header_name="diepte",hoogte=750-mainy-200)
-
-                            self.livesim.place(x=200,y=mainy)
-                            self.zand.place(x=200,y=750)
-
-                            if mainy> 250:
-                                self.schuif.place(x=1200,y=460)
-                            else:
-                                self.schuif.place(x=1200,y=mainy+200)
-                            self.afstand.place(y=mainy+200,x=800)
-
-                            self.current_page=4
-                            sleep(5)
-                            update()
+                            if self.schuify-5>=mainy:
+                                self.schuify-=5
+                            self.schuif.place(x=1200,y=self.schuify)
                         except:
-                            pass
-                Thread(target=update).start()
+                            pass 
 
+                    def downbutton():
+                        try:
+                            self.schuif.destroy()
+                            self.schuif=Schuif(master=self,header_name="schuif")
+                            if self.schuify<=mainy+195 and self.schuify <=465.5:
+                                self.schuify+=5
+                            self.schuif.place(x=1200,y=self.schuify)
+                        except:
+                            pass 
+
+
+                    self.up_button = customtkinter.CTkButton(self,
+                                                    width=125,
+                                                    height=125,
+                                                    text="↑",
+                                                    font=self.fontbig,
+                                                    command=upbutton)
+                
+                    self.down_button = customtkinter.CTkButton(self,
+                                                    width=125,
+                                                    height=125,
+                                                    text="↓",
+                                                    font=self.fontbig,
+                                                    command=downbutton)
+                    
+                    self.livesim=Livesim(master=self,header_name="LiveSim")
+                    self.zand=zand(master=self,header_name="zand")
+                    self.schuif=Schuif(master=self,header_name="schuif")
+                    self.afstand=diepte(master=self,header_name="diepte",hoogte=750-mainy-200)        
+
+                    self.livesim.place(x=200,y=mainy)
+                    self.zand.place(x=200,y=750)
+                    self.schuif.place(x=1200,y=mainy)
+                    self.afstand.place(y=mainy+200,x=800)
+                    self.up_button.place(x=1450,y=300)
+                    self.down_button.place(x=1450, y=500)
+
+                    self.current_page=4
+
+                    def update():
+                        if self.current_page!=4 or {Reader("ControlMode")}=={"Automatisch"}:
+                            return
+                        else:
+                            try:
+                                self.livesim.destroy()
+                                self.afstand.destroy()
+                                self.schuif.destroy()
+
+                                diepteafstand=Reader("Diepte")
+                                mainy=300-((diepteafstand-2)*75)
+
+                                self.livesim=Livesim(master=self,header_name="LiveSim")
+                                self.afstand=diepte(master=self,header_name="diepte",hoogte=750-mainy-200)
+                                self.schuif=Schuif(master=self,header_name="schuif")
+                                
+                                self.livesim.place(x=200,y=mainy)
+                                self.afstand.place(y=mainy+200,x=800)
+                                self.schuif.place(x=1200,y=self.schuify)
+
+                                sleep(5)
+                                update()
+                            except:
+                                pass
+                    Thread(target=update).start()
+
+                elif Controlmode=={"Automatisch"}:
+                    self.livesim=Livesim(master=self,header_name="LiveSim")
+                    self.zand=zand(master=self,header_name="zand")
+                    self.schuif=Schuif(master=self,header_name="schuif")
+                    self.afstand=diepte(master=self,header_name="diepte",hoogte=750-mainy-200)        
+
+                    self.livesim.place(x=200,y=mainy)
+                    self.zand.place(x=200,y=750)
+                    self.schuif.place(x=1200,y=mainy+200)
+                    self.afstand.place(y=mainy+200,x=800)
+
+
+                    self.current_page=4
+                    def update():
+                        if self.current_page!=4 or {Reader("ControlMode")}=={"Handmatig"}:
+                            return
+                        else:
+                            try:
+                                self.livesim.destroy()
+                                self.schuif.destroy()
+                                self.afstand.destroy()
+
+                                diepteafstand=Reader("Diepte")
+                                mainy=300-((diepteafstand-2)*75)
+
+                                self.livesim=Livesim(master=self,header_name="LiveSim")
+                                self.schuif=Schuif(master=self,header_name="schuif")
+                                self.afstand=diepte(master=self,header_name="diepte",hoogte=750-mainy-200)
+
+                                self.livesim.place(x=200,y=mainy)
+
+                                if mainy> 250:
+                                    self.schuif.place(x=1200,y=460)
+                                else:
+                                    self.schuif.place(x=1200,y=mainy+200)
+                                
+                                self.afstand.place(y=mainy+200,x=800)
+
+                                sleep(5)
+                                update()
+                            except:
+                                pass
+                    Thread(target=update).start()
             else:
                 raise ValueError(f"Foute pagina nummer gegeven")
         
