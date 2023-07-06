@@ -51,7 +51,7 @@ class Schuif(customtkinter.CTkFrame):
 class diepte(customtkinter.CTkFrame):
     def __init__(self,*args,master,header_name='diepte',hoogte, **kwargs):
         super().__init__(master, *args, **kwargs)
-        self.header_name= header_name
+        self.header_name = header_name
 
         #afstand
         self.afstand = customtkinter.CTkLabel(self, 

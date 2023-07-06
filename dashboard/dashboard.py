@@ -27,7 +27,7 @@ from panel_lights import LightsMaster, PLights, MainLights
 from panel_nap import NAPINPUT
 from panel_log import HistoryLog
 from panel_sim import DataSim
-from panel_livesim import Livesim, diepte, Schuif,zand
+from panel_livesim import Livesim, diepte, Schuif, zand
 from panel_dbcontol import DBcontrol
 import os
 
@@ -48,6 +48,7 @@ class App(customtkinter.CTk):
         
         
         self.fontbold = customtkinter.CTkFont(**fonthuge)
+        self.fontbig = customtkinter.CTkFont(**fontbig)
         self.fontmedium = customtkinter.CTkFont(**fontbold)
         
         def PageChange(self, pageTo):
@@ -64,7 +65,6 @@ class App(customtkinter.CTk):
             
             
             ! Page Numbers : !
-            Inlogpagina        - 0
             VerlichtingsPagina - 1
             Operationeel       - 2
             Machine            - 3
@@ -99,6 +99,7 @@ class App(customtkinter.CTk):
                 self.zand.destroy()
                 self.schuif.destroy()
                 self.afstand.destroy()
+                self.buttons.destroy()
 
 
             if pageTo == 1:
@@ -125,6 +126,7 @@ class App(customtkinter.CTk):
                 self.afstand.place(x=160, y=132)
                 self.noodstop.place(x=160, y=653)
                 self.datasim.place(x=1000,y=16)
+                Thread(target=LogRequest).start()
 
                 self.current_page = 2
             
@@ -136,7 +138,7 @@ class App(customtkinter.CTk):
                 self.Status.place(x=160, y=132)
                 self.DBcontrol.place(x=675,y=132)
                 self.log.place(x=1117, y=132)
-                Thread(target=lambda: LogRequest(None)).start()
+
                 self.current_page = 3
             
             elif pageTo ==4:
@@ -147,11 +149,28 @@ class App(customtkinter.CTk):
                 self.zand=zand(master=self,header_name="zand")
                 self.schuif=Schuif(master=self,header_name="schuif")
                 self.afstand=diepte(master=self,header_name="diepte",hoogte=750-mainy-200)
+                self.fontbig = customtkinter.CTkFont(**fontbig)
+                
+                # Voor functionaliteit verander command=None naar een functie
+                self.up_button = customtkinter.CTkButton(self,
+                                                        width=125,
+                                                        height=125,
+                                                        text="↑",
+                                                        font=self.fontbig,
+                                                        command=None)
+                self.down_button = customtkinter.CTkButton(self,
+                                                        width=125,
+                                                        height=125,
+                                                        text="↓",
+                                                        font=self.fontbig,
+                                                        command=None)
 
                 self.livesim.place(x=200,y=mainy)
                 self.zand.place(x=200,y=750)
                 self.schuif.place(x=1200,y=mainy+200)
                 self.afstand.place(y=mainy+200,x=800)
+                self.up_button.place(x=1450,y=300)
+                self.down_button.place(x=1450, y=500)
 
                 self.current_page=4
                 def update():
@@ -185,7 +204,7 @@ class App(customtkinter.CTk):
                             sleep(5)
                             update()
                         except:
-                            ""
+                            pass
                 Thread(target=update).start()
 
             else:
@@ -255,7 +274,7 @@ class App(customtkinter.CTk):
 
 
         tijd=translate()
-        auth="TeamH1"
+        
         
         def Login():
             """
@@ -268,7 +287,6 @@ class App(customtkinter.CTk):
             userInput = self.loginfield.get()
             var = userInput.encode('utf-8')
             hashedInput = hashlib.sha1(var).hexdigest()
-
             if self.login_attempts >= 4:
                 self.Errorlabel.configure(text="Te veel pogingen")
                 self.login_button.configure(command=None)
@@ -280,24 +298,20 @@ class App(customtkinter.CTk):
                 self.machine_tab.pack(padx=20, pady=50)
                 self.livesim_tab.pack(padx=20,pady=50)
                 PageChange(self, 2)
-                reason = "Ingelogd"
-
-                Thread(target=lambda: LogRequest(reason)).start()
+                Thread(target=LogRequest).start()
             
             else:
                 self.login_attempts += 1
                 self.Errorlabel.configure(text="PIN is Fout")
-                reason = "Foute login"
-                Thread(target=lambda: LogRequest(reason)).start()
             
-        def LogRequest(reason):
+        def LogRequest():
             """
             Plaatst een post request naar de app.py Flask Server.
             Hierin worden dingen gelogged.
             """
             try: 
-                loganswer = requests.post(url , json=(f"{tijd}",auth,reason))
-                response=loganswer.json()
+                lights = requests.post(url , json=f"{tijd}")
+                response=lights.json()
                 self.log.change(response)
             except:
                 ""    
@@ -341,7 +355,8 @@ class App(customtkinter.CTk):
         self.logowindow=customtkinter.CTkLabel(master=self,image=self.logo, text="")
         self.logowindow.place(x=755,y=200)
 
-
+def key():
+    print(f"Pressed a")
 
 
 if __name__ == "__main__":
@@ -352,8 +367,6 @@ if __name__ == "__main__":
     else:
         app.iconbitmap("images/logo.ico")
     
-    app.bind("<g>", lambda x: enginetoohot(app.afstand))
-    app.bind("<h>", lambda x: highpressure(app.afstand))
-
+    app.bind("<a>", lambda x: key())
 
     app.mainloop()
