@@ -61,12 +61,21 @@ fontsmall={"family":"Roboto",
 SENDPOINT='/input'
 PORT= '5000'
 
-def highpressure(object):
+def highpressure(object,status):
     messagebox.showinfo("Waarschuwing","Druk op de schuif word te hoog, schuif omhoog")
-    object.label.configure(text=f"Error gekregen, schuif tijdelijk omhoog.")
-    object.swapped=2
+    status.schuif.configure(fg_color="red")
+    try:
+        object.label.configure(text=f"Error gekregen, schuif tijdelijk omhoog.")
+        object.swapped=2
+    except:
+        pass
 
-def enginetoohot(object):
-    object.label.configure(text=f"Error gekregen, schuif tijdelijk omhoog.")
-    object.swapped=2
-    return messagebox.showinfo("Waarschuwing","Motor is te warm, schuif omhoog en minder snehlheid")
+def enginetoohot(object,status):
+    messagebox.showinfo("Waarschuwing","Motor is te warm, schuif omhoog en minder snehlheid")
+    status.agg.configure(fg_color="red")
+    try:
+        object.label.configure(text=f"Error gekregen, schuif tijdelijk omhoog.")
+        object.swapped=2
+    except:
+        pass
+    

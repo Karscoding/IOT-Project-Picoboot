@@ -96,6 +96,7 @@ class App(customtkinter.CTk):
                 self.Status.destroy()
                 self.log.destroy()
                 self.DBcontrol.destroy()
+                self.progress.destroy()
             
             elif self.current_page ==4:
                 Controlmode=Reader("ControlMode")
@@ -143,13 +144,15 @@ class App(customtkinter.CTk):
                 self.current_page = 2
             
             elif pageTo == 3:
-                self.Status = StatusFrame(master=self, header_name="Status machine")
-                self.DBcontrol = DBcontrol(master=self,header_name="DBcontrol")
-                self.log = HistoryLog(master=self, header_name="History Log")
+                self.Status = StatusFrame(master=self)
+                self.DBcontrol = DBcontrol(master=self)
+                self.log = HistoryLog(master=self)
+                self.progress = ProgressFrame(master=self)
 
                 self.Status.place(x=160, y=132)
                 self.DBcontrol.place(x=675,y=132)
                 self.log.place(x=1117, y=132)
+                self.progress.place(x=675,y=560)
                 
                 Thread(target=lambda: LogRequest(None)).start()
 
@@ -166,12 +169,12 @@ class App(customtkinter.CTk):
                 
                 
                 if Controlmode=={'Handmatig'}:
-                    self.schuify=mainy
+                    self.schuify=mainy+150
                     def upbutton():
                         try:
                             self.schuif.destroy()
                             self.schuif=Schuif(master=self,header_name="schuif")
-                            if self.schuify-5>=mainy:
+                            if self.schuify-5>=mainy+100:
                                 self.schuify-=5
                             self.schuif.place(x=1200,y=self.schuify)
                         except:
@@ -250,7 +253,7 @@ class App(customtkinter.CTk):
 
                     self.livesim.place(x=200,y=mainy)
                     self.zand.place(x=200,y=750)
-                    self.schuif.place(x=1200,y=mainy+200)
+                    self.schuif.place(x=1200,y=mainy+150)
                     self.afstand.place(y=mainy+200,x=800)
 
 
@@ -276,7 +279,7 @@ class App(customtkinter.CTk):
                                 if mainy> 250:
                                     self.schuif.place(x=1200,y=460)
                                 else:
-                                    self.schuif.place(x=1200,y=mainy+200)
+                                    self.schuif.place(x=1200,y=mainy+150)
                                 
                                 self.afstand.place(y=mainy+200,x=800)
 
@@ -386,7 +389,7 @@ class App(customtkinter.CTk):
                 
                 reason = "Foute login"
                 Thread(target=lambda: LogRequest(reason)).start()
-            
+
         def LogRequest(reason):
             """
             Plaatst een post request naar de app.py Flask Server.
@@ -447,7 +450,7 @@ if __name__ == "__main__":
     else:
         app.iconbitmap("images/logo.ico")
     
-    app.bind("<g>", lambda x: enginetoohot(app.afstand))
-    app.bind("<h>", lambda x: highpressure(app.afstand))
+    app.bind("<g>", lambda x: enginetoohot(app.afstand,app.Status))
+    app.bind("<h>", lambda x: highpressure(app.afstand,app.Status))
 
     app.mainloop()

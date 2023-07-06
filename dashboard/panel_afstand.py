@@ -25,7 +25,7 @@ def getdata(dag=0):
 
 def grafiek(self):
     '''Grafiek'''
-    self.fig = Figure(figsize=(5,4), dpi=100)
+    self.fig = Figure(figsize=(10,4), dpi=100)
     xas=getdata()[0]
     yas=getdata()[1]
     #print(getdata())
@@ -87,10 +87,11 @@ class afst(customtkinter.CTkFrame):
             self.label.destroy()
             self.swapped=0
             grafiek(self)
-        else:
+        elif self.swapped==0:
             self.canvas.get_tk_widget().destroy()            
             self.swapped=1
             label(self)
+            self.distanceRead()
 
         # '''Sticker'''
         # if os.getcwd().split("\\")[-1]=='Picoboot':
