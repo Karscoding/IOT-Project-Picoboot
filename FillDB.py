@@ -1,9 +1,9 @@
 from CreateDB import app,db,Temperatuur,actielog,Afstand
 from translate import translate
 from random import uniform,randint,choice
-def genrandomtime():
+def genrandomtime(x):
     tijd=translate()
-    datum=tijd.split(" ")[0]
+    datum=int(tijd.split(" ")[0])+x//10
     maand=tijd.split(" ")[1]
     jaar=tijd.split(" ")[2]
     uren=randint(1,12)
@@ -30,20 +30,20 @@ def randomfill(amount=1):
         with app.app_context():
             '''Temperatuur'''
             id=genid(Temperatuur)
-            tijd=genrandomtime()
+            tijd=genrandomtime(x)
             data= round(uniform(25,35),2)
             db.session.add_all([Temperatuur(id,tijd, data)])
 
             '''Afstand'''
             id=genid(Afstand)
-            tijd=genrandomtime()
+            tijd=genrandomtime(x)
             diepte=round(uniform(2,4),1)
             nap=round(uniform(-1,1),1)
             db.session.add_all([Afstand(id,tijd, diepte,nap)])
 
             '''Log'''
             id=genid(actielog)
-            data=genrandomtime()
+            data=genrandomtime(x)
             actie=choice(['Noodstop','Ingelogd', 'Ingelogd', 'Ingelogd', 'Ingelogd', 'Ingelogd', 'Ingelogd', 'Ingelogd', 'Ingelogd', 'Ingelogd', 'Ingelogd', 'Ingelogd', 'Ingelogd', 'Ingelogd', 'Ingelogd', 'Ingelogd', 'Ingelogd', 'Ingelogd', 'Ingelogd', 'Ingelogd'])
             db.session.add_all([actielog(id,data,actie)])
             db.session.commit()

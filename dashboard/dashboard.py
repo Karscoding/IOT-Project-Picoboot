@@ -207,7 +207,7 @@ class App(customtkinter.CTk):
                     self.schuif=Schuif(master=self,header_name="schuif")
                     self.afstand=diepte(master=self,header_name="diepte",hoogte=750-mainy-200)        
 
-                    self.livesim.place(x=200,y=mainy+150)
+                    self.livesim.place(x=200,y=mainy)
                     self.zand.place(x=200,y=750)
                     self.schuif.place(x=1200,y=mainy)
                     self.afstand.place(y=mainy+200,x=800)
@@ -248,9 +248,9 @@ class App(customtkinter.CTk):
                     self.schuif=Schuif(master=self,header_name="schuif")
                     self.afstand=diepte(master=self,header_name="diepte",hoogte=750-mainy-200)        
 
-                    self.livesim.place(x=200,y=mainy+150)
+                    self.livesim.place(x=200,y=mainy)
                     self.zand.place(x=200,y=750)
-                    self.schuif.place(x=1200,y=mainy+200)
+                    self.schuif.place(x=1200,y=mainy+150)
                     self.afstand.place(y=mainy+200,x=800)
 
 
@@ -271,7 +271,7 @@ class App(customtkinter.CTk):
                                 self.schuif=Schuif(master=self,header_name="schuif")
                                 self.afstand=diepte(master=self,header_name="diepte",hoogte=750-mainy-200)
 
-                                self.livesim.place(x=200,y=mainy+150)
+                                self.livesim.place(x=200,y=mainy)
 
                                 if mainy> 250:
                                     self.schuif.place(x=1200,y=460)
@@ -447,7 +447,7 @@ if __name__ == "__main__":
     else:
         app.iconbitmap("images/logo.ico")
     
-    app.bind("<g>", lambda x: enginetoohot(app.afstand))
-    app.bind("<h>", lambda x: highpressure(app.afstand))
+    app.bind("<g>", lambda x: enginetoohot(app.afstand,app.Status))
+    app.bind("<h>", lambda x: highpressure(app.afstand,app.Status))
 
     app.mainloop()

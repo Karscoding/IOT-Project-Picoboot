@@ -25,7 +25,7 @@ def getdata(dag=0):
 
 def grafiek(self):
     '''Grafiek'''
-    self.fig = Figure(figsize=(5,4), dpi=100)
+    self.fig = Figure(figsize=(10,4), dpi=100)
     xas=getdata()[0]
     yas=getdata()[1]
     #print(getdata())
