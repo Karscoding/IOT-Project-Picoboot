@@ -17,7 +17,7 @@ def run(dag=0):
         for x in Afstand.query.all():
             distlist.append((x.afstand,x.nap))
 
-    if len(templist) < 1:
+    if len(templist) < 10:
         return 'foute templist'
     else:
         if os.getcwd().split("\\")[-1]=='Picoboot':
@@ -122,6 +122,8 @@ def run(dag=0):
                 if event.type == pygame.QUIT or event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
                     pygame.display.quit()
         pygame.display.quit()
+    pygame.display.quit()
+    
 
 if __name__=="__main__":
     run()

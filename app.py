@@ -212,5 +212,6 @@ def get():
         db.session.add_all([actielog(id,tijd,"POST verk AUTH")])
         db.session.commit()
         return ""
+    
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)

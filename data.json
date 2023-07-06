@@ -4,7 +4,7 @@
   "NAP": "0.25",
   "InstructionAll": "Uit",
   "NOOD": false,
-  "InstructionPass": "Uit",
+  "InstructionPass": "Links",
   "InstructionSchuif": "Omlaag",
   "ControlMode": "Automatisch"
 }

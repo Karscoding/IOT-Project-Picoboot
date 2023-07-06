@@ -46,7 +46,7 @@ class DataSim(customtkinter.CTkFrame):
 
     def run(self):
         if run(self.entry.get()) == "foute templist":
-            self.Errorlabel.configure(text_color='#FF0000', text=f"Te weinig waardes op deze datum")
+            messagebox.showinfo("Waarschuwing","Te weinig gegevens op deze datum")
         else:
             run(self.entry.get())
             
