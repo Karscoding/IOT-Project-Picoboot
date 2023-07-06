@@ -51,6 +51,8 @@ class App(customtkinter.CTk):
         self.fontbig = customtkinter.CTkFont(**fontbig)
         self.fontmedium = customtkinter.CTkFont(**fontbold)
         
+        auth="TeamH1"
+        
         def PageChange(self, pageTo):
             """
             ! Veranderd de Pagina in beeld. !
@@ -65,6 +67,7 @@ class App(customtkinter.CTk):
             
             
             ! Page Numbers : !
+            Inlogpagina        - 0
             VerlichtingsPagina - 1
             Operationeel       - 2
             Machine            - 3
@@ -138,6 +141,8 @@ class App(customtkinter.CTk):
                 self.Status.place(x=160, y=132)
                 self.DBcontrol.place(x=675,y=132)
                 self.log.place(x=1117, y=132)
+                
+                Thread(target=lambda: LogRequest(None)).start()
 
                 self.current_page = 3
             
@@ -298,20 +303,25 @@ class App(customtkinter.CTk):
                 self.machine_tab.pack(padx=20, pady=50)
                 self.livesim_tab.pack(padx=20,pady=50)
                 PageChange(self, 2)
-                Thread(target=LogRequest).start()
+                reason = "Ingelogd"
+                
+                Thread(target=lambda: LogRequest(reason)).start()
             
             else:
                 self.login_attempts += 1
                 self.Errorlabel.configure(text="PIN is Fout")
+                
+                reason = "Foute login"
+                Thread(target=lambda: LogRequest(reason)).start()
             
-        def LogRequest():
+        def LogRequest(reason):
             """
             Plaatst een post request naar de app.py Flask Server.
             Hierin worden dingen gelogged.
             """
             try: 
-                lights = requests.post(url , json=f"{tijd}")
-                response=lights.json()
+                loganswer = requests.post(url , json=(f"{tijd}",auth,reason))
+                response=loganswer.json()
                 self.log.change(response)
             except:
                 ""    
@@ -355,9 +365,6 @@ class App(customtkinter.CTk):
         self.logowindow=customtkinter.CTkLabel(master=self,image=self.logo, text="")
         self.logowindow.place(x=755,y=200)
 
-def key():
-    print(f"Pressed a")
-
 
 if __name__ == "__main__":
     app=App()
@@ -367,6 +374,7 @@ if __name__ == "__main__":
     else:
         app.iconbitmap("images/logo.ico")
     
-    app.bind("<a>", lambda x: key())
+    app.bind("<g>", lambda x: enginetoohot(app.afstand))
+    app.bind("<h>", lambda x: highpressure(app.afstand))
 
     app.mainloop()
