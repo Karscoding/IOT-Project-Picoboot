@@ -27,13 +27,9 @@ def generatediepte(current):
     
 @app.route("/temperature", methods=["POST"])
 def temperature():
-    auth = request.json[1]
-    data=request.json[0]
     tijd=translate()
-
-    if (auth==verwacht_teamnaam):
-        print("goed")
-    elif auth == None:
+    auth = request.json
+    if type(auth) == float:
         print("geen")
         with app.app_context():
             if actielog.query.all()==[]:
@@ -44,6 +40,12 @@ def temperature():
         db.session.add_all([actielog(id,tijd,"POST !auth")])
         db.session.commit()
         return ""
+    else:
+        auth = request.json[1]
+        data = request.json[0]
+
+    if (auth==verwacht_teamnaam):
+        print("goed")
     elif auth != verwacht_teamnaam:
         print("verkeerd")
         with app.app_context():
@@ -103,10 +105,19 @@ def temperature():
 def loggen():
     auth = request.json[1]
     data=request.json[0]
-    reason=request.json[2]
-
+    try: 
+        reason=request.json[2]
+    except:
+        with app.app_context():
+            if actielog.query.all()==[]:
+                id=1
+            else:
+                highestid = actielog.query.all()
+                id=(highestid[-1].id+1)
+            db.session.add_all([actielog(id,data,"geen auth")])
+            db.session.commit()
+        return""
     if (auth==verwacht_teamnaam):
-        print("goed")
         if reason == None:
             loglijst=[]
             with app.app_context():
@@ -128,19 +139,7 @@ def loggen():
                     loglijst.append((x.tijd,x.actions))
             
             return jsonify(loglijst)
-    elif auth == None:
-        print("geen")
-        with app.app_context():
-            if actielog.query.all()==[]:
-                id=1
-            else:
-                highestid = actielog.query.all()
-                id=(highestid[-1].id+1)
-            db.session.add_all([actielog(id,data,"geen auth")])
-            db.session.commit()
-        return""
     elif auth != verwacht_teamnaam:
-        print("verkeerd")
         with app.app_context():
             if actielog.query.all()==[]:
                 id=1
@@ -167,16 +166,38 @@ def loggen():
 
 @app.route('/nood',methods=["POST"])
 def noodstop():
-    data=request.json
-    with app.app_context():
-        if actielog.query.all()==[]:
-            id=1
-        else:
-            highestid = actielog.query.all()
-            id=(highestid[-1].id+1)
-    db.session.add_all([actielog(id,data,"Noodstop")])
-    db.session.commit()
-    return ""
+    auth =request.json[1]
+    data=request.json[0]
+    if (auth==verwacht_teamnaam):
+        with app.app_context():
+            if actielog.query.all()==[]:
+                id=1
+            else:
+                highestid = actielog.query.all()
+                id=(highestid[-1].id+1)
+        db.session.add_all([actielog(id,data,"Noodstop")])
+        db.session.commit()
+        return ""
+    elif auth == None:
+        with app.app_context():
+            if actielog.query.all()==[]:
+                id=1
+            else:
+                highestid = actielog.query.all()
+                id=(highestid[-1].id+1)
+            db.session.add_all([actielog(id,data,"geen auth")])
+            db.session.commit()
+        return""
+    elif auth != verwacht_teamnaam:
+        with app.app_context():
+            if actielog.query.all()==[]:
+                id=1
+            else:
+                highestid = actielog.query.all()
+                id=(highestid[-1].id+1)
+            db.session.add_all([actielog(id,data,"verkeerd auth")])
+            db.session.commit()
+        return""
      
     
 #Returned opdracht
