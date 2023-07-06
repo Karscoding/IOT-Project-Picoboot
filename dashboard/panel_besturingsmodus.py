@@ -29,6 +29,12 @@ class Besturingsmodus(customtkinter.CTkFrame):
                                                            font=self.fontbold)
         
         self.radio_button_2.pack(padx=10, pady=20, side=customtkinter.RIGHT)
+
+        modus = Reader("ControlMode")
+        if modus == "Handmatig":
+            self.radio_button_1.select()
+        elif modus == "Automatisch":
+            self.radio_button_2.select()
         
     def call_to_write(self):
         """Sends value to opdracht.txt"""

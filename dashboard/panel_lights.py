@@ -53,12 +53,12 @@ class PLights(customtkinter.CTkFrame):
             self.radio_button_2.pack(padx=40, pady=30)
             
             
-            self.radio_button_2 = customtkinter.CTkRadioButton(self, 
+            self.radio_button_3 = customtkinter.CTkRadioButton(self, 
                                                             text=" Passeer UIT ", 
                                                             **self.radiobutton,
                                                             value="Uit")
             
-            self.radio_button_2.pack(padx=40, pady=30)
+            self.radio_button_3.pack(padx=40, pady=30)
         elif text == {'Automatisch'}:
             self.font= customtkinter.CTkFont(**fonthuge)
             self.label = customtkinter.CTkLabel(self, 
@@ -71,7 +71,14 @@ class PLights(customtkinter.CTkFrame):
             self.label.pack(padx=20,pady=125)
             choises = ["Rechts","Links"]
             Writer("InstructionPass",random.choice(choises))
-            return    
+            return
+        state = Reader("InstructionPass")
+        if state == "Links":
+            self.radio_button_1.select()
+        elif state == "Rechts":
+            self.radio_button_2.select()
+        elif state == "Uit":
+            self.radio_button_3.select()
 
     def call_to_write(self):
         """Sends value to opdracht.txt"""
@@ -97,20 +104,27 @@ class MainLights(customtkinter.CTkFrame):
                             "variable":self.radio_button_var,
                             "command":self.call_to_write}
         
-        self.radio_button_3 = customtkinter.CTkRadioButton(self, 
+        self.radio_button_1 = customtkinter.CTkRadioButton(self, 
                                                            text="Verlichting AAN",
                                                            **self.radiobutton,
                                                            value="Aan")
         
-        self.radio_button_3.pack(padx=40, pady=39)
+        self.radio_button_1.pack(padx=40, pady=39)
         
         
-        self.radio_button_3 = customtkinter.CTkRadioButton(self, 
+        self.radio_button_2= customtkinter.CTkRadioButton(self, 
                                                            text="Verlichting UIT",
                                                            **self.radiobutton,
                                                            value="Uit")
         
-        self.radio_button_3.pack(padx=40, pady=39)
+        self.radio_button_2.pack(padx=40, pady=39)
+
+        lightstate = Reader("InstructionAll")
+        if lightstate == "Aan":
+            self.radio_button_1.select()
+        elif lightstate == "Uit":
+            self.radio_button_2.select()
+
         
     def call_to_write(self):
         """Sends value to opdracht.txt"""

@@ -2,9 +2,9 @@
   "Temp": 10.44,
   "Diepte": 2,
   "NAP": "0.25",
-  "InstructionAll": "Uit",
+  "InstructionAll": "Aan",
   "NOOD": false,
   "InstructionPass": "Rechts",
   "InstructionSchuif": "Omlaag",
-  "ControlMode": "Automatisch"
+  "ControlMode": "Handmatig"
 }
