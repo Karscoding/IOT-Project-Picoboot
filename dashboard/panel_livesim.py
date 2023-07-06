@@ -8,13 +8,19 @@ class Livesim(customtkinter.CTkFrame):
         #onzichtbare achtergrond
         self.configure(fg_color="transparent")
 
+        if os.getcwd().split("\\")[-1]=='Picoboot':
+            self.logo=customtkinter.CTkImage(Image.open("dashboard/images/drabboot.png"), size=(1200,200))
+        else:
+            self.logo=customtkinter.CTkImage(Image.open("images/drabboot.png"), size=(1200,200))
+        
         #boot
         self.boot = customtkinter.CTkLabel(self, 
                                             width=1200, 
                                             height=200, 
-                                            bg_color="#5c000c",
-                                            text="Boot",
-                                            font=customtkinter.CTkFont(size=40)
+                                            #bg_color="#5c000c",
+                                            text="",
+                                            font=customtkinter.CTkFont(size=40),
+                                            image=self.logo
                                             )
         self.boot.pack()
 
@@ -22,11 +28,17 @@ class zand(customtkinter.CTkFrame):
     def __init__(self,*args,master,header_name='zand', **kwargs):
         super().__init__(master, *args, **kwargs)
         self.header_name= header_name
+
+        if os.getcwd().split("\\")[-1]=='Picoboot':
+            self.logo=customtkinter.CTkImage(Image.open("dashboard/images/zand.png"), size=(1200,200))
+        else:
+            self.logo=customtkinter.CTkImage(Image.open("images/zand.png"), size=(1200,200))
         #zand
         self.zand = customtkinter.CTkLabel(self, 
                                             width=1200, 
                                             height=200, 
-                                            bg_color="#968200",
+                                            #bg_color="#968200",
+                                            image=self.logo,
                                             text="Zand",
                                             font=customtkinter.CTkFont(size=40)
                                             )
@@ -53,12 +65,18 @@ class diepte(customtkinter.CTkFrame):
         super().__init__(master, *args, **kwargs)
         self.header_name = header_name
 
+        if os.getcwd().split("\\")[-1]=='Picoboot':
+            self.logo=customtkinter.CTkImage(Image.open("dashboard/images/DepthSymbol.png"), size=(50,hoogte))
+        else:
+            self.logo=customtkinter.CTkImage(Image.open("images/DepthSymbol.png"), size=(50,hoogte))
+
         #afstand
         self.afstand = customtkinter.CTkLabel(self, 
                                             width=50, 
                                             height=hoogte,
-                                            bg_color="#300e32",
+                                            #bg_color="#300e32",
                                             text=f"Afstand:NA",
+                                            image=self.logo,
                                             font=customtkinter.CTkFont(size=40)
                                             )
         self.distanceRead()

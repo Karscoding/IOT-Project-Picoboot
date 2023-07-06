@@ -87,10 +87,11 @@ class afst(customtkinter.CTkFrame):
             self.label.destroy()
             self.swapped=0
             grafiek(self)
-        else:
+        elif self.swapped==0:
             self.canvas.get_tk_widget().destroy()            
             self.swapped=1
             label(self)
+            self.distanceRead()
 
         # '''Sticker'''
         # if os.getcwd().split("\\")[-1]=='Picoboot':

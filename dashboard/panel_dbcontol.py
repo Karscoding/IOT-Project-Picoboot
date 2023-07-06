@@ -76,7 +76,7 @@ class DBcontrol(customtkinter.CTkFrame):
         self.titel = customtkinter.CTkLabel(self,
                                             fg_color=(color), 
                                             corner_radius=8,
-                                            text="DB controle",
+                                            text="DB beheer",
                                             font=self.fonthuge)
         
         self.titel.pack(padx=75, pady=30)

@@ -22,8 +22,6 @@ def translate():
         if month in string:
             string = string.replace(month, dutch_month)
 
-
-
     splitalles=string.split(' ')
     maand=splitalles[1]
     datum=splitalles[2]

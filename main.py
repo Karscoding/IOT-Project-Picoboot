@@ -58,8 +58,6 @@ while connection.isconnected():
 
         led.off()
 
-
-
     #Stuurt een request naar /Input met als string "Requests"
     #Deze returned een opdracht
 

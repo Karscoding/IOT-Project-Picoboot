@@ -169,12 +169,12 @@ class App(customtkinter.CTk):
                 
                 
                 if Controlmode=={'Handmatig'}:
-                    self.schuify=mainy
+                    self.schuify=mainy+150
                     def upbutton():
                         try:
                             self.schuif.destroy()
                             self.schuif=Schuif(master=self,header_name="schuif")
-                            if self.schuify-5>=mainy:
+                            if self.schuify-5>=mainy+100:
                                 self.schuify-=5
                             self.schuif.place(x=1200,y=self.schuify)
                         except:
@@ -210,7 +210,7 @@ class App(customtkinter.CTk):
                     self.schuif=Schuif(master=self,header_name="schuif")
                     self.afstand=diepte(master=self,header_name="diepte",hoogte=750-mainy-200)        
 
-                    self.livesim.place(x=200,y=mainy)
+                    self.livesim.place(x=200,y=mainy+150)
                     self.zand.place(x=200,y=750)
                     self.schuif.place(x=1200,y=mainy)
                     self.afstand.place(y=mainy+200,x=800)
@@ -251,7 +251,7 @@ class App(customtkinter.CTk):
                     self.schuif=Schuif(master=self,header_name="schuif")
                     self.afstand=diepte(master=self,header_name="diepte",hoogte=750-mainy-200)        
 
-                    self.livesim.place(x=200,y=mainy)
+                    self.livesim.place(x=200,y=mainy+150)
                     self.zand.place(x=200,y=750)
                     self.schuif.place(x=1200,y=mainy+200)
                     self.afstand.place(y=mainy+200,x=800)
@@ -274,12 +274,12 @@ class App(customtkinter.CTk):
                                 self.schuif=Schuif(master=self,header_name="schuif")
                                 self.afstand=diepte(master=self,header_name="diepte",hoogte=750-mainy-200)
 
-                                self.livesim.place(x=200,y=mainy)
+                                self.livesim.place(x=200,y=mainy+150)
 
                                 if mainy> 250:
                                     self.schuif.place(x=1200,y=460)
                                 else:
-                                    self.schuif.place(x=1200,y=mainy+200)
+                                    self.schuif.place(x=1200,y=mainy+150)
                                 
                                 self.afstand.place(y=mainy+200,x=800)
 
