@@ -79,7 +79,7 @@ class DBcontrol(customtkinter.CTkFrame):
                                             text="DB beheer",
                                             font=self.fonthuge)
         
-        self.titel.pack(padx=75, pady=30)
+        self.titel.pack(padx=90, pady=30)
         
         
         self.delete = customtkinter.CTkButton(self,

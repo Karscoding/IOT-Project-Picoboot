@@ -1,6 +1,6 @@
 from imports_n_vars import * 
 nurl= f'http://localhost:5000/nood'
-
+auth = "TeamH1"
 def Timer():
     sleep(20)
     Writer("NOOD",False)
@@ -22,7 +22,7 @@ class NoodStop(customtkinter.CTkFrame):
         def NoodLog():
             tijd = translate()
             try:
-                requests.post(nurl, json=f"{tijd}")
+                requests.post(nurl, json=(f"{tijd}",auth))
             except:
                 ""
         
