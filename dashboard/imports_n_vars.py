@@ -63,10 +63,17 @@ PORT= '5000'
 
 def highpressure(object):
     messagebox.showinfo("Waarschuwing","Druk op de schuif word te hoog, schuif omhoog")
-    object.label.configure(text=f"Error gekregen, schuif tijdelijk omhoog.")
-    object.swapped=2
+    try:
+        object.label.configure(text=f"Error gekregen, schuif tijdelijk omhoog.")
+        object.swapped=2
+    except:
+        pass
 
 def enginetoohot(object):
-    object.label.configure(text=f"Error gekregen, schuif tijdelijk omhoog.")
-    object.swapped=2
-    return messagebox.showinfo("Waarschuwing","Motor is te warm, schuif omhoog en minder snehlheid")
+    messagebox.showinfo("Waarschuwing","Motor is te warm, schuif omhoog en minder snehlheid")
+    try:
+        object.label.configure(text=f"Error gekregen, schuif tijdelijk omhoog.")
+        object.swapped=2
+    except:
+        pass
+    
