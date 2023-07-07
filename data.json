@@ -1,10 +1,10 @@
 {
-  "Temp": 9.93,
-  "Diepte": 3.64,
+  "Temp": 9.79,
+  "Diepte": 2.64,
   "NAP": "0.25",
   "InstructionAll": "Uit",
   "NOOD": false,
-  "InstructionPass": "Links",
+  "InstructionPass": "Rechts",
   "InstructionSchuif": "Omlaag",
   "ControlMode": "Automatisch"
 }

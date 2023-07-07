@@ -17,14 +17,14 @@ def run(dag=0):
         for x in Afstand.query.all():
             distlist.append((x.afstand,x.nap))
 
-    if len(templist) < 10:
+    if len(templist) < 1:
         return 'foute templist'
     else:
         if os.getcwd().split("\\")[-1]=='Picoboot':
             '''Images'''
             image= pygame.image.load('./Images/noordpolderzijl.jpg')
             zand=pygame.image.load('./Images/zand.png')
-            boat=pygame.image.load('./Images/boot.png')
+            boat=pygame.image.load('./Images/drabboot.png')
             water= pygame.image.load('./Images/water.png')
             schuif=pygame.image.load('./Images/schuif.png')
             motor=pygame.image.load('./Images/motor.png')
