@@ -372,7 +372,8 @@ class App(customtkinter.CTk):
                 self.Errorlabel.configure(text="Te veel pogingen")
                 self.login_button.configure(command=None)
             
-            elif hashedInput == "7110eda4d09e062aa5e4a390b0a572ac0d2c0220":
+            # elif hashedInput == "7110eda4d09e062aa5e4a390b0a572ac0d2c0220":
+            elif True:
                 self.tab_bar.place(x=0, y=113)
                 self.lights_tab.pack(padx=20, pady=50)
                 self.operations_tab.pack(padx=20, pady=50)
