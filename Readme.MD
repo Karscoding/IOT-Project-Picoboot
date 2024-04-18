@@ -1,5 +1,7 @@
 # Picoboot Team 2023
 
+
+Pin: 1234
 ## - Info -
 
 Deze Repository bevat de bestanden voor het IOT Project van de Hanzehogeschool HBO-ICT eerstejaars
